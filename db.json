@@ -1,0 +1,5 @@
+{
+  "user": [
+    { "id": 1, "name": "json-server", "author": "email", "password" : "password" }
+  ]
+}
