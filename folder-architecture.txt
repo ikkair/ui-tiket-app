@@ -1,0 +1,44 @@
+tanda panah (->) artinya  adalah folder
+
+src -> 
+  pages -> 
+    login -> 
+      admin ->
+        adminLogin.jsx
+        adminLogin.module.css
+      Customer ->
+        customerLogin.jsx
+        customerLogin.module.css
+        
+    register -> 
+      admin ->
+        adminRegister.jsx
+        adminRegister.module.css
+      Customer ->
+        customerRegister.jsx
+        customerRegister.module.css
+
+Components -> 
+  Cards -> 
+    exampleCards -> 
+      exampleCards.jsx
+      exampleCards.module.css
+    exampleCards2 -> 
+      exampleCards2.jsx
+      exampleCards2.module.css
+
+  Modal -> 
+    exampleModal -> 
+      exampleModal.jsx
+      exampleModal.module.css
+    exampleModal2 -> 
+      exampleModal2.jsx
+      exampleModal2.module.css
+      
+  Footer -> 
+    footer.jsx
+    footer.module.css
+  Navbar -> 
+    navbar.jsx
+    navbar.module.css
+      
