@@ -27,7 +27,7 @@ const Profile = () => {
       <SectionCard header={true} title={"Profile"}>
         <div className="row">
           <div className="col-12">
-            <span className='fw-bold fs-3'>Profile</span>
+            <span className='fw-bold fs-3'>Profiles</span>
           </div>
         </div>
         <Form onSubmit={updateHandler}>
