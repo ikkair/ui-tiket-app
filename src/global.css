@@ -1,5 +1,5 @@
 .border-blue {
-  border: 1x solid #2395FF !important;
+  border: 1px solid #2395FF !important;
 }
 
 .text-blue {
@@ -28,6 +28,22 @@ background-color: #2395FF !important;
   border-radius: 10px !important;
 }
 
+.btn-blue-height {
+  background: #2395FF !important;
+  height: 50px;
+  color: #ffffff !important;
+  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
+  border-radius: 10px !important;
+}
+
+.btn-border-blue-height {
+  background: #ffffff !important;
+  height: 50px;
+  color: #ffffff !important;
+  border: 1px solid #2395FF !important;
+  border-radius: 10px !important;
+}
+
 .text-small {
   font-size: 12px !important;
 }
@@ -50,3 +66,7 @@ background-color: #2395FF !important;
 .pointer {
   cursor: pointer !important;
 }
+.no-underline {
+  text-decoration: none !important;
+}
+

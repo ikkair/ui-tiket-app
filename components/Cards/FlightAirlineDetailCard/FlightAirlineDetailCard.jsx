@@ -17,7 +17,7 @@ const FlightAirlineDetailCard = ({ data }) => {
               src={airlineLogo} 
               alt="air-line-logo" 
             />
-            <span className='text-secondary d-block'>Garuda Indonesia</span>
+            <span className='text-secondary d-block ms-2'>Garuda Indonesia</span>
           </div>
 
           <div className="col-12 d-flex gap-3 align-items-center mt-4">
