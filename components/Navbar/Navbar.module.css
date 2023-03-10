@@ -1,0 +1,25 @@
+.navbar {
+  background-color: #ffffff;
+  height: 128px;
+}
+
+.inputSearch {
+  color: #A3A3A3;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 15px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.bannerContainer {
+  top:130px !important;
+  right: 0;
+  left: 0;
+  height: 173px !important;
+  border-radius: 0px 0px 30px 30px !important;
+}
