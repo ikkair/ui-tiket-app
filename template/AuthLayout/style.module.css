@@ -1,0 +1,7 @@
+.right {
+    overflow-y: scroll;
+    height: 100vh;
+}
+.right::-webkit-scrollbar {
+    display: none;
+}

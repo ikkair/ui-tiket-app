@@ -1,0 +1,6 @@
+.formControl:active,
+.formControl:hover,
+.formControl:focus {
+    border-color: #2395FF !important;
+    box-shadow: none !important;
+}

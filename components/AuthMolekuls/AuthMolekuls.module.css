@@ -1,0 +1,24 @@
+.Banner {
+    height: 100vh;
+    background-color: #2395FF;
+}
+
+.Image {
+    background-image: url('../../src/assets/auth/illustration.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    width: 400px;
+}
+
+#flexCheckDefault:checked {
+    background-color: #2395FF !important;
+    border: white !important;
+    box-shadow: 0.5px 1px 10px 1px rgb(255, 255, 255) !important;
+}
+
+#flexCheckDefault {
+    background-color: silver !important;
+    border: grey !important;
+    box-shadow: 0.5px 1px 10px 1px rgb(255, 255, 255) !important;
+}
