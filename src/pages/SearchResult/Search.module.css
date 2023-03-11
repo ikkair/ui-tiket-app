@@ -1,0 +1,6 @@
+.styleBaseLayout {
+    position: relative;
+    z-index: 10;
+    /* top: 170px; */
+    margin-top: 170px;
+}
