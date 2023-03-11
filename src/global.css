@@ -100,7 +100,7 @@ background-color: #2395FF !important;
 .accordions::after {
   margin-left: 20px !important;
   background-size: 15px !important;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 .accordions:not(.collapsed)::after {
   margin-top: 0px;

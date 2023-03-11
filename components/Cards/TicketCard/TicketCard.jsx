@@ -5,14 +5,14 @@ import Iconflight from '../../../src/assets/icon/flight.png'
 import lugage from '../../../src/assets/icon/lugage.png'
 import { Link } from 'react-router-dom'
 
-const TicketCard = () => {
+const TicketCard = ({id}) => {
     return (
-        <Card className={`border-0 shadow-small px-3 py-4`}>
+        <Card className={`border-0 shadow-small px-3 py-4 mb-3`}>
             <div className="airlines d-flex justify-content-md-start justify-content-between align-items-center">
                 <img src={garuda} alt="" className='d-none d-md-block' />
                 <p className='text-secondary ms-0 ms-md-4 my-0 py-0'>Garuda Indonesia</p>
-                <h2 className="accordion-header d-md-none d-block" id="panelsStayOpen-headingOne">
-                    <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                <h2 className="accordion-header d-md-none d-block" id={`panelsStayOpen-heading${id}`}>
+                    <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target={`#panelsStayOpen-collapse${id}`} aria-expanded="true" aria-controls={`panelsStayOpen-collapse${id}`}>
                         View Details
                     </button>
                 </h2>
@@ -42,12 +42,12 @@ const TicketCard = () => {
                 <div className="col-12 mt-3">
                     <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
                         <div className="accordion-item">
-                            <h2 className="accordion-header d-none d-md-block" id="panelsStayOpen-headingOne">
-                                <button className="accordion-button accordions fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <h2 className="accordion-header d-none d-md-block" id={`panelsStayOpen-heading${id}`}>
+                                <button className="accordion-button accordions fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target={`#panelsStayOpen-collapse${id}`} aria-expanded="true" aria-controls={`panelsStayOpen-collapse${id}`}>
                                     View Details
                                 </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div id={`panelsStayOpen-collapse${id}`} className="accordion-collapse collapse show" aria-labelledby={`panelsStayOpen-heading${id}`}>
                                 <div className="accordion-body text-start">
                                     <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                                 </div>
