@@ -11,7 +11,6 @@ export const workerContactForm = [
     type: "number",
     placeholder: 'Enter Phone Number',
   },
- 
 ]
 
 export const workerBiodataForm = [

@@ -10,7 +10,7 @@ import { faGear, faRightFromBracket, faStar, faUser } from "@fortawesome/free-so
 
 const ProfileCard = ({ data, className }) => {
   return (
-    <Card className={`${style.card} ${className} border-0 px-3 py-4`}>
+    <Card className={`${style.card} ${className} shadow-none border-0 px-3 py-4`}>
       <Card.Img
         className={`${style.userPhoto} mx-auto img-fluid rounded-circle border-blue`}
         variant="top"

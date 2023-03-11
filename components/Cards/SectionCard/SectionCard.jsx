@@ -4,7 +4,7 @@ import style from "./SectionCard.module.css";
 
 const SectionCard = ({ title, children, header, className }) => {
   return (
-    <Card className={`${className} border-0 mb-3 main-border overflow-hidden`}>
+    <Card className={`${className} shadow-none border-0 mb-3 main-border overflow-hidden`}>
       {header && (
         <Card.Header className={`${style.cardHeader} fw-semibold text-medium text-blue border-0 pb-0 px-4 pt-4`}>
           {title}
