@@ -10,7 +10,10 @@ const BaseLayout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className={`${optionalPathUrl.includes(urlPath) ? style.mainContentOptional : style.mainContent }`}>{children}</main>
+      <main className={`
+      ${optionalPathUrl.includes(urlPath) ? style.mainContentOptional : style.mainContent }
+      ${urlPath == '/' || urlPath == '/home' ? 'bg-light' : ''}
+      `}>{children}</main>
       {/* <Footer /> */}
     </>
   );
