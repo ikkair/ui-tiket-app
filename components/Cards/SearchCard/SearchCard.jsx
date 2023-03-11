@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+// import Form from "react-bootstrap/Form";
 
 export const SearchCard = () => {
     return (
@@ -7,20 +8,24 @@ export const SearchCard = () => {
             <div className="accordion accordion-flush" id="accordionFlushExample">
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="flush-headingOne">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                            <span className="fab fa-leanpub me-2"></span>
-                            What is the purpose of a FAQ?
+                        <button className="accordion-button collapsed fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            Transit
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div className="accordion-body">
-                            <div class="form-check">
-                                <label class="form-check-label">Option 1</label>
-                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked/>
+                            <div class="form-check d-flex justify-content-between flex-row-reverse mb-3">
+                                <input class="form-check-input me-1" type="checkbox" value="" id="defaultCheck1"/>
+                                <label class="form-check-label p-0 m-0" for="defaultCheck1">
+                                        <span style={{marginLeft: '-25px'}}>Price</span>
+                                </label>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
+                
+                
             </div>
         </Card>
     )

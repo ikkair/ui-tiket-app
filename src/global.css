@@ -59,3 +59,27 @@ background-color: #2395FF !important;
   text-decoration: none !important;
 }
 
+
+
+
+
+
+/* Accordion */
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.accordion-button {
+  padding: 10px 0 10px !important;
+  border: none !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,.125) !important;
+}
+
+.accordion-body {
+  padding: 10px 0 10px !important;
+}
