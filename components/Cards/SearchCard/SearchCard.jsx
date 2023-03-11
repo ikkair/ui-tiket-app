@@ -18,7 +18,7 @@ export const SearchCard = () => {
                     <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div className="accordion-body">
                             <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                                <input className="form-check-input me-1" type="checkbox" value="" id="defaultCheck1" />
+                                <input className="form-check me-1" type="checkbox" value="" id="defaultCheck1" />
                                 <label className="form-check-label p-0 m-0" for="defaultCheck1">
                                     <span style={{ marginLeft: '-25px' }}>Price</span>
                                 </label>
@@ -33,8 +33,8 @@ export const SearchCard = () => {
                     <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                         <div className="accordion-body">
                             <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                                <input className="form-check-input me-1" type="checkbox" value="" id="defaultCheck1" />
-                                <label className="form-check-label p-0 m-0" for="defaultCheck1">
+                                <input className="form-check me-1" type="checkbox" value="" id="defaultCheck2" />
+                                <label className="form-check-label p-0 m-0" for="defaultCheck2">
                                     <span style={{ marginLeft: '-25px' }}>Price</span>
                                 </label>
                             </div>

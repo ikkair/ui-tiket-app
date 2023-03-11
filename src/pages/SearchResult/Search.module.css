@@ -4,3 +4,10 @@
     /* top: 170px; */
     margin-top: 170px;
 }
+.headingTop {
+    position: absolute;
+    top: 180px;
+    z-index: 99999;
+    left: 15px;
+    right: 15px;
+}
