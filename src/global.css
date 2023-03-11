@@ -70,8 +70,9 @@ background-color: #2395FF !important;
   text-decoration: none !important;
 }
 
-
-
+.btn-width {
+  width: 80%;
+}
 
 
 
@@ -94,3 +95,15 @@ background-color: #2395FF !important;
 .accordion-body {
   padding: 10px 0 10px !important;
 }
+
+/* Accordion Ticket Card */
+.accordions::after {
+  margin-left: 20px !important;
+  background-size: 15px !important;
+  margin-top: 5px;
+}
+.accordions:not(.collapsed)::after {
+  margin-top: 0px;
+}
+
+
