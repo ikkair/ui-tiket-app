@@ -29,7 +29,14 @@ export const SearchResult = () => {
                 <h4>Select tickets <span className='text-secondary h5'>(6 flight found)</span></h4>
                 <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown}/> </Link>
             </div>
-            <TicketCard/>
+            <TicketCard 
+                id={'satu'}
+            />
+            <TicketCard
+                id={'dua'}
+            />
+
+
 
             
 
