@@ -17,7 +17,7 @@ const MyBooking = () => {
     <DoubleSideLayout
       classLeft={'col-12 col-md-5 col-lg-4'}
       classRight={'col-12 col-md-7 col-lg-8 mt-3 mt-md-0'}
-      leftside={<ProfileCard />}
+      leftside={<ProfileCard className={`d-none d-sm-flex`}/>}
     >
       <SectionCard header={true} title={"My Booking"}>
         <div className="row">
