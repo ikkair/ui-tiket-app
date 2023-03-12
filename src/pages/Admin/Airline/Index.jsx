@@ -8,7 +8,7 @@ import ModalMedium from '../../../../components/Dashboard/Modals/ModalMedium/Mod
 import FormInput from '../../../../components/Dashboard/Form/FormInput/FormInput';
 import { useCreateAirlineMutation, useGetAllAirlineQuery, useUpdateAirlineByIdMutation } from '../../../features/airline/airlineApi';
 
-const Airlane = () => {
+const Airline = () => {
   const {data: airlanes, isLoading, isSuccess} = useGetAllAirlineQuery()
   const [createAirline, {isLoading:isLoadingCreateAirline, isSuccess: isSuccessCreateAirline}] = useCreateAirlineMutation()
   const [updateAirlineById] = useUpdateAirlineByIdMutation()
@@ -114,32 +114,32 @@ const Airlane = () => {
                   </tr>
                   </thead>
                   <tbody>
-                    {airlanes?.map((airlane, i) => (
-                      <tr>
+                    {airlanes?.map((airline, i) => (
+                      <tr key={i}>
                         <td>{i+1}</td>
-                        <td>{airlane.photo}</td>
-                        <td>{airlane.name}</td>
-                        <td>{airlane.status ? 'active' : 'Off'}</td>
+                        <td>{airline.photo}</td>
+                        <td>{airline.name}</td>
+                        <td>{airline.status ? 'active' : 'Off'}</td>
                         <td className='d-flex justify-content-center'>
                           <div className="dropdown mx-auto">
                             <FontAwesomeIcon className='pointer py-1 px-2 btn btn-primary' icon={faEllipsisVertical} data-bs-toggle="dropdown" aria-expanded="false"/>
                             <ul className="dropdown-menu">
-                              <li data-bs-toggle="modal" data-bs-target={`#exampleModal${i}`}><a className="dropdown-item" href="#" onClick={() => setDataAirlineUpdate(airlane)}>Update</a></li>
+                              <li data-bs-toggle="modal" data-bs-target={`#exampleModal${i}`}><a className="dropdown-item" href="#" onClick={() => setDataAirlineUpdate(airline)}>Update</a></li>
                               <li
-                                onClick={(e) => updateStatus(airlane)}
+                                onClick={(e) => updateStatus(airline)}
                               >
                                 <a className="dropdown-item" href="#">Change Status</a>
                               </li>
                             </ul>
                           </div>
                           
-                          <ModalMedium id={`exampleModal${i}`} title={`Update airlane`}>
-                            <Form onSubmit={(e) => updateHandler(e, airlane.id)}>
+                          <ModalMedium id={`exampleModal${i}`} title={`Update airline`}>
+                            <Form onSubmit={(e) => updateHandler(e, airline.id)}>
                               <FormInput 
-                                title={`Airlane Name`}
+                                title={`airline Name`}
                                 type="text"
                                 name={'name'}
-                                placeholder="Input Airlane Name" 
+                                placeholder="Input airline Name" 
                                 value={dataAirlineUpdate?.name}
                                 onchange={updateChangeHandler}
                               />
@@ -147,7 +147,7 @@ const Airlane = () => {
                                 title={`Photo (jpg, png, jpeg)`}
                                 type="file"
                                 name={'photo'}
-                                placeholder="Input Airlane logo" 
+                                placeholder="Input airline logo" 
                                 onchange={updateChangeHandler}
                               />
                               <Form.Group className="mb-3 w-100" controlId="formBasicEmail">
@@ -185,4 +185,4 @@ const Airlane = () => {
   )
 }
 
-export default Airlane
+export default Airline

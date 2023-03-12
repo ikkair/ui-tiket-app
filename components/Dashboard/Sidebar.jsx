@@ -77,15 +77,15 @@ const Sidebar = () => {
             <Link to="#" className="nav-link">
               <FontAwesomeIcon className='nav-icon' icon={faPlane} />
               <p>
-                Airlane
+                Airline
                 <i className="fas fa-angle-left right"></i>
               </p>
             </Link>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <Link to={`/admin/dashboard/airlanes`} className="nav-link">
+                <Link to={`/admin/dashboard/airlines`} className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
-                  <p>Airlane Information</p>
+                  <p>Airline Information</p>
                 </Link>
               </li>
             </ul>
@@ -94,7 +94,7 @@ const Sidebar = () => {
             <Link to="#" className="nav-link">
               <FontAwesomeIcon className='nav-icon' icon={faPlaneDeparture} />
               <p>
-                Flights
+                Flight
                 <i className="fas fa-angle-left right"></i>
               </p>
             </Link>

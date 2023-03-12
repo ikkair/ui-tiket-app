@@ -10,10 +10,11 @@ import ForgotPassword from './pages/ForgotPassword'
 import FlightDetail from './pages/Flight/FlightDetail/FlightDetail'
 import { SearchResult } from './pages/SearchResult'
 import Dashboard from './pages/Admin/Dashboard'
-import Airlane from './pages/Admin/Airlane/Index'
 import CreateFlight from './pages/Admin/Flights/CreateFlight.jsx/CreateFlight'
 import UpdateFlight from './pages/Admin/Flights/UpdateFlight/UpdateFlight'
 import FlightInformation from './pages/Admin/Flights/Index'
+import Airline from './pages/Admin/Airline/Index'
+import BookingInformation from './pages/Admin/Booking/Booking'
 
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
 
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/dashboard">
-        <Route path="airlanes" element={<Airlane />} />
+        <Route path="airlines" element={<Airline />} />
         <Route path="flights" element={<FlightInformation />} />
+        <Route path="bookings" element={<BookingInformation />} />
         <Route path="flights/edit/:id" element={<UpdateFlight />} />
         <Route path="flights/create-flight" element={<CreateFlight />} />
       </Route>
