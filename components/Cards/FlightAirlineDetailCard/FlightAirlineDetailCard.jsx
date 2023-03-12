@@ -8,7 +8,7 @@ import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
  
 const FlightAirlineDetailCard = ({ data }) => {
   return (
-    <Card className={"border-0 mb-3 main-border overflow-hidden"}>
+    <Card className={"border-0 mb-3 shadow-none main-border overflow-hidden"}>
       <Card.Header className={`${style.cardHeader} p-3`}>
         <div className="row">
           <div className="col-12 d-flex align-items-center gap-2 fw-semibold">

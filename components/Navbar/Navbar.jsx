@@ -17,8 +17,22 @@ import navbarBannerLogo from '../../src/assets/navbar/bannerLogo.png'
 
 export const Navbar = () => {
 
+  const urlPath = window.location.pathname
+  
   const logoutHandler = async (e) => {
 
+  }
+
+  const urlWithoutBanner = ['/home', '/']
+
+  const renderBanner = () => {
+    if(!urlWithoutBanner.includes(urlPath)){
+      return (
+        <span className={`${style.bannerContainer} d-block navbar-banner bg-blue position-absolute`}>
+          <img src={navbarBannerLogo} className={'img-fluid'} alt="" />
+        </span>
+      )
+    }
   }
 
   return (
@@ -151,9 +165,8 @@ export const Navbar = () => {
       </div>
       </nav>
 
-      <span className={`${style.bannerContainer} d-block navbar-banner bg-blue position-absolute`}>
-        <img src={navbarBannerLogo} className={'img-fluid'} alt="" />
-      </span>
+      {renderBanner()}
+     
     </div>
   )
 }

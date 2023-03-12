@@ -57,13 +57,14 @@ const FlightDetail = () => {
             <SectionCard className={`pt-4`}>
               <Alert className='py-2 d-flex align-items-center flex-wrap justify-content-between' variant={`primary`}>
                 <span className='text-medium'>Passanger: 1 Adult</span>
-                <span className='text-medium d-flex gap-2 align-items-center'>Same as contact person
+                <div className='d-flex gap-2 align-items-start'>
+                  <span className='d-block text-medium'>Same as contact person</span>
                   <Form.Check 
-                    className='fs-5 shadow-0'
+                    className='shadow-none bg-success'
                     type="switch"
                     id="custom-switch"
                   />
-                </span>
+                </div>
               </Alert>
               <ProfileInputForm 
                 title={`Full Name`}
@@ -90,7 +91,7 @@ const FlightDetail = () => {
             </SectionCard>
 
             <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Insurance</span>
-            <Card className={`border-0 mb-3 main-border overflow-hidden`}>
+            <Card className={`border-0 shadow-none mb-3 main-border overflow-hidden`}>
               <Card.Header className={`${style.cardInsurance} p-3 d-flex justify-content-between`}>
                 <div className="d-flex">
                   <Form.Check
