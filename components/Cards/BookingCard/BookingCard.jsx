@@ -5,11 +5,11 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import style from "./BookingCard.module.css";
 
-const BookingCard = ({ title, children, header }) => {
+const BookingCard = ({ title, children, header, classHeader }) => {
   return (
-    <Card className={"border-0 shadow mb-3 main-border overflow-hidden"}>
+    <Card className={"border-0 mb-3 main-border overflow-hidden"}>
       {header && (
-        <Card.Header className={`${style.cardHeader}  pb-0 px-4 pt-4`}>
+        <Card.Header className={`${style.cardHeader} ${classHeader} pb-0 px-4 pt-4`}>
           <div className="row">
             <div className="col-12">
               <span className="text-dark">Monday, 20 Juli '30 - 15:33</span>
@@ -31,7 +31,7 @@ const BookingCard = ({ title, children, header }) => {
             <span className="text-secondary">Status</span>
             <button className="btn btn-danger">Waiting for payment</button>
           </div>
-          <div className="col-auto d-flex align-items-center">
+          <div className="col-auto d-none d-sm-flex align-items-center">
             <Link to={'/my-booking/id_booking'} className={`fw-semibold text-decoration-none`}>View Details 
               <FontAwesomeIcon className={`ms-3`} icon={faCircleChevronRight} />
             </Link>

@@ -2,9 +2,9 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import style from "./SectionCard.module.css";
 
-const SectionCard = ({ title, children, header }) => {
+const SectionCard = ({ title, children, header, className }) => {
   return (
-    <Card className={"border-0 shadow mb-3 main-border overflow-hidden"}>
+    <Card className={`${className} shadow-none border-0 mb-3 main-border overflow-hidden`}>
       {header && (
         <Card.Header className={`${style.cardHeader} fw-semibold text-medium text-blue border-0 pb-0 px-4 pt-4`}>
           {title}
