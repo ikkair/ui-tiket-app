@@ -20,7 +20,7 @@ export const flightForm = [
   },
   {
     title : "Departure time",
-    name : "departure_date",
+    name : "departure_time",
     type: "time",
     placeholder: '00:00',
   },
@@ -34,7 +34,7 @@ export const flightForm = [
 
   {
     title : "Arrived time",
-    name : "arrived_date",
+    name : "arrived_time",
     type: "time",
     placeholder: '00:00',
   },
@@ -52,6 +52,6 @@ export const flightForm = [
   },
 ]
 
-export const flightFacility = ["Luggage", "Meal", "Wifi"]
+export const flightFacility = ["luggage", "meal", "wifi"]
 
 export const flightTerminal = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];

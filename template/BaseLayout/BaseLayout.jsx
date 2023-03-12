@@ -1,6 +1,7 @@
-import React from "react";
-import { Navbar } from "../../components/Navbar/Navbar";
-import style from "./BaseLayout.module.css";
+import React from 'react';
+import Footer from '../../components/Footer/Footer';
+import { Navbar } from '../../components/Navbar/Navbar';
+import style from './BaseLayout.module.css';
 
 const BaseLayout = ({ children }) => {
 
@@ -15,6 +16,8 @@ const BaseLayout = ({ children }) => {
       ${urlPath == '/' || urlPath == '/home' ? 'bg-light' : ''}
       `}>{children}</main>
       {/* <Footer /> */}
+      <main className={`${style.mainContent}`}>{children}</main>
+      <Footer />
     </>
   );
 };

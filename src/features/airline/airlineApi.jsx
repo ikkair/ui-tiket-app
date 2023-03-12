@@ -5,16 +5,16 @@ const airlineApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllAirline: builder.query({
       query: () =>  ({
-        url: "airline"
+        url: "airlines"
       }),
 
       providesTags: ['getAllAirline'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response
     }),
 
     createAirline: builder.mutation({
       query: (data) =>  ({
-        url: "airline",
+        url: "airlines",
         method: "POST",
         body: data
       }),
@@ -25,7 +25,7 @@ const airlineApi = apiSlice.injectEndpoints({
 
     updateAirlineById: builder.mutation({
       query: ({id, data}) =>  ({
-        url: `airline/${id}`,
+        url: `airlines/${id}`,
         method: "PUT",
         body: data
       }),
@@ -36,7 +36,7 @@ const airlineApi = apiSlice.injectEndpoints({
 
     deleteAirlineById: builder.mutation({
       query: (id) =>  ({
-        url: `airline/${id}`,
+        url: `airlines/${id}`,
         method: "DELETE",
       }),
 
