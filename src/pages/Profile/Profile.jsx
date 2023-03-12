@@ -8,9 +8,10 @@ import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import ProfileInputForm from '../../../components/Forms/ProfileInputForm/ProfileInputForm'
 import { workerContactForm, workerBiodataForm } from '../../../lib/customerForm'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
-import { closeLoading, failedLoading, showLoading, successLoading } from '../../common/loadingHandler'
+import { failedLoading, showLoading, successLoading } from '../../common/loadingHandler'
 import { useGetUserProfileQuery, useUpdateUserProfileMutation } from '../../features/user/userApi'
 import style from './Profile.module.css'
+import Swal from 'sweetalert2'
 
 const Profile = () => {
   const staticId = 1
@@ -39,8 +40,12 @@ const Profile = () => {
   }
 
   useEffect(() => {
+
+    if(isLoading) showLoading('Please Wait ....')
+
     if(isSuccess) {
       setProfile(data)
+      Swal.close()
     }
 
   }, [isSuccess, isLoading])

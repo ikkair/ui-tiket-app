@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SectionCard from '../../../../components/Cards/SectionCard/SectionCard'
 import ProfileInputForm from '../../../../components/Forms/ProfileInputForm/ProfileInputForm'
 import { formContactPerson } from '../../../../lib/flightForm'
@@ -10,8 +10,24 @@ import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import FlightAirlineDetailCard from '../../../../components/Cards/FlightAirlineDetailCard/FlightAirlineDetailCard'
 import { Form, InputGroup } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
+import PassangerCard from '../../../../components/Cards/PassangerCard/PassangerCard'
 
 const FlightDetail = () => {
+  const [contact, setContact] = useState({
+    contact_name: "", 
+    contact_email: "", 
+    phone_contact: "", 
+  })
+
+  const changeHandlerContact = (e) => {
+    console.log(contact)
+    setContact(prev => {
+      return {
+        ...prev,
+        [e.target.name] : e.target.value
+      }
+    })
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -55,39 +71,7 @@ const FlightDetail = () => {
 
             <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Passangers Details</span>     
             <SectionCard className={`pt-4`}>
-              <Alert className='py-2 d-flex align-items-center flex-wrap justify-content-between' variant={`primary`}>
-                <span className='text-medium'>Passanger: 1 Adult</span>
-                <div className='d-flex gap-2 align-items-start'>
-                  <span className='d-block text-medium'>Same as contact person</span>
-                  <Form.Check 
-                    className='shadow-none bg-success'
-                    type="switch"
-                    id="custom-switch"
-                  />
-                </div>
-              </Alert>
-              <ProfileInputForm 
-                title={`Full Name`}
-                name={`name`}
-                type={`text`}
-                placeholder={`Input Your Full Name`}
-              />
-
-              <Form.Label className="text-secondary text-medium ps-2 mb-2">Passenger Type</Form.Label>
-              <div className="d-flex gap-4">
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                  <label className="form-check-label" htmlFor="flexRadioDefault1">
-                    Child
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                  <label className="form-check-label" htmlFor="flexRadioDefault2">
-                    Adult
-                  </label>
-                </div>
-              </div>
+              <PassangerCard  />
             </SectionCard>
 
             <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Insurance</span>

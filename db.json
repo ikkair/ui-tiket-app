@@ -17,6 +17,24 @@
       "terminal": "C",
       "gate": 123,
       "id": 1
+    },
+    {
+      "transit": "direct",
+      "luggage": true,
+      "meal": true,
+      "wifi": false,
+      "id_airlane": "5",
+      "starting_place": "Makassar",
+      "destination_place": "Kalimantan",
+      "departure_date": "2023-03-12",
+      "departure_time": "08:30",
+      "arrived_date": "2023-03-13",
+      "arrived_time": "10:15",
+      "capacity": 80,
+      "price": 750000,
+      "terminal": "C",
+      "gate": 123,
+      "id": 2
     }
   ],
   "bookings": [

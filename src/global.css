@@ -80,7 +80,6 @@
 }
 
 /* Accordion */
-
 .accordion-button:not(.collapsed) {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -103,8 +102,17 @@
 .accordions::after {
   margin-left: 20px !important;
   background-size: 15px !important;
-  margin-top: 6px;
+  position: absolute;
+  left: 80px;
+  top: 15px;
+  /* margin-top: 6px; */
 }
 .accordions:not(.collapsed)::after {
-  margin-top: 0px;
+  position: absolute;
+  left: 78px;
+  top: 10px;
 }
+
+
+
+

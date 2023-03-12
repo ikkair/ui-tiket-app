@@ -14,7 +14,12 @@ const BaseLayout = ({ children }) => {
         className={`
       ${optionalPathUrl.includes(urlPath) ? style.mainContentOptional : style.mainContent}
       ${urlPath == '/' || urlPath == '/home' ? 'bg-light' : ''}
-      `}>{children}</main>
+      `}
+      >
+        {children}
+      </main>
+      {/* <Footer /> */}
+      {/* <main className={`${style.mainContent}`}>{children}</main> */}
       <Footer />
     </>
   );

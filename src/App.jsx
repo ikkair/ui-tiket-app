@@ -1,36 +1,35 @@
-import './App.css'
-import {Routes, Route } from 'react-router-dom'
-import Profile from './pages/Profile/Profile'
-import MyBooking from './pages/MyBooking/MyBooking'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import ForgotPassword from './pages/ForgotPassword'
-import FlightDetail from './pages/Flight/FlightDetail/FlightDetail'
-import { SearchResult } from './pages/SearchResult'
-import Dashboard from './pages/Admin/Dashboard'
-import CreateFlight from './pages/Admin/Flights/CreateFlight.jsx/CreateFlight'
-import UpdateFlight from './pages/Admin/Flights/UpdateFlight/UpdateFlight'
-import FlightInformation from './pages/Admin/Flights/Index'
-import Airline from './pages/Admin/Airline/Index'
-import BookingInformation from './pages/Admin/Booking/Booking'
-import Index from './pages/Dashboard/Index'
-
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Profile from './pages/Profile/Profile';
+import MyBooking from './pages/MyBooking/MyBooking';
+import Index from './pages/admin/Dashboard/Index';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import FlightDetail from './pages/Flight/FlightDetail/FlightDetail';
+import { SearchResult } from './pages/SearchResult';
+import CreateFlight from './pages/Admin/Flights/CreateFlight.jsx/CreateFlight';
+import UpdateFlight from './pages/Admin/Flights/UpdateFlight/UpdateFlight';
+import FlightInformation from './pages/Admin/Flights/Index';
+import Airline from './pages/Admin/Airline/Index';
+import BookingInformation from './pages/Admin/Booking/Booking';
+import Landing from './pages/Landing/Index';
+import BookingDetail from './pages/BookingDetail/index';
 
 function App() {
-
   return (
     <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/home" element={<Index />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-booking" element={<MyBooking />} />
+      <Route path="/my-booking/:id" element={<BookingDetail />} />
       <Route path="/flights/:id" element={<FlightDetail />} />
+      <Route path="/flights" element={<SearchResult />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/search-result" element={<SearchResult />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/home" element={<Landing />} />
 
-      <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={<Airline />} />
         <Route path="flights" element={<FlightInformation />} />
@@ -38,8 +37,9 @@ function App() {
         <Route path="flights/edit/:id" element={<UpdateFlight />} />
         <Route path="flights/create-flight" element={<CreateFlight />} />
       </Route>
+
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
