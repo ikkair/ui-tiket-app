@@ -1,16 +1,16 @@
 .border-blue {
-  border: 1px solid #2395FF !important;
+  border: 1px solid #2395ff !important;
 }
 
 .text-blue {
-  color: #2395FF !important;
+  color: #2395ff !important;
 }
 
 .bg-blue {
-background-color: #2395FF !important;
+  background-color: #2395ff !important;
 }
 .text-blue-secondary {
-  color : #AEFAFF !important;
+  color: #aefaff !important;
 }
 
 .main-border {
@@ -22,14 +22,14 @@ background-color: #2395FF !important;
 }
 
 .btn-blue {
-  background: #2395FF !important;
+  background: #2395ff !important;
   color: #ffffff !important;
   box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
   border-radius: 10px !important;
 }
 
 .btn-blue-height {
-  background: #2395FF !important;
+  background: #2395ff !important;
   height: 50px;
   color: #ffffff !important;
   box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
@@ -40,7 +40,7 @@ background-color: #2395FF !important;
   background: #ffffff !important;
   height: 50px;
   color: #ffffff !important;
-  border: 1px solid #2395FF !important;
+  border: 1px solid #2395ff !important;
   border-radius: 10px !important;
 }
 
@@ -58,4 +58,3 @@ background-color: #2395FF !important;
 .no-underline {
   text-decoration: none !important;
 }
-
