@@ -1,3 +1,8 @@
+.Hero {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
 .blue {
   color: #2395ff !important;
 }
@@ -18,11 +23,12 @@
 }
 
 .bgImage {
-  background-image: url('../assets/images/bgImageTopDest.png');
+  background-image: url('../../assets/explore/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 50px;
+  height: 550px;
 }
 
 .infoNext {
@@ -48,7 +54,8 @@
 }
 
 .wArrow {
-  font-size: 30px !important;
+  width: 68px !important;
+  height: 50px !important;
 }
 
 .textFlight {
@@ -57,7 +64,7 @@
 
 .customImageBubble {
   margin-top: 10px;
-  margin-right: 100px;
+  margin-right: 200px;
 }
 
 .cardHero {
@@ -107,23 +114,10 @@
   padding-right: 10px;
 } */
 
-.flexRow {
-  display: flex;
-  flex-direction: row;
-}
-
-.flexCol {
-  display: flex;
-  flex-direction: column;
-}
-
-.flexAuto {
-  flex: 1 1 auto;
-}
-
 .cardSlider {
   position: relative;
-  max-height: 262px;
+  height: 250px;
+  max-width: 200px;
   border-radius: 20px;
   overflow: hidden;
   z-index: 10;
@@ -174,6 +168,7 @@
   max-width: 160px;
   height: 160px;
   border: 5px solid white;
+  background-color: #2395ff;
 }
 .spaceCust {
   margin-left: 70px;
@@ -182,10 +177,13 @@
   width: 800px !important;
   height: auto;
 }
+.spacing {
+  letter-spacing: 0.3em;
+}
 
 @media (min-width: 768px) and (max-width: 825px) {
   .customImg {
-    width: 90% !important;
+    width: 100% !important;
     height: auto;
   }
   .customCard {
@@ -212,17 +210,18 @@
     margin-top: 50px !important;
   }
   .customImg {
-    width: 90% !important;
+    width: 100% !important;
     height: auto;
   }
 }
 
 @media (max-width: 426px) {
+  .none {
+    visibility: hidden !important;
+  }
+
   .customCard {
     width: 100% !important;
-  }
-  .mobileMargin {
-    margin-bottom: 100px;
   }
 }
 .imageHero {
