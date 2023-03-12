@@ -4,15 +4,17 @@ import small from '../../assets/explore/img-small.png';
 import blue from '../../assets/explore/blue.png';
 import spain from '../../assets/explore/spain.png';
 // import style from './dashboard.module.css';
-import './dashboard.css';
+import './landing.css';
 import plane from '../../assets/explore/plane.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrowRotateLeft, faArrowRotateRight, faArrowsLeftRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
+import { Navbar } from '../../../components/Navbar/Navbar';
+import Footer from '../../../components/Footer/Footer';
 
 const Index = () => {
   return (
