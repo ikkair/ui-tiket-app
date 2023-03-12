@@ -70,7 +70,7 @@ const BookingInformation = () => {
         <div className="col-12">
           <div className="card shadow">
             <div className="card-header">
-              <h3 className="card-title text-center">Data BookingInformation</h3>
+              <h3 className="card-title text-center">Data Booking Information</h3>
             </div>
             
             <div className="card-body">

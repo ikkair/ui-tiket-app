@@ -8,18 +8,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowsUpDown, faCircle } from '@fortawesome/free-solid-svg-icons'
 import TicketCard from '../../../components/Cards/TicketCard/TicketCard'
 import planes from '../../assets/icon/planes.png'
+import { useGetAllFlightQuery } from '../../features/flight/flightApi'
+import { FormatRupiah } from '@arismun/format-rupiah'
 
 export const SearchResult = () => {
+    const { data: flights } = useGetAllFlightQuery({})
+
     return (
         <>
             <div className={`optionrute container position-relative`}>
                 <div className={`${style.headingTop}`}>
                     <div className="row text-light">
                         <div className="col d-flex align-items-center">
-                            <div className="image me-3">
+                            <div className="image me-3 d-sm-block d-none">
                                 <img src={planes} alt="" />
                             </div>
-                            <div className="route">
+                            <div className="route text-wrap">
                                 <span className='d-flex justify-content-between'>
                                     <p className='m-0 p-0'>From</p>
                                     <p className='m-0 p-0'>To</p>
@@ -36,7 +40,7 @@ export const SearchResult = () => {
                         </div>
 
                         <div className="col-md-4 col-12 text-md-end d-none d-md-flex justify-content-end">
-                                <Link to={'/#'} className='no-underline text-light fw-bolder my-auto'>Change Search</Link>
+                            <Link to={'/#'} className='no-underline text-light fw-bolder my-auto'>Change Search</Link>
                         </div>
                     </div>
                 </div>
@@ -56,15 +60,24 @@ export const SearchResult = () => {
                 }
             >
                 <div className="headRight d-flex justify-content-between">
-                    <h4>Select tickets <span className='text-secondary h5'>(6 flight found)</span></h4>
+                    <h4>Select tickets <span className='text-secondary h5'>({flights?.length} flight found)</span></h4>
                     <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} /> </Link>
                 </div>
-                <TicketCard
-                    id={'satu'}
-                />
-                <TicketCard
-                    id={'dua'}
-                />
+
+                {flights?.map(f => (
+                    // console.log(f?.id_airlane),
+                    <>
+                        <TicketCard
+                            id={f?.id_airlane}
+                            price={<FormatRupiah value={f?.price}/>}
+                            departure_time={f?.departure_time}
+                            arrived_time={f?.arrived_time}
+                            starting_place={f?.starting_place}
+                            departure_date={f?.departure_date}
+                            destination_place={f?.destination_place}
+                        />
+                    </>
+                ))}
             </DoubleSideLayout>
         </>
     )
