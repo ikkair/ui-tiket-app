@@ -18,6 +18,8 @@ const BaseLayout = ({ children }) => {
       >
         {children}
       </main>
+      {/* <Footer /> */}
+      <main className={`${style.mainContent}`}>{children}</main>
       <Footer />
     </>
   );

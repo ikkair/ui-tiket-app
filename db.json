@@ -1,5 +1,58 @@
 {
-  "user": [
-    { "id": 1, "name": "json-server", "author": "email", "password" : "password" }
+  "flights": [
+    {
+      "transit": "direct",
+      "luggage": true,
+      "meal": true,
+      "wifi": false,
+      "id_airlane": "3",
+      "starting_place": "Jakarta",
+      "destination_place": "Bali",
+      "departure_date": "2023-03-12",
+      "departure_time": "12:12",
+      "arrived_date": "2023-03-13",
+      "arrived_time": "12:12",
+      "capacity": 80,
+      "price": 8000000,
+      "terminal": "C",
+      "gate": 123,
+      "id": 1
+    }
+  ],
+  "bookings" : [
+    {
+      "id": 1,
+      "id_user" : "1",
+      "id_flight" : "1",
+      "name_contact" : "Muhamad Ilham Darmawan",
+      "email_contact" : "darmawanilham34@gmail.com",
+      "phone_contact" : "0198230193123",
+      "insurance": true,
+      "capacity":5,
+      "status": 0,
+      "total_price": 5000000
+    }
+  ],
+  "airlines": [
+    {
+      "id": 1,
+      "name": "Garuda Indoesia",
+      "photo": "github.com",
+      "status": true
+    },
+    {
+      "name": "Lion Air",
+      "photo": "gdrive.com",
+      "active": false,
+      "id": 2,
+      "status": false
+    },
+    {
+      "name": "Lion Air indonesia New",
+      "photo": "github.com",
+      "active": false,
+      "id": 3,
+      "status": false
+    }
   ]
 }
