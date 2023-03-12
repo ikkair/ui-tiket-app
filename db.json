@@ -1,5 +1,25 @@
 {
-  "user": [
-    { "id": 1, "name": "json-server", "author": "email", "password" : "password" }
+  "flight": [],
+  "airline": [
+    {
+      "id": 1,
+      "name": "Garuda Indoesia 1",
+      "photo": "github.com",
+      "status": true
+    },
+    {
+      "name": "Lion Air",
+      "photo": "gdrive.com",
+      "active": false,
+      "id": 2,
+      "status": false
+    },
+    {
+      "name": "Lion Air indonesia New",
+      "photo": "github.com",
+      "active": false,
+      "id": 3,
+      "status": false
+    }
   ]
 }

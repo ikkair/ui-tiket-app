@@ -106,7 +106,7 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/admin/dashboard/flights/create-flights" className="nav-link">
+                <Link to="/admin/dashboard/flights/create-flight" className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create New Flight</p>
                 </Link>
