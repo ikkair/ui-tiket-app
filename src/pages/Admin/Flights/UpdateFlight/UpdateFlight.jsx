@@ -1,34 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useParams } from 'react-router'
 import FormInput from '../../../../../components/Dashboard/Form/FormInput/FormInput'
 import { flightFacility, flightForm, flightTerminal } from '../../../../../lib/Flight/FlightForm'
 import DashboardLayout from '../../../../../template/DashboardLayout/DashboardLayout'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
-import { useCreateFlightMutation } from '../../../../features/flight/flightApi'
+import { useGetFlightByIdQuery, useUpdateFlightByIdMutation } from '../../../../features/flight/flightApi'
 
-const CreateFlight = () => {
-  const {data:airlines, isLoading, isSuccess} = useGetAllAirlineQuery()
-  console.log(airlines)
-  const [createFlight, {isLoading : isLoadingCreateFlight, isSuccess: isSuccessCreateFlight, isError}] = useCreateFlightMutation()
-  const [flight, setFlight] = useState({  
-    // id_airline: "",
-    // departure_date: "",
-    // departure_time: "",
-    // arrived_date : "",
-    // arrived_time : "",
-    // starting_place : "",
-    // destination_place : "",
-    transit : "direct",
-    luggage : false,
-    meal : false,
-    wifi : false,
-    // type_trip : "",
-    // class : "",
-    // capacity : "",
-    // terminal : "",
-    // gate : "",
-    // price : ""
-  })
+const UpdateFlight = () => {
+  const {id} = useParams()
+  const { data: airlanes, isLoadingAirlanes } = useGetAllAirlineQuery()
+  const {data, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : false})
+  const [updateFlightById, {isLoading : isLoadingUpdateFlight, isSuccess: isSuccessUpdateFlight}] = useUpdateFlightByIdMutation()
+  const [flight, setFlight] = useState({})
 
   const convertToNumber = (type, data) => {
     if(type && type == 'number'){
@@ -38,7 +22,6 @@ const CreateFlight = () => {
   } 
 
   const changeHandler = (e) => {
-    console.log(flight)
     setFlight(prev => {
       return {
         ...prev,
@@ -49,12 +32,18 @@ const CreateFlight = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-
-    await createFlight(flight)
+    await updateFlightById({id, data: flight})
   }
 
+  useEffect(() => {
+    if(isSuccess) {
+      setFlight(data)
+    }
+   
+  }, [isSuccess])
+
   return (
-    <DashboardLayout title={`Create New Flight`}>
+    <DashboardLayout title={`Update Flight - ID  ${id}`}>
       <div className="row">
         <div className="col-12">
         <Form onSubmit={submitHandler}>
@@ -62,9 +51,13 @@ const CreateFlight = () => {
             <div className="col-12 col-sm-6 col-md-4">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Choose Airlane</Form.Label>
-              <Form.Select aria-label="Default select example" name='id_airlane' onChange={changeHandler}>
-                {airlines?.map((airline, i) => (
-                  <option key={i} value={airline.id}>{airline.name}</option>
+              <Form.Select aria-label="Default select example" name='id_airline' onChange={changeHandler}>
+                {airlanes?.map(airlane => (
+                  <option 
+                    key={airlane.id} 
+                    value={airlane.id} 
+                    selected={airlane.id == flight?.id_airlane}
+                    >{airlane.name}</option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -77,6 +70,7 @@ const CreateFlight = () => {
                 type={input.type}
                 name={input.name}
                 placeholder={input.placeholder}
+                value={flight[input.name]}
                 onchange={(e) => changeHandler(e)}
               />
             </div>
@@ -87,7 +81,10 @@ const CreateFlight = () => {
               <Form.Label>Terminal</Form.Label>
               <Form.Select aria-label="Default select example" name={`terminal`} onChange={changeHandler}>
                 {flightTerminal?.map((terminal, i) => (
-                   <option key={i} value={terminal}>{terminal}</option>
+                   <option 
+                   key={i} 
+                   value={terminal} 
+                   selected={terminal == flight?.terminal}>{terminal}</option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -96,8 +93,8 @@ const CreateFlight = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Transit</Form.Label>
               <Form.Select aria-label="Default select example" name='transit' onChange={changeHandler}>
-                <option value={`direct`}>Direct</option>
-                <option value={`transit`}>Transit</option>
+                <option value={`direct`} selected={flight?.transit == 'direct'}>Direct</option>
+                <option value={`transit`} selected={flight?.transit == 'transit'}>Transit</option>
               </Form.Select>
             </Form.Group>
           </div>
@@ -106,6 +103,7 @@ const CreateFlight = () => {
               title={`Gate`}
               type={'number'}
               name={'gate'}
+              value={flight?.gate}
               placeholder={`Input number of gate`}
               onchange={(e) => changeHandler(e)}
             />
@@ -122,6 +120,7 @@ const CreateFlight = () => {
                     id={`default-${facility}`}
                     name={facility}
                     label={facility}
+                    checked={flight?.[facility]}
                     onChange={(e) => setFlight(prev => ({...prev, [e.target.name] : !prev[facility] }))}
                   />
                 ))}
@@ -144,4 +143,4 @@ const CreateFlight = () => {
   )
 }
 
-export default CreateFlight
+export default UpdateFlight

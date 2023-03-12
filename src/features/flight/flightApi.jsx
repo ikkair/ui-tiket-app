@@ -9,7 +9,25 @@ const flightApi = apiSlice.injectEndpoints({
       }),
 
       providesTags: ['getAllFlight'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response
+    }),
+
+    getFlightById: builder.query({
+      query: (id) =>  ({
+        url: `flights/${id}`
+      }),
+
+      providesTags: ['getFlightById'],
+      transformResponse: (response, meta, args) => response
+    }),
+
+    getFlightByIdAirline: builder.query({
+      query: (id) =>  ({
+        url: `flights/airlines/${id}`
+      }),
+
+      providesTags: ['getFlightById'],
+      transformResponse: (response, meta, args) => response
     }),
 
     createFlight: builder.mutation({
@@ -46,4 +64,4 @@ const flightApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllFlightQuery, useUpdateFlightByIdMutation, useDeleteFlightById, useCreateFlightMutation } = flightApi 
+export const { useGetAllFlightQuery, useGetFlightByIdQuery ,useUpdateFlightByIdMutation, useDeleteFlightByIdMutation, useCreateFlightMutation } = flightApi 
