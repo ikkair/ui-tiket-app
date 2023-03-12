@@ -27,6 +27,7 @@ function App() {
       <Route path="/search-result" element={<SearchResult />} />
       <Route path="/admin/dashboard" element={<Dashboard />} />
 
+
       <Route path="/admin/dashboard">
         <Route path="airlanes" element={<Airlane />} />
         <Route path="flights/create-flight" element={<CreateFlight />} />
