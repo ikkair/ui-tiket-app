@@ -30,7 +30,6 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/search-result" element={<SearchResult />} />
 
-      <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={<Airline />} />
         <Route path="flights" element={<FlightInformation />} />
