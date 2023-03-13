@@ -17,6 +17,7 @@ import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import PageNotFound from './pages/404/404';
+import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
 
 
       <Route path="/admin/login" element={<LoginAdmin />} />
+      <Route path="/admin/register" element={<RegisterAdmin />} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={<Airline />} />
         <Route path="flights" element={<FlightInformation />} />

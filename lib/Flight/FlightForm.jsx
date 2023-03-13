@@ -38,12 +38,13 @@ export const flightForm = [
     type: "time",
     placeholder: '00:00',
   },
-  {
-    title : "Capacity",
-    name : "capacity",
-    type: "number",
-    placeholder: 'Input capacity',
-  },
+  // {
+  //   title : "Capacity",
+  //   name : "capacity",
+  //   type: "number",
+  //   placeholder: 'Input capacity',
+  // },
+  
   {
     title : "Price",
     name : "price",
