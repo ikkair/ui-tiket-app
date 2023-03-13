@@ -9,7 +9,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 const Footer = () => {
   return (
     <>
-      <div className="footer d-none d-md-flex justify-content-around px-3 py-4 h-100 mt-5">
+      <div className="container footer d-none d-md-flex justify-content-between px-3 py-4 h-100 mt-5">
         <div className="d-flex flex-column bd-highlight me-4">
           <div className="mb-auto bd-highlight">
             <img src={logo} alt="logo" />
@@ -69,9 +69,9 @@ const Footer = () => {
           <p className="text-secondary">Notification</p>
         </div>
         <p className="fw-bolder mb-4 mt-3">Download Angkasa App</p>
-        <div className="d-flex">
+        <div className="d-flex flex-column flex-sm-row">
           <img src={apple} classname="mb-4" alt="app-store" style={{ width: '150px' }} />
-          <img className="ms-3" src={playstore} alt="playstore" style={{ width: '150px' }} />
+          <img className="ms-0 ms-sm-3 mt-4 mt-sm-0" src={playstore} alt="playstore" style={{ width: '150px' }} />
         </div>
         <div className="d-flex flex-column bd-highlight">
           <div className="mb-auto bd-highlight mt-4">

@@ -3,25 +3,17 @@ import { Card } from 'react-bootstrap'
 import garuda from '../../../src/assets/airlines/garuda.png'
 import Iconflight from '../../../src/assets/icon/flight.png'
 import lugage from '../../../src/assets/icon/lugage.png'
+import wifi from '../../../src/assets/icon/wifi.png'
+import meal from '../../../src/assets/icon/burger.png'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faCircle, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
+import { faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const TicketCard = (props) => {
 
-    const [width, setWidth] = useState(window.innerWidth);
-    // const breakpoint = 700;
-    useEffect(() => {
-        const handleResizeWindow = () => setWidth(window.innerWidth);
-        // subscribe to window resize event "onComponentDidMount"
-        window.addEventListener("resize", handleResizeWindow);
-        return () => {
-            // unsubscribe "onComponentDestroy"
-            window.removeEventListener("resize", handleResizeWindow);
-        };
-    }, []);
+    
 
     return (
 
@@ -36,25 +28,29 @@ const TicketCard = (props) => {
                 </h2>
             </div>
             <div className="row mt-4 justify-content-between text-center">
-                <div className={` col d-flex text-start gap-3 text-dark `}>
+                <div className={`col d-flex text-start gap-3 text-dark `}>
                     <div className='fw-bold'>{props.starting_place}<br /><span style={{ fontSize: '12px', fontWeight: 'lighter' }}>{props.departure_time}</span></div>
                     <img src={Iconflight} width={15} height={15} className='mt-2' alt="" />
                     <div className='ms-2 fw-bold'>{props.destination_place} <br /><span style={{ fontSize: '12px', fontWeight: 'lighter' }}>{props.arrived_time}</span></div>
                 </div>
-                <div className="col d-none d-md-block">
+                <div className="col d-none d-xl-block">
                     <p className='m-0 p-0 text-secondary'>3 Hours 11 Minutes</p>
                     <p className='m-0 p-0' style={{ fontSize: '12px' }}>(1 Transit)</p>
                 </div>
-                <div className="col d-md-flex gap-3 justify-content-center d-none">
-                    <span><img src={lugage} alt="" /></span>
-                    <span><img src={lugage} alt="" /></span>
-                    <span><img src={lugage} alt="" /></span>
+                <div className="col d-lg-flex gap-3 justify-content-center d-none">
+                    {props.meal || props.wifi || props.luggage !== false ? (
+                    <>
+                    <span><img src={props.luggage === true ? lugage : ''} alt="" /></span>
+                    <span><img src={props.wifi === true ? wifi : ''} alt="" /></span>
+                    <span><img src={props.meal === true ? meal : ''} alt="" /></span> 
+                    </>
+                    ) :  <p className='text-secondary'>Reguler </p> }
                 </div>
                 <div className="col text-end text-md-center text-secondary">
                     <p><span className='text-blue'> {props.price} </span>/pax</p>
                 </div>
-                <div className="col d-none d-md-block ">
-                    <Link to={`/flights/${props.id}`} className='btn btn-blue btn-width'>Select</Link>
+                <div className="col d-none d-lg-block ">
+                    <Link to={`/flights/${props.id}`} className='btn btn-blue'>Select</Link>
                 </div>
                 <div className="col-12 mt-3">
                     <div className="accordion accordion-flush" id="accordionFlushExample">
@@ -63,6 +59,7 @@ const TicketCard = (props) => {
                                 <button className="accordion-button accordions collapsed text-blue fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${props.id_airline}`} aria-expanded="false" aria-controls={`flush-collapseOne${props.id_airline}`}>
                                     View Details
                                 </button>
+                                
                             </h2>
                             <div id={`flush-collapse${props.id_airline}`} className="accordion-collapse collapse" aria-labelledby={`flush-heading${props.id_airline}`} data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body">
@@ -81,16 +78,16 @@ const TicketCard = (props) => {
                                             <FontAwesomeIcon icon={faCircleArrowRight} />
                                             <span>{props.arrived_time}</span>
                                         </div>
-                                        <div className="col-12 d-md-none d-block">
+                                        <div className="col-12 d-lg-none d-block">
                                             <hr />
                                         </div>
-                                        <div className="col-12 d-flex gap-3 d-md-none mt-3">
+                                        <div className="col-12 d-flex gap-3 d-lg-none mt-3">
                                             <p>Facility : </p>
                                             <span><img src={lugage} alt="" /></span>
                                             <span><img src={lugage} alt="" /></span>
                                             <span><img src={lugage} alt="" /></span>
                                         </div>
-                                        <div className="col-12 mt-4 d-md-none d-flex justify-content-between">
+                                        <div className="col-12 mt-4 d-lg-none d-flex justify-content-between">
                                             <span className='text-danger fw-bolder pt-2'>{props.price}</span>
                                             <Link to={`/flights/${props.id}`} className='btn btn-blue'>Select</Link>
                                         </div>
