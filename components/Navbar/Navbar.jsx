@@ -163,7 +163,7 @@ export const Navbar = () => {
           </div>
         ) : (
           <div className="d-none d-lg-flex gap-2">
-            <Link to={`/login`} className={`btn bg-blue pt-1`}>Sign Up</Link>
+            <Link to={`/register`} className={`btn bg-blue pt-1`}>Sign Up</Link>
             <Link to={`/login`} className={`btn border-blue text-blue pt-1`}>Sign In</Link>
           </div>
         )}

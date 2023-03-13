@@ -8,6 +8,7 @@ import { useDeleteFlightByIdMutation, useGetAllFlightQuery } from '../../../feat
 const FlightInformation = () => {
   
   const {data: flights, isLoading, isSuccess} = useGetAllFlightQuery()
+  console.log(flights)
   const [deleteFlightById, {isLoading: isLoadingDeleteFlight}] = useDeleteFlightByIdMutation()
 
   const deleteHandler = async (id) => {

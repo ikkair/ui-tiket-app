@@ -9,10 +9,11 @@ import { useGetFlightByIdQuery, useUpdateFlightByIdMutation } from '../../../../
 
 const UpdateFlight = () => {
   const {id} = useParams()
-  const { data: airlanes, isLoadingAirlanes } = useGetAllAirlineQuery()
+  const { data: airlines, isLoadingAirlanes } = useGetAllAirlineQuery()
   const {data, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : false})
   const [updateFlightById, {isLoading : isLoadingUpdateFlight, isSuccess: isSuccessUpdateFlight}] = useUpdateFlightByIdMutation()
   const [flight, setFlight] = useState({})
+  console.log(data)
 
   const convertToNumber = (type, data) => {
     if(type && type == 'number'){
@@ -52,7 +53,7 @@ const UpdateFlight = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Choose Airlane</Form.Label>
               <Form.Select aria-label="Default select example" name='id_airline' onChange={changeHandler}>
-                {airlanes?.map(airlane => (
+                {airlines?.map(airlane => (
                   <option 
                     key={airlane.id} 
                     value={airlane.id} 
@@ -92,9 +93,9 @@ const UpdateFlight = () => {
           <div className="col-12 col-sm-6 col-md-4">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Transit</Form.Label>
-              <Form.Select aria-label="Default select example" name='transit' onChange={changeHandler}>
-                <option value={`direct`} selected={flight?.transit == 'direct'}>Direct</option>
-                <option value={`transit`} selected={flight?.transit == 'transit'}>Transit</option>
+              <Form.Select aria-label="Default select example" name='type_trip' onChange={changeHandler}>
+                <option value={`one way`} selected={flight?.transit == 'one way'}>One Way</option>
+                <option value={`rounded trip`} selected={flight?.transit == 'rounded trip'}>Rounded Trip</option>
               </Form.Select>
             </Form.Group>
           </div>

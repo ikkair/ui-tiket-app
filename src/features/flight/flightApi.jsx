@@ -9,7 +9,7 @@ const flightApi = apiSlice.injectEndpoints({
       }),
 
       providesTags: ['getAllFlight'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data
     }),
 
     getFlightById: builder.query({
@@ -18,7 +18,7 @@ const flightApi = apiSlice.injectEndpoints({
       }),
 
       providesTags: ['getFlightById'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data
     }),
 
     getFlightByIdAirline: builder.query({

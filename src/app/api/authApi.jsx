@@ -3,7 +3,7 @@ import { setCredentials, logout } from '../reducer/authSlice'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_ENDPOINT,
-  credentials: 'include',
+  credentials: "same-origin",
   prepareHeaders: (headers, {getState}) => {
     // if(getState()?.auth?.token){
     //   const token = getState().auth.token
