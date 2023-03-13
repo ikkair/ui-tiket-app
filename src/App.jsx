@@ -15,6 +15,8 @@ import Airline from './pages/Admin/Airline/Index';
 import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
+import PageNotFound from './pages/404NotFound/404';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
+      <Route path="/*" element={<PageNotFound/>} />
+
 
       <Route path="/admin/dashboard">
         <Route path="airlines" element={<Airline />} />
