@@ -9,7 +9,7 @@ const airlineApi = apiSlice.injectEndpoints({
       }),
 
       providesTags: ['getAllAirline'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data
     }),
 
     createAirline: builder.mutation({
