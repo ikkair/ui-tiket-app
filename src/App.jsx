@@ -18,6 +18,7 @@ import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import PageNotFound from './pages/404/404';
 import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
+import Coba from './pages/Coba';
 
 function App() {
   return (
@@ -32,8 +33,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
-      <Route path="/*" element={<PageNotFound/>} />
-
+      <Route path="/*" element={<PageNotFound />} />
+      <Route path="/coba" element={<Coba />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/register" element={<RegisterAdmin />} />
@@ -44,7 +45,6 @@ function App() {
         <Route path="flights/edit/:id" element={<UpdateFlight />} />
         <Route path="flights/create-flight" element={<CreateFlight />} />
       </Route>
-
     </Routes>
   );
 }
