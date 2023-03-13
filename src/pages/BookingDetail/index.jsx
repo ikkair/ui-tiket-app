@@ -26,7 +26,7 @@ const BookingDetail = () => {
             </div>
             <div className="data border rounded p-4">
               <div className="row align-items-center ">
-                <div className="col-7">
+                <div className="col-12 col-sm-7">
                   <div className="row align-items-center justify-content-between">
                     <div className="col-auto">
                       <img src={Garuda} className={`${style.imageCustom}`}></img>
@@ -39,22 +39,22 @@ const BookingDetail = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row align-items-center mt-5">
-                    <div className="col-md-3 col-sm-4">
+                  <div className="row align-items-centerbg-primary mt-5">
+                    <div className="col-6 col-md-3 col-sm-4">
                       <p className="text-muted">Code</p>
                       <p className="fw-semibold">AB-221</p>
                     </div>
-                    <div className="col-md-3 col-sm-4 offset-md-2">
+                    <div className="col-6 col-md-3 col-sm-4 offset-md-2">
                       <p className="text-muted">Class</p>
                       <p className="fw-semibold">Economy</p>
                     </div>
                   </div>
                   <div className="row align-items-center mt-3">
-                    <div className="col-md-3 col-sm-4">
+                    <div className="col-6 col-md-3 col-sm-4">
                       <p className="text-muted">Terminal</p>
                       <p className="fw-semibold">A</p>
                     </div>
-                    <div className="col-md-3 col-sm-4 offset-md-2">
+                    <div className="col-6 col-md-3 col-sm-4 offset-md-2">
                       <p className="text-muted">Gate</p>
                       <p className="fw-semibold">221</p>
                     </div>

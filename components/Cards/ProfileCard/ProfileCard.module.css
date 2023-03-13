@@ -1,6 +1,6 @@
 .userPhoto {
-  max-width:137px !important;
-  max-height: 137px !important;
+  width:137px !important;
+ height: 137px !important;
 }
 
 .card {

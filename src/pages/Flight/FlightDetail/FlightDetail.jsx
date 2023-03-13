@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionCard from '../../../../components/Cards/SectionCard/SectionCard'
 import ProfileInputForm from '../../../../components/Forms/ProfileInputForm/ProfileInputForm'
 import { formContactPerson } from '../../../../lib/flightForm'
@@ -10,12 +10,91 @@ import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import FlightAirlineDetailCard from '../../../../components/Cards/FlightAirlineDetailCard/FlightAirlineDetailCard'
 import { Form, InputGroup } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
+import PassangerCard from '../../../../components/Cards/PassangerCard/PassangerCard'
+import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
+import { useParams } from 'react-router'
 
 const FlightDetail = () => {
+  const {id} = useParams()
+  const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
 
-  const submitHandler = async (e) => {
+  const [passangers, setPassangers] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [booking, setBooking] = useState({
+    contact_name: "", 
+    contact_email: "", 
+    phone_contact: "", 
+    insurance: false,
+    capacity: 0,
+    status: 0,
+    total_price: 0
+  })
+
+  const changeHandlerContact = (e) => {
+    setBooking(prev => {
+      return {
+        ...prev,
+        [e.target.name] : e.target.value
+      }
+    })
+  }
+
+  const changeHandlerPassanger = (e, i) => {
+    console.log(passangers)
+    console.log(booking)
+    setPassangers(prev => {
+      const currentData = {...prev[i], [e.target.name] : e.target.value}
+      prev[i] = currentData 
+      return prev
+    })
+  }
+
+  const addBookingHandler = async (e) => {
     e.preventDefault()
   }
+
+  const renderCardPassanger = () => {
+    let element = []
+    if(passangers.length > 1){
+      for(let i = 0; i < 3; i++) {
+        element.push(
+          <div key={i} >
+            <span className={`fw-semibold fs-5 mb-2 d-block mt-4`}>Passangers Details</span>     
+            <SectionCard className={`pt-4`}>
+              <PassangerCard 
+                data={passangers[i]} 
+                seats={['A-1', 'A-2', 'A-3']} 
+                onchange={(e) => changeHandlerPassanger(e, i)} 
+              />
+            </SectionCard>
+          </div>
+        )
+      }
+    }   
+    return element
+  }
+
+  useEffect(() => {
+    function setDataPassangers() {
+      return setPassangers(prev => {
+        const data = prev
+        if(passangers.length < 3) {
+          for(let i = 0; i < 3; i++) {
+            data.push({
+              name: "",
+              category_passanger: "",
+              id_seat : ""
+            })
+          }
+        }
+       
+        return data
+      })
+    }
+    return () => {setDataPassangers()}
+  }, [])
+
+
 
   return (
     <DoubleSideLayout
@@ -24,15 +103,18 @@ const FlightDetail = () => {
       classRight={`col-12 col-lg-4 col-md-5 order-1 order-md-2`}
       leftside={
         <>
-          <Form onSubmit={submitHandler} className={'pb-3'}>
+          <Form className={'pb-3'}>
             <span className={`${style.textColorOptional} fw-semibold fs-5 mb-3 d-block`}>Contact Person Detail</span>
             <SectionCard className={`pt-3`}>
-              {formContactPerson?.map(form => (
+              {formContactPerson?.map((form, i) => (
                 <ProfileInputForm 
+                  key={i}
                   title={form.title}
                   name={form.name}
                   type={form.type}
                   placeholder={form.placeholder}
+                  value={booking[form.name]}
+                  onchange={(e) => changeHandlerContact(e)}
                 />
               ))}
 
@@ -42,9 +124,10 @@ const FlightDetail = () => {
                 <Form.Control
                   className={'border-0 py-0 shadow-none'}
                   placeholder="xxx xxxx xxxx"
-                  name={`phone`}
-                  aria-label="phone-number"
-                  aria-describedby="phone-number"
+                  name={`phone_contact`}
+                  type={'number'}
+                  value={booking.phone_contact}
+                  onChange={changeHandlerContact}
                 />
               </InputGroup>
 
@@ -53,55 +136,27 @@ const FlightDetail = () => {
               </Alert>
             </SectionCard>
 
-            <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Passangers Details</span>     
-            <SectionCard className={`pt-4`}>
-              <Alert className='py-2 d-flex align-items-center flex-wrap justify-content-between' variant={`primary`}>
-                <span className='text-medium'>Passanger: 1 Adult</span>
-                <span className='text-medium d-flex gap-2 align-items-center'>Same as contact person
-                  <Form.Check 
-                    className='fs-5 shadow-0'
-                    type="switch"
-                    id="custom-switch"
-                  />
-                </span>
-              </Alert>
-              <ProfileInputForm 
-                title={`Full Name`}
-                name={`name`}
-                type={`text`}
-                placeholder={`Input Your Full Name`}
-              />
-
-              <Form.Label className="text-secondary text-medium ps-2 mb-2">Passenger Type</Form.Label>
-              <div className="d-flex gap-4">
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                  <label className="form-check-label" htmlFor="flexRadioDefault1">
-                    Child
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                  <label className="form-check-label" htmlFor="flexRadioDefault2">
-                    Adult
-                  </label>
-                </div>
-              </div>
-            </SectionCard>
+            {renderCardPassanger()?.map(card => card)}
 
             <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Insurance</span>
-            <Card className={`border-0 mb-3 main-border overflow-hidden`}>
+            <Card className={`border-0 shadow-none mb-3 main-border overflow-hidden`}>
               <Card.Header className={`${style.cardInsurance} p-3 d-flex justify-content-between`}>
                 <div className="d-flex">
                   <Form.Check
                     inline
-                    value={true}
+                    className='d-flex align-items-center'
                     name="insurance"
                     type={`checkbox`}
+                    onChange={(e) => setBooking(prev => {
+                      return {
+                        ...prev,
+                        insurance: !prev.insurance
+                      }
+                    })}
                   />
                   <span className={`fw-semibold`}>Travel Insurance</span>
                 </div>
-                <span className={`fw-semibold text-blue`}>Rp. 2000/
+                <span className={`fw-semibold text-blue ms-auto`}>Rp. 2000/
                   <span className={`text-secondary fw-none text-medium`}>pax</span>
                 </span>
                 
@@ -113,7 +168,11 @@ const FlightDetail = () => {
 
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
-                <button type='submit' className={`${style.btnSubmit} btn btn-blue mx-auto fw-semibold`}>Proceed to Payment</button>
+                <button 
+                  type='submit' 
+                  className={`${style.btnSubmit} btn btn-blue mx-auto fw-semibold`}
+                  onClick={addBookingHandler}
+                >Proceed to Payment</button>
               </div>
             </div>
           </Form>  
@@ -121,7 +180,7 @@ const FlightDetail = () => {
       }
     >
       <span className={`fw-semibold fs-5 mb-3 d-block text-light`}>Flight Details</span>
-      <FlightAirlineDetailCard data={""}/> 
+      <FlightAirlineDetailCard data={flight}/> 
     </DoubleSideLayout>
   )
 }

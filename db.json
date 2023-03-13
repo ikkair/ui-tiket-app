@@ -37,16 +37,16 @@
       "id": 2
     }
   ],
-  "bookings" : [
+  "bookings": [
     {
       "id": 1,
-      "id_user" : "1",
-      "id_flight" : "1",
-      "name_contact" : "Muhamad Ilham Darmawan",
-      "email_contact" : "darmawanilham34@gmail.com",
-      "phone_contact" : "0198230193123",
+      "id_user": "1",
+      "id_flight": "1",
+      "name_contact": "Muhamad Ilham Darmawan",
+      "email_contact": "darmawanilham34@gmail.com",
+      "phone_contact": "0198230193123",
       "insurance": true,
-      "capacity":5,
+      "capacity": 5,
       "status": 0,
       "total_price": 5000000
     }
@@ -71,6 +71,17 @@
       "active": false,
       "id": 3,
       "status": false
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "email": "ilham@gmail.com",
+      "phone": "091823901830",
+      "name": "Muhamad ilham Darmawan",
+      "city": "Tangsel",
+      "address": "Banten, Indonesia",
+      "post_code": "15416"
     }
   ]
 }

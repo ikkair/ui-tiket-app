@@ -17,8 +17,22 @@ import navbarBannerLogo from '../../src/assets/navbar/bannerLogo.png'
 
 export const Navbar = () => {
 
+  const urlPath = window.location.pathname
+  
   const logoutHandler = async (e) => {
 
+  }
+
+  const urlWithoutBanner = ['/home', '/']
+
+  const renderBanner = () => {
+    if(!urlWithoutBanner.includes(urlPath)){
+      return (
+        <span className={`${style.bannerContainer} d-block navbar-banner bg-blue position-absolute`}>
+          <img src={navbarBannerLogo} className={'img-fluid'} alt="" />
+        </span>
+      )
+    }
   }
 
   return (
@@ -82,78 +96,85 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* <!-- Nav Menu --> */}
-        <div className="d-none d-lg-flex gap-2">
-          <Link
-            to=""
-            className={`btn fs-5 text-light btn position-relative text-light`}
-            data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-          >
-            <FontAwesomeIcon
-              className="text-softdark"
-              icon={faEnvelope}
-            ></FontAwesomeIcon>
-            
-          </Link>
-
-          <Link to="" className="text-light btn fs-5">
-            <FontAwesomeIcon
-              className="text-softdark"
-              icon={faBell}
-            ></FontAwesomeIcon>
-          </Link>
-
-          <div className="dropdown navbar-profile profile ms-2">
-            <div
-              className="img-group d-flex align-items-center"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+        {localStorage.getItem('token') ? (
+          <div className="d-none d-lg-flex gap-2">
+            <Link
+              to=""
+              className={`btn fs-5 text-light btn position-relative text-light`}
+              data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
             >
-              <img
-                src={photo}
-                className={`rounded-circle me-2`}
-                alt="profil-user"
-                width={40}
-                height={40}
-              />
               <FontAwesomeIcon
-                className="fs-4 text-dark"
-                icon={faCaretDown}
-              />
-            </div>
-            <ul className="dropdown-menu dropdown-menu-end">
-              <li>
-                <Link to={`/profile`} className="dropdown-item">
-                  <FontAwesomeIcon className="me-2" icon={faUser} /> Profile
-                </Link>
-              </li>
+                className="text-softdark"
+                icon={faEnvelope}
+              ></FontAwesomeIcon>
+              
+            </Link>
 
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={logoutHandler}
-                >
-                  <FontAwesomeIcon
-                    className="me-2"
-                    icon={faRightFromBracket}
-                  />{" "}
-                  Logout
-                </button>
-              </li>
-            </ul>
+            <Link to="" className="text-light btn fs-5">
+              <FontAwesomeIcon
+                className="text-softdark"
+                icon={faBell}
+              ></FontAwesomeIcon>
+            </Link>
+
+            <div className="dropdown navbar-profile profile ms-2">
+              <div
+                className="img-group d-flex align-items-center"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src={photo}
+                  className={`rounded-circle me-2`}
+                  alt="profil-user"
+                  width={40}
+                  height={40}
+                />
+                <FontAwesomeIcon
+                  className="fs-4 text-dark"
+                  icon={faCaretDown}
+                />
+              </div>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                  <Link to={`/profile`} className="dropdown-item">
+                    <FontAwesomeIcon className="me-2" icon={faUser} /> Profile
+                  </Link>
+                </li>
+
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={logoutHandler}
+                  >
+                    <FontAwesomeIcon
+                      className="me-2"
+                      icon={faRightFromBracket}
+                    />{" "}
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        {/* End Nav Menu */}
+        ) : (
+          <div className="d-none d-lg-flex gap-2">
+            <Link to={`/login`} className={`btn bg-blue pt-1`}>Sign Up</Link>
+            <Link to={`/login`} className={`btn border-blue text-blue pt-1`}>Sign In</Link>
+          </div>
+        )}
+        
+
+       
       </div>
       </nav>
 
-      <span className={`${style.bannerContainer} d-block navbar-banner bg-blue position-absolute`}>
-        <img src={navbarBannerLogo} className={'img-fluid'} alt="" />
-      </span>
+      {renderBanner()}
+     
     </div>
   )
 }

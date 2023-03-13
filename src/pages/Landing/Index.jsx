@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import large from '../../assets/explore/img-large.png';
 import small from '../../assets/explore/img-small.png';
 import blue from '../../assets/explore/blue.png';
@@ -14,9 +14,50 @@ import { EffectCards } from 'swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate()
+  const date = new Date()
+  const currentDate =  `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const [child, setChild] = useState(0)
+  const [adult, setAdult] = useState(0)
+  const [searchFlight, setSearchFlight] = useState({
+    starting_place : "Medan",
+    destination_place : "Jakarta",
+    transit: "direct",
+    departure_date: currentDate,
+    type_seat: ''
+  })
+
+  const changeHandler = (e) => {
+    setSearchFlight(prev => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  const generateUrlSearch = (args) => {
+    let url = ""
+    for(let attr in args) {
+      url += `${attr}=${args[attr]}&`
+    }
+
+    return url
+  }
+
+  const submitHandler = (e) => {
+    const searchData = {
+      ...searchFlight,
+      capacity: Number(child) + Number(adult)
+    }
+    const queryParams = generateUrlSearch(searchData)
+    return navigate(`/flights?${queryParams}`)
+  } 
+ 
+  
   return (
     <>
       <BaseLayout>
@@ -26,7 +67,7 @@ const Index = () => {
             <div className="col-md-6 my-5 Hero">
               <div className="col-md-12 d-flex justify-content-center flex-column ms-4 pe-5 pb-5 pt-4">
                 <h1 className="fw-bold">
-                  Find your <span className="">Flight</span>
+                  Find your <span className="text-blue">Flight</span>
                 </h1>
                 <p className="fw-semibold mt-2">and explore the world with us</p>
               </div>
@@ -44,7 +85,7 @@ const Index = () => {
               <div className="card card-body customCard cardHero">
                 <div className="col-12">
                   <p className="fw-semibold">Hey,</p>
-                  <h5>Where you want to go?</h5>
+                  <h5 className='fw-semibold'>Where you want to go?</h5>
                   <div className="row">
                     <div className="col-8 text-start">
                       <p className={`fw-bold blue py-2`}>Recently searched</p>
@@ -53,93 +94,126 @@ const Index = () => {
                       <FontAwesomeIcon className="blue" icon={faAngleRight}></FontAwesomeIcon>
                     </div>
                   </div>
-                  <div className="row border-destination mb-4 pt-2">
-                    <div className="col-6 text-start">
-                      <p className="text-muted">from</p>
-                    </div>
-                    <div className="col-6 text-end">
-                      <p className="text-muted">to</p>
-                    </div>
-                    <div className="col-4 text-start">
-                      <h5 className="fw-bold">Medan</h5>
-                      <p className="text-muted">Sumatera</p>
-                    </div>
-                    <div className="col-4 text-center">
-                      <div className="col-12">
-                        <FontAwesomeIcon className="blue" icon={faArrowRightArrowLeft}></FontAwesomeIcon>
-                      </div>
-                      <div className="col-12"></div>
-                    </div>
-                    <div className="col-4 text-end">
-                      <h5 className="fw-bold">Jakarta</h5>
-                      <p className="text-muted">DKI Jakarta</p>
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="row text-center mb-3">
-                      <div className="col-6">
-                        <button type="button" className="btn btn-primary bgBlue fw-semibold">
-                          <img src={plane} width="20" alt="" />
-                          <span className="p-2">One way</span>
-                        </button>
-                      </div>
-                      <div className="col-6">
-                        <button type="button" className="btn btnGray">
-                          <FontAwesomeIcon icon={faArrowRotateRight}></FontAwesomeIcon>
-                          <span className="p-2 fw-semibold">Round trip</span>
-                        </button>
+                  <div className="row pt-2">
+                    <div className="col-12 destination py-2 px-3">
+                      <div className="row">
+                        <div className="col-6 text-start">
+                          <p className="text-muted">from</p>
+                        </div>
+                        <div className="col-6 text-end">
+                          <p className="text-muted">to</p>
+                        </div>
+                        <div className="col-12">
+                          <div className="row">
+                            <div className="col-5 d-flex flex-wrap justift-content-center">
+                              <input type="text" name='starting_place' className='form-control px-0 shadow-none border-0 fw-bold fs-5' value={searchFlight.starting_place} onChange={changeHandler}/>
+                              <p className="text-muted text-mediumms-auto">Indonesia</p>
+                            </div>
+                            <div className="col-2 text-center pt-3">
+                              <div className="col-12">
+                                <FontAwesomeIcon className="blue" icon={faArrowRightArrowLeft}></FontAwesomeIcon>
+                              </div>
+                              <div className="col-12"></div>
+                            </div>
+                            <div className="col-5 d-flex flex-wrap justift-content-center align-items-end">
+                              <input type="text" name='destination_place' className='text-end px-0 form-control shadow-none border-0 fw-bold fs-5' value={searchFlight.destination_place} onChange={changeHandler}/>
+                              <p className="text-muted text-medium ms-auto">Indonesia</p>
+                            </div>
+                          </div>
+                        </div>
+                       
                       </div>
                     </div>
-                  </div>
-                  <div className="col-12 my-2">
-                    <div>
-                      <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted">
-                        Departure
+
+                    <div className="col-12 mt-4">
+                      <div className="row mb-3">
+                        <div className="col-6 ps-0">
+                          <button 
+                            type="button" 
+                            className={`btn ${searchFlight?.transit == 'direct' ? 'bg-blue' : 'btnGray'} ms-0 fw-semibold w-100`} 
+                            onClick={(e) => setSearchFlight(prev => {
+                            return {
+                                ...prev,
+                                transit : 'direct'
+                              }
+                            })}>
+                            <img src={plane} width="20" alt="" />
+                            <span className="p-2">One way</span>
+                          </button>
+                        </div>
+                        <div className="col-6 d-flex justify-content-end px-0">
+                          <button 
+                            type="button" 
+                            className={`btn ms-auto  ${searchFlight?.transit == 'transit' ? 'bg-blue' : 'btnGray'}  w-100`}
+                            onClick={(e) => setSearchFlight(prev => {
+                              return {
+                                  ...prev,
+                                  transit : 'transit'
+                                }
+                              })}
+                            >
+                            <FontAwesomeIcon icon={faArrowRotateRight}></FontAwesomeIcon>
+                            <span className="p-2 fw-semibold">Round trip</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-12 px-0 my-2">
+                      <div>
+                        <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted">
+                          Departure
+                        </label>
+                        <input type="date" min={currentDate} value={searchFlight.departure_date} onChange={changeHandler} name={'departure_date'} className="form-control p-2 customBorderInput" id="inputDeparture"/>
+                      </div>
+                    </div>
+
+                    <div className="col-12 px-0 mb-2">
+                      <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted mt-2">
+                        How many person?
                       </label>
-                      <input type="text" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Monday, 20 July 2020" />
-                    </div>
-                  </div>
-                  <div className="col-12 mb-2">
-                    <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted mt-2">
-                      How many person?
-                    </label>
-                    <div className="row">
-                      <div className="col-6">
-                        <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Child" />
-                      </div>
-                      <div className="col-6">
-                        <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Adult" />
+                      <div className="row">
+                        <div className="col-6">
+                          <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" value={child} onChange={(e) => setChild(Number(e.target.value))} placeholder="Child" />
+                        </div>
+                        <div className="col-6">
+                          <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Adult" value={adult} onChange={(e) => setAdult(Number(e.target.value))} />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-12 mb-2">
-                    <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted mt-2">
-                      Which class do you want?
-                    </label>
-                    <div className="row">
-                      <div className="col-4 p-1 d-flex flex-row">
-                        <input type="radio" name="class" id="class" defaultValue="Economy" />
-                        <label htmlFor="class" className="fw-semibold d-flex ps-1 align-items-center">
-                          Economy
-                        </label>
-                      </div>
-                      <div className="col-4 p-1 d-flex flex-row">
-                        <input type="radio" name="class" id="class" defaultValue="Business" />
-                        <label htmlFor="class" className="fw-semibold d-flex ps-1 align-items-center">
-                          Business
-                        </label>
-                      </div>
-                      <div className="col-4 p-1 d-flex flex-row">
-                        <input type="radio" name="class" id="class" defaultValue="First Class" />
-                        <label htmlFor="class" className="fw-semibold d-flex ps-1 align-items-center">
-                          First Class
-                        </label>
+
+                    <div className="col-12 px-0 mb-3">
+                      <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted mt-2">
+                        Which class do you want?
+                      </label>
+                      <div className="d-flex justify-content-between fw-semibold">
+                        <div class="form-check">
+                          <input class="form-check-input" value={`economy`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault1" checked/>
+                          <label class="form-check-label" htmlFor="flexRadioDefault1">
+                            Economy 
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" value={`busniess`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
+                          <label class="form-check-label" htmlFor="flexRadioDefault2">
+                            Business
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" value={`first class`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
+                          <label class="form-check-label" htmlFor="flexRadioDefault2">
+                            First Class
+                          </label>
+                        </div>
                       </div>
                     </div>
+
+                    <div className="col-12 px-0 mb-2">
+                      <button className="btn btn-blue px-3 py-2 mt-2 fw-bold w-100 d-flex justify-content-between align-items-center" onClick={submitHandler}>
+                      SEARCH FLIGHT <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                    </button>
+                    </div>
                   </div>
-                  <button className="btn btn-primary bgBlue p-2 px-5 mt-3 fw-bold w-100 d-flex justify-content-between align-items-center">
-                    SEARCH FLIGHT <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
-                  </button>
                 </div>
               </div>
             </div>
@@ -160,151 +234,155 @@ const Index = () => {
                   View Link
                 </Link>
               </div>
+
+              <div className="col-12 mt-3">
+                <Swiper
+                  spaceBetween={20}
+                  slidesOffsetBefore={10}
+                  slidesOffsetAfter={10}
+                  breakpoints={{
+                    100: {
+                      slidesPerView: 1.5,
+                    },
+                    400: {
+                      slidesPerView: 2.1,
+                    },
+                    768: {
+                      slidesPerView: 4,
+                    },
+                    1024: {
+                      slidesPerView: 5,
+                    },
+                    1280: {
+                      slidesPerView: 5,
+                    },
+                  }}
+                >
+                  <SwiperSlide>
+                    <Link href={'/'} className={`cardDestination`}>
+                      <div className="cardSlider">
+                        <div className="cardOverlay" />
+                        <div className="cardImage">
+                          <img src={spain} alt="" className="image" />
+                        </div>
+                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
+                          <span className="fw-bold">15</span> Airlines
+                        </div>
+                        <div className="cardDescription flexRow">
+                          <div className="flexCol flexAuto">
+                            <p>Bali</p>
+                            <h4>Indonesia</h4>
+                          </div>
+                          <div>
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <Link href={'/'}>
+                      <div className="cardSlider">
+                        <div className="cardOverlay" />
+                        <div className="cardImage">
+                          <img src={spain} alt="" className="image" />
+                        </div>
+                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
+                          <span className="fw-bold">15</span> Airlines
+                        </div>
+                        <div className="cardDescription flexRow">
+                          <div className="flexCol flexAuto">
+                            <p>Bali</p>
+                            <h4>Indonesia</h4>
+                          </div>
+                          <div>
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <Link href={'/'}>
+                      <div className="cardSlider">
+                        <div className="cardOverlay" />
+                        <div className="cardImage">
+                          <img src={spain} alt="" className="image" />
+                        </div>
+                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
+                          <span className="fw-bold">15</span> Airlines
+                        </div>
+                        <div className="cardDescription flexRow">
+                          <div className="flexCol flexAuto">
+                            <p>Bali</p>
+                            <h4>Indonesia</h4>
+                          </div>
+                          <div>
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <Link href={'/'}>
+                      <div className="cardSlider">
+                        <div className="cardOverlay" />
+                        <div className="cardImage">
+                          <img src={spain} alt="" className="image" />
+                        </div>
+                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
+                          <span className="fw-bold">15</span> Airlines
+                        </div>
+                        <div className="cardDescription flexRow">
+                          <div className="flexCol flexAuto">
+                            <p>Bali</p>
+                            <h4>Indonesia</h4>
+                          </div>
+                          <div>
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <Link href={'/'}>
+                      <div className="cardSlider">
+                        <div className="cardOverlay" />
+                        <div className="cardImage">
+                          <img src={spain} alt="" className="image" />
+                        </div>
+                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
+                          <span className="fw-bold">15</span> Airlines
+                        </div>
+                        <div className="cardDescription flexRow">
+                          <div className="flexCol flexAuto">
+                            <p>Bali</p>
+                            <h4>Indonesia</h4>
+                          </div>
+                          <div>
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                </Swiper>
+              </div>
             </div>
             <div className="customSpace">
-              <Swiper
-                spaceBetween={30}
-                slidesOffsetBefore={10}
-                slidesOffsetAfter={10}
-                breakpoints={{
-                  100: {
-                    slidesPerView: 1.5,
-                  },
-                  400: {
-                    slidesPerView: 2.1,
-                  },
-                  768: {
-                    slidesPerView: 3.1,
-                  },
-                  1024: {
-                    slidesPerView: 4,
-                  },
-                  1280: {
-                    slidesPerView: 5,
-                  },
-                }}
-              >
-                <SwiperSlide>
-                  <Link href={'/'}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={spain} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                        <span className="fw-bold">15</span> Airlines
-                      </div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>Bali</p>
-                          <h4>Indonesia</h4>
-                        </div>
-                        <div>
-                          <button type="button" className="customButton">
-                            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Link href={'/'}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={spain} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                        <span className="fw-bold">15</span> Airlines
-                      </div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>Bali</p>
-                          <h4>Indonesia</h4>
-                        </div>
-                        <div>
-                          <button type="button" className="customButton">
-                            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Link href={'/'}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={spain} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                        <span className="fw-bold">15</span> Airlines
-                      </div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>Bali</p>
-                          <h4>Indonesia</h4>
-                        </div>
-                        <div>
-                          <button type="button" className="customButton">
-                            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Link href={'/'}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={spain} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                        <span className="fw-bold">15</span> Airlines
-                      </div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>Bali</p>
-                          <h4>Indonesia</h4>
-                        </div>
-                        <div>
-                          <button type="button" className="customButton">
-                            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Link href={'/'}>
-                    <div className="cardSlider">
-                      <div className="cardOverlay" />
-                      <div className="cardImage">
-                        <img src={spain} alt="" className="image" />
-                      </div>
-                      <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                        <span className="fw-bold">15</span> Airlines
-                      </div>
-                      <div className="cardDescription flexRow">
-                        <div className="flexCol flexAuto">
-                          <p>Bali</p>
-                          <h4>Indonesia</h4>
-                        </div>
-                        <div>
-                          <button type="button" className="customButton">
-                            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              </Swiper>
+            
             </div>
           </div>
         </section>
