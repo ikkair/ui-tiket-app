@@ -1,0 +1,28 @@
+.Notif-letter-spacing {
+  letter-spacing: 0.3em;
+}
+
+.Notif-box-blue {
+  background-color: #f6fbff;
+  border: 1px solid #2395ff;
+  border-radius: 13px;
+}
+
+.Notif-box-white {
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 13px;
+}
+
+.Notif-title-box {
+  font-size: 17px;
+}
+
+.overflow-notif {
+  overflow-y: scroll;
+  max-height: 450px;
+}
+
+.overflow-notif::-webkit-scrollbar {
+  display: none;
+}
