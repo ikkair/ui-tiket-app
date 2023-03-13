@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionCard from '../../../../components/Cards/SectionCard/SectionCard'
 import ProfileInputForm from '../../../../components/Forms/ProfileInputForm/ProfileInputForm'
 import { formContactPerson } from '../../../../lib/flightForm'
@@ -11,17 +11,27 @@ import FlightAirlineDetailCard from '../../../../components/Cards/FlightAirlineD
 import { Form, InputGroup } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
 import PassangerCard from '../../../../components/Cards/PassangerCard/PassangerCard'
+import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
+import { useParams } from 'react-router'
 
 const FlightDetail = () => {
-  const [contact, setContact] = useState({
+  const {id} = useParams()
+  const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
+
+  const [passangers, setPassangers] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [booking, setBooking] = useState({
     contact_name: "", 
     contact_email: "", 
     phone_contact: "", 
+    insurance: false,
+    capacity: 0,
+    status: 0,
+    total_price: 0
   })
 
   const changeHandlerContact = (e) => {
-    console.log(contact)
-    setContact(prev => {
+    setBooking(prev => {
       return {
         ...prev,
         [e.target.name] : e.target.value
@@ -29,9 +39,62 @@ const FlightDetail = () => {
     })
   }
 
-  const submitHandler = async (e) => {
+  const changeHandlerPassanger = (e, i) => {
+    console.log(passangers)
+    console.log(booking)
+    setPassangers(prev => {
+      const currentData = {...prev[i], [e.target.name] : e.target.value}
+      prev[i] = currentData 
+      return prev
+    })
+  }
+
+  const addBookingHandler = async (e) => {
     e.preventDefault()
   }
+
+  const renderCardPassanger = () => {
+    let element = []
+    if(passangers.length > 1){
+      for(let i = 0; i < 3; i++) {
+        element.push(
+          <div key={i} >
+            <span className={`fw-semibold fs-5 mb-2 d-block mt-4`}>Passangers Details</span>     
+            <SectionCard className={`pt-4`}>
+              <PassangerCard 
+                data={passangers[i]} 
+                seats={['A-1', 'A-2', 'A-3']} 
+                onchange={(e) => changeHandlerPassanger(e, i)} 
+              />
+            </SectionCard>
+          </div>
+        )
+      }
+    }   
+    return element
+  }
+
+  useEffect(() => {
+    function setDataPassangers() {
+      return setPassangers(prev => {
+        const data = prev
+        if(passangers.length < 3) {
+          for(let i = 0; i < 3; i++) {
+            data.push({
+              name: "",
+              category_passanger: "",
+              id_seat : ""
+            })
+          }
+        }
+       
+        return data
+      })
+    }
+    return () => {setDataPassangers()}
+  }, [])
+
+
 
   return (
     <DoubleSideLayout
@@ -40,15 +103,18 @@ const FlightDetail = () => {
       classRight={`col-12 col-lg-4 col-md-5 order-1 order-md-2`}
       leftside={
         <>
-          <Form onSubmit={submitHandler} className={'pb-3'}>
+          <Form className={'pb-3'}>
             <span className={`${style.textColorOptional} fw-semibold fs-5 mb-3 d-block`}>Contact Person Detail</span>
             <SectionCard className={`pt-3`}>
-              {formContactPerson?.map(form => (
+              {formContactPerson?.map((form, i) => (
                 <ProfileInputForm 
+                  key={i}
                   title={form.title}
                   name={form.name}
                   type={form.type}
                   placeholder={form.placeholder}
+                  value={booking[form.name]}
+                  onchange={(e) => changeHandlerContact(e)}
                 />
               ))}
 
@@ -58,9 +124,10 @@ const FlightDetail = () => {
                 <Form.Control
                   className={'border-0 py-0 shadow-none'}
                   placeholder="xxx xxxx xxxx"
-                  name={`phone`}
-                  aria-label="phone-number"
-                  aria-describedby="phone-number"
+                  name={`phone_contact`}
+                  type={'number'}
+                  value={booking.phone_contact}
+                  onChange={changeHandlerContact}
                 />
               </InputGroup>
 
@@ -69,10 +136,7 @@ const FlightDetail = () => {
               </Alert>
             </SectionCard>
 
-            <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Passangers Details</span>     
-            <SectionCard className={`pt-4`}>
-              <PassangerCard  />
-            </SectionCard>
+            {renderCardPassanger()?.map(card => card)}
 
             <span className={`fw-semibold fs-5 mb-3 d-block mt-4`}>Insurance</span>
             <Card className={`border-0 shadow-none mb-3 main-border overflow-hidden`}>
@@ -80,13 +144,19 @@ const FlightDetail = () => {
                 <div className="d-flex">
                   <Form.Check
                     inline
-                    value={true}
+                    className='d-flex align-items-center'
                     name="insurance"
                     type={`checkbox`}
+                    onChange={(e) => setBooking(prev => {
+                      return {
+                        ...prev,
+                        insurance: !prev.insurance
+                      }
+                    })}
                   />
                   <span className={`fw-semibold`}>Travel Insurance</span>
                 </div>
-                <span className={`fw-semibold text-blue`}>Rp. 2000/
+                <span className={`fw-semibold text-blue ms-auto`}>Rp. 2000/
                   <span className={`text-secondary fw-none text-medium`}>pax</span>
                 </span>
                 
@@ -98,7 +168,11 @@ const FlightDetail = () => {
 
             <div className="row">
               <div className="col-12 d-flex justify-content-center">
-                <button type='submit' className={`${style.btnSubmit} btn btn-blue mx-auto fw-semibold`}>Proceed to Payment</button>
+                <button 
+                  type='submit' 
+                  className={`${style.btnSubmit} btn btn-blue mx-auto fw-semibold`}
+                  onClick={addBookingHandler}
+                >Proceed to Payment</button>
               </div>
             </div>
           </Form>  
@@ -106,7 +180,7 @@ const FlightDetail = () => {
       }
     >
       <span className={`fw-semibold fs-5 mb-3 d-block text-light`}>Flight Details</span>
-      <FlightAirlineDetailCard data={""}/> 
+      <FlightAirlineDetailCard data={flight}/> 
     </DoubleSideLayout>
   )
 }

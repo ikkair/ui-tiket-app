@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
 import { SearchCard } from '../../../components/Cards/SearchCard/SearchCard'
 import style from './Search.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowsUpDown, faCircle } from '@fortawesome/free-solid-svg-icons'
 import TicketCard from '../../../components/Cards/TicketCard/TicketCard'
@@ -14,7 +14,15 @@ import Swal from 'sweetalert2'
 
 export const SearchResult = () => {
   const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({})
-
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchResult, setSearchResult] = useState({
+    starting_place : searchParams.get('starting_place') || "",
+    destination_place : searchParams.get('destination_place') || "",
+    transit: searchParams.get('transit') || "direct",
+    departure_date: searchParams.get('departure_date') || '',
+    capacity: searchParams.get('capacity') || 1,
+    type_seat: searchParams.get('type_seat') || ''
+  })
 
   useEffect(() => {
     if(isLoading) showLoading('Please Wait....')
@@ -36,12 +44,12 @@ export const SearchResult = () => {
                   <p className='m-0 p-0'>To</p>
                 </span>
                 <div className='d-flex align-items-center justify-content-between' bg-primary>
-                  <h5 className='me-4 p-0'>Medan(IDN) </h5><FontAwesomeIcon icon={faArrowsUpDown} />
-                  <h5 className='ms-4 p-0'>Medan(IDN) </h5>
+                  <h5 className='me-4 p-0 fw-semibold'>{searchResult?.starting_place} </h5><FontAwesomeIcon icon={faArrowsUpDown} />
+                  <h5 className='ms-4 p-0 fw-semibold'>{searchResult?.destination_place} </h5>
                 </div>
                 <p className='m-0 p-0 text-lighter' style={{ fontSize: '12px' }}>
-                  <span className='me-2'>Monday. 20 july 2020</span><FontAwesomeIcon icon={faCircle} />
-                  <span className='ms-2 me-2'>6 Passenger</span><FontAwesomeIcon icon={faCircle} />
+                  <span className='me-2'>Monday. {searchResult.departure_date}</span><FontAwesomeIcon icon={faCircle} />
+                  <span className='ms-2 me-2'>{searchResult.capacity} Passenger</span><FontAwesomeIcon icon={faCircle} />
                 </p>
               </div>
             </div>
@@ -71,11 +79,13 @@ export const SearchResult = () => {
           <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} /> </Link>
         </div>
 
-        {flights?.map(f => (
+        {flights?.map((f,i) => (
           // console.log(f?.id_airlane),
           <>
             <TicketCard
-              id={f?.id_airlane}
+              key={i}
+              id={f?.id}
+              id_airline={f?.id_airlane}
               price={<FormatRupiah value={f?.price} />}
               departure_time={f?.departure_time}
               arrived_time={f?.arrived_time}
