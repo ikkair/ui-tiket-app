@@ -75,6 +75,9 @@ export const SearchResult = () => {
                             starting_place={f?.starting_place}
                             departure_date={f?.departure_date}
                             destination_place={f?.destination_place}
+                            luggage = {f?.luggage}
+                            wifi = {f?.wifi}
+                            meal = {f?.meal}
                         />
                     </>
                 ))}

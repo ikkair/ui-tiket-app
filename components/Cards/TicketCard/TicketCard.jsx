@@ -3,26 +3,15 @@ import { Card } from 'react-bootstrap'
 import garuda from '../../../src/assets/airlines/garuda.png'
 import Iconflight from '../../../src/assets/icon/flight.png'
 import lugage from '../../../src/assets/icon/lugage.png'
+import wifi from '../../../src/assets/icon/wifi.png'
+import meal from '../../../src/assets/icon/burger.png'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faCircle, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
+import { faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const TicketCard = (props) => {
-
-    console.log(props.price);
-    const [width, setWidth] = useState(window.innerWidth);
-    // const breakpoint = 700;
-    useEffect(() => {
-        const handleResizeWindow = () => setWidth(window.innerWidth);
-        // subscribe to window resize event "onComponentDidMount"
-        window.addEventListener("resize", handleResizeWindow);
-        return () => {
-            // unsubscribe "onComponentDestroy"
-            window.removeEventListener("resize", handleResizeWindow);
-        };
-    }, []);
 
     return (
 
@@ -47,9 +36,13 @@ const TicketCard = (props) => {
                     <p className='m-0 p-0' style={{ fontSize: '12px' }}>(1 Transit)</p>
                 </div>
                 <div className="col d-md-flex gap-3 justify-content-center d-none">
-                    <span><img src={lugage} alt="" /></span>
-                    <span><img src={lugage} alt="" /></span>
-                    <span><img src={lugage} alt="" /></span>
+                    {props.meal || props.wifi || props.luggage !== false ? (
+                    <>
+                    <span><img src={props.luggage === true ? lugage : ''} alt="" /></span>
+                    <span><img src={props.wifi === true ? wifi : ''} alt="" /></span>
+                    <span><img src={props.meal === true ? meal : ''} alt="" /></span> 
+                    </>
+                    ) :  <p className='text-secondary'>Reguler </p> }
                 </div>
                 <div className="col text-end text-md-center text-secondary">
                     <p><span className='text-blue'> {props.price} </span>/pax</p>

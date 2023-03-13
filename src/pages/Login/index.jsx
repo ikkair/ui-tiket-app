@@ -8,11 +8,17 @@ import style from './Login.module.css'
 
 
 const Login = () => {
+
+  const changeHandler = () => {
+
+  }
+
   return (
     <AuthTemplate title={'Login'}>
-      <InputAuthForm title="Email" name="email" type="email" placeholder='Email' />
-      <InputAuthForm title="Password" name="password" type="password" placeholder='Password' />
-
+      <form>
+        <InputAuthForm title="Email" name="email" type="email" placeholder='Email' onchange={changeHandler}/>
+        <InputAuthForm title="Password" name="password" type="password" placeholder='Password' onchange={changeHandler} />
+      </form>
 
       <div className="button d-grid my-2">
         <button style={{ height: '50px' }} className='btn btn-blue fw-bolder'>Sign in</button>
