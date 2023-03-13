@@ -22,7 +22,7 @@
       "transit": "direct",
       "luggage": true,
       "meal": true,
-      "wifi": false,
+      "wifi": true,
       "id_airlane": "5",
       "starting_place": "Makassar",
       "destination_place": "Kalimantan",

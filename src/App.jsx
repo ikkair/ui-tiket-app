@@ -16,6 +16,7 @@ import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
+import PageNotFound from './pages/404/404';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
+      <Route path="/*" element={<PageNotFound/>} />
+
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/dashboard">

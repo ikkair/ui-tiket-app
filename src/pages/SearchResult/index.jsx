@@ -24,11 +24,11 @@ export const SearchResult = () => {
     type_seat: searchParams.get('type_seat') || ''
   })
 
-  useEffect(() => {
-    if(isLoading) showLoading('Please Wait....')
-    if(isSuccess) Swal.close()
+//   useEffect(() => {
+//     if(isLoading) showLoading('Please Wait....')
+//     if(isSuccess) Swal.close()
 
-  }, [isLoading, isSuccess])
+//   }, [isLoading, isSuccess])
   return (
     <>
       <div className={`optionrute container position-relative`}>
@@ -75,7 +75,8 @@ export const SearchResult = () => {
         }
       >
         <div className="headRight d-flex justify-content-between">
-          <h4>Select tickets <span className='text-secondary h5'>({flights?.length} flight found)</span></h4>
+          <h4 className='d-none d-md-block'>Select tickets <span className='text-secondary h5 '>({flights?.length} flight found)</span></h4>
+          <span className='text-secondary h5 d-block d-md-none h-6'>{flights?.length} flight found</span>
           <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} /> </Link>
         </div>
 
@@ -92,6 +93,9 @@ export const SearchResult = () => {
               starting_place={f?.starting_place}
               departure_date={f?.departure_date}
               destination_place={f?.destination_place}
+              meal={f?.meal}
+              wifi={f?.wifi}
+              luggage={f?.luggage}
             />
           </>
         ))}
