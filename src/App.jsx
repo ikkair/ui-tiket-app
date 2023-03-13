@@ -15,7 +15,7 @@ import Airline from './pages/Admin/Airline/Index';
 import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
-import PageNotFound from './pages/404NotFound/404';
+import PageNotFound from './pages/404/404';
 
 
 function App() {
