@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams, useSearchParams } from 'react-router-dom'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import ProfileInputForm from '../../../components/Forms/ProfileInputForm/ProfileInputForm'
 import { formContactPerson } from '../../../lib/flightForm'
@@ -17,6 +18,7 @@ const Flight = () => {
     e.preventDefault()
   }
 
+
   return (
     <DoubleSideLayout
       className={`${style.styleBaseLayout} mt-3`}
@@ -27,8 +29,9 @@ const Flight = () => {
           <Form onSubmit={submitHandler} className={'pb-3'}>
             <span className={`fw-semibold fs-5 mb-3 d-block text-light`}>Contact Person Detail</span>
             <SectionCard className={`pt-3`}>
-              {formContactPerson?.map(form => (
+              {formContactPerson?.map((form, i) => (
                 <ProfileInputForm 
+                  key={i}
                   title={form.title}
                   name={form.name}
                   type={form.type}

@@ -37,6 +37,11 @@
   width: 50px !important;
 }
 
+.destination {
+  border-radius: 12px;
+  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
+}
+
 .infoNext:hover {
   background-color: #a3b0bc !important;
   border-color: white !important;
@@ -181,7 +186,15 @@
   letter-spacing: 0.3em;
 }
 
+
+.cardDestination {
+  max-height: 262px !important;
+}
+
 @media (min-width: 768px) and (max-width: 825px) {
+  .cardDestination {
+    max-height: 200px !important;
+  }
   .customImg {
     width: 100% !important;
     height: auto;
