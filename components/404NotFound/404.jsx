@@ -1,6 +1,7 @@
 import React from 'react'
 import planes from '../../src/assets/icon/planes.png'
 import style from './404.module.css'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
     return (
@@ -8,7 +9,7 @@ const NotFound = () => {
             <div className={style.stars}>
                 <div className={style["central-body"]}>
                     <img className={style["image-404"]} src="http://salehriaz.com/404Page/img/404.svg" width="300px"/>
-                        <a href="http://salehriaz.com/404Page/404.html" className={style['btn-go-home']} target="_blank">GO BACK TO ANKASA</a>
+                        <Link to="/" className={style['btn-go-home']}>GO BACK TO ANKASA</Link>
                 </div>
                 <div className={style.objects}>
                     <img className={style.object_rocket} src={planes} width="40px"/>
