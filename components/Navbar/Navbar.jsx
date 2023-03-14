@@ -119,12 +119,12 @@ export const Navbar = () => {
 
             <div className="d-none d-lg-flex justify-content-center position-relative align-items-center gap-4">
               <span className="d-flex">
-                <Link to={'/tickets'} className={'text-decoration-none text-softdark fw-semibold'}>
+                <Link to={'/home'} className={'text-decoration-none text-softdark fw-semibold'}>
                   Find Ticket
                 </Link>
               </span>
               <span className="d-flex">
-                <Link to={'/tickets'} className={'text-decoration-none text-softdark fw-semibold'}>
+                <Link to={'/my-booking'} className={'text-decoration-none text-softdark fw-semibold'}>
                   My Booking
                 </Link>
               </span>
