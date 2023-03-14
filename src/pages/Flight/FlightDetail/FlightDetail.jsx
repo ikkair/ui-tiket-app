@@ -82,7 +82,6 @@ const FlightDetail = () => {
 
   const renderCardPassanger = () => {
     let element = []
-    if(passangers.length > 0){
       for(let i = 0; i < getCapacity(); i++) {
         element.push(
           <div key={i} >
@@ -95,7 +94,6 @@ const FlightDetail = () => {
             </SectionCard>
           </div>
         )
-      }
     }   
     return element
   }
