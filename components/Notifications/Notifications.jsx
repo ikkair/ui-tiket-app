@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Notification.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { Popover, OverlayTrigger} from 'react-bootstrap';
 
 const Notifications = () => {
   const popoverClickRootClose = (

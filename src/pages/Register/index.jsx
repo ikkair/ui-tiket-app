@@ -36,7 +36,7 @@ const Register = () => {
     <AuthTemplate title={'Register'}>
       <form onSubmit={handleSubmit} method='post'>
         <InputAuthForm title="Fullname" name={'name'} type="text" value={data.name} placeholder='Fullname' req={'required'} onchange={handleChange} />
-        <InputAuthForm title="Email" name={'email'} type="text" value={data.email} placeholder='Email' req={'required'} onchange={handleChange} />
+        <InputAuthForm title="Email" name={'email'} type="email" value={data.email} placeholder='Email' req={'required'} onchange={handleChange} />
         <InputAuthForm title="Password" name={'password'} type="password" value={data.password} placeholder='Password' req={'required'} onchange={handleChange} />
 
         <div className="button d-grid my-2">
