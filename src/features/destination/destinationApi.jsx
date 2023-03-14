@@ -14,4 +14,4 @@ export const destinationApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllDestiationQuery } = destinationApi 
+export const { useGetAllDestinationQuery } = destinationApi 
