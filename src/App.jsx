@@ -17,7 +17,6 @@ import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import PageNotFound from './pages/404/404';
-import Coba from './pages/Coba';
 
 function App() {
   return (
