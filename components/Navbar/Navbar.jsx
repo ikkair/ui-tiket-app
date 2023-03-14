@@ -27,7 +27,7 @@ export const Navbar = () => {
         token: localStorage.getItem('token')
       }))
     }
-  }, [user])
+  }, [dispatch, isSuccess])
 
   const renderBanner = () => {
     if (!urlWithoutBanner.includes(urlPath)) {
