@@ -10,10 +10,12 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../app/reducer/authSlice'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [userLogin, { isLoading, isSuccess, isError, error }] = useUserLoginMutation()
   const [data, setData] = useState({
@@ -29,6 +31,10 @@ const Login = () => {
       };
     });
   };
+
+  const directPath = () => {
+    return navigate('/')
+  }
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -53,6 +59,7 @@ const Login = () => {
 
     if (isSuccess) {
       Swal.close();
+      directPath();
     }
   }, [isLoading, isSuccess, isError]);
 
@@ -74,7 +81,7 @@ const Login = () => {
       )}
       <form onSubmit={loginHandler}>
         <InputAuthForm title="Email" name={'email'} value={data.email} type={'email'} placeholder='Email' onchange={changeHandler} />
-        <InputAuthForm title="Password" name={'password'} value={data.password} type="password" placeholder='Password' onchange={changeHandler} />
+        <InputAuthForm title="Password" name={'password'} value={data.password} type="password" placeholder='Password' onchange={changeHandler} minlength={'8'} />
 
 
         <div className="button d-grid my-2">
