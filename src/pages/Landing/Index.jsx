@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import large from '../../assets/explore/img-large.png';
 import small from '../../assets/explore/img-small.png';
 import blue from '../../assets/explore/blue.png';
-import spain from '../../assets/explore/spain.png';
+import japan from '../../assets/explore/japan.png';
 import bali from '../../assets/explore/Bali.png';
 import './landing.css';
 import plane from '../../assets/explore/plane.png';
@@ -15,11 +15,12 @@ import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrow
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useGetAllDestinationQuery } from '../../features/destination/destinationApi';
 
 const Index = () => {
   const navigate = useNavigate();
-  const user = useSelector(state => state.auth)
-  console.log(user)
+  const user = useSelector((state) => state.auth);
+  console.log(user);
   const date = new Date();
   const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   const [child, setChild] = useState(0);
@@ -58,6 +59,14 @@ const Index = () => {
     const queryParams = generateUrlSearch(searchData);
     return navigate(`/flights?${queryParams}`);
   };
+
+  // Destination
+  // const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
+  //   starting_place: searchResult?.starting_place,
+  //   destination_place: searchResult?.destination_place
+  // })
+
+  const { data: destination } = useGetAllDestinationQuery();
 
   return (
     <>
@@ -174,14 +183,17 @@ const Index = () => {
                     </div>
 
                     <div className="col-12 px-0 mb-2">
-            
                       <div className="row">
                         <div className="col-6">
-                          <label htmlFor="child" className='text-muted fw-semibold'>Child</label>
+                          <label htmlFor="child" className="text-muted fw-semibold">
+                            Child
+                          </label>
                           <input type="number" className="form-control p-2 customBorderInput" id="child" value={child} onChange={(e) => setChild(Number(e.target.value))} placeholder="Child" />
                         </div>
                         <div className="col-6">
-                          <label htmlFor="child" className='text-muted fw-semibold'>Adult</label>
+                          <label htmlFor="child" className="text-muted fw-semibold">
+                            Adult
+                          </label>
                           <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Adult" value={adult} onChange={(e) => setAdult(Number(e.target.value))} />
                         </div>
                       </div>
@@ -232,7 +244,7 @@ const Index = () => {
             <div className="row align-items-center">
               <div className="col">
                 <h5 className="blue spacing">TRENDING</h5>
-                <h2 className="fw-bold mb-3">Trending Destinations</h2>
+                <h2 className="fw-bold mb-5">Trending Destinations</h2>
               </div>
               <div className="col text-end">
                 <Link href={'/'} className="text-decoration-none fw-bold">
@@ -240,8 +252,35 @@ const Index = () => {
                 </Link>
               </div>
 
-              <div className="col-12 mt-3">
-                <Swiper
+              <div className="col-12 mt-3 trending-overflow d-flex">
+                {destination?.map((item) => (
+                  // <SwiperSlide>
+                  <Link href={'/'} className={`cardDestination me-5 text-white`}>
+                    <div className="cardSlider">
+                      <div className="cardOverlay" />
+                      <div className="cardImage">
+                        <img src={japan} alt="" className="image" />
+                      </div>
+                      <div className="cardLabel py-1 px-3 mx-2 text-white">
+                        <span className="fw-bold">{item?.popularity}</span> Airlines
+                      </div>
+                      <div className="cardDescription px-2">
+                        <div className="row align-items-center">
+                          <div className="col">
+                            <h5>{item?.name}</h5>
+                          </div>
+                          <div className="col d-flex justify-content-end">
+                            <button type="button" className="customButton">
+                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                  // </SwiperSlide>
+                ))}
+                {/* <Swiper
                   spaceBetween={20}
                   slidesOffsetBefore={10}
                   slidesOffsetAfter={10}
@@ -253,7 +292,7 @@ const Index = () => {
                       slidesPerView: 2.1,
                     },
                     768: {
-                      slidesPerView: 4,
+                      slidesPerView: 3,
                     },
                     1024: {
                       slidesPerView: 5,
@@ -263,127 +302,8 @@ const Index = () => {
                     },
                   }}
                 >
-                  <SwiperSlide>
-                    <Link href={'/'} className={`cardDestination`}>
-                      <div className="cardSlider">
-                        <div className="cardOverlay" />
-                        <div className="cardImage">
-                          <img src={spain} alt="" className="image" />
-                        </div>
-                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                          <span className="fw-bold">15</span> Airlines
-                        </div>
-                        <div className="cardDescription flexRow">
-                          <div className="flexCol flexAuto">
-                            <p>Bali</p>
-                            <h4>Indonesia</h4>
-                          </div>
-                          <div>
-                            <button type="button" className="customButton">
-                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Link href={'/'}>
-                      <div className="cardSlider">
-                        <div className="cardOverlay" />
-                        <div className="cardImage">
-                          <img src={spain} alt="" className="image" />
-                        </div>
-                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                          <span className="fw-bold">15</span> Airlines
-                        </div>
-                        <div className="cardDescription flexRow">
-                          <div className="flexCol flexAuto">
-                            <p>Bali</p>
-                            <h4>Indonesia</h4>
-                          </div>
-                          <div>
-                            <button type="button" className="customButton">
-                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Link href={'/'}>
-                      <div className="cardSlider">
-                        <div className="cardOverlay" />
-                        <div className="cardImage">
-                          <img src={spain} alt="" className="image" />
-                        </div>
-                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                          <span className="fw-bold">15</span> Airlines
-                        </div>
-                        <div className="cardDescription flexRow">
-                          <div className="flexCol flexAuto">
-                            <p>Bali</p>
-                            <h4>Indonesia</h4>
-                          </div>
-                          <div>
-                            <button type="button" className="customButton">
-                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Link href={'/'}>
-                      <div className="cardSlider">
-                        <div className="cardOverlay" />
-                        <div className="cardImage">
-                          <img src={spain} alt="" className="image" />
-                        </div>
-                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                          <span className="fw-bold">15</span> Airlines
-                        </div>
-                        <div className="cardDescription flexRow">
-                          <div className="flexCol flexAuto">
-                            <p>Bali</p>
-                            <h4>Indonesia</h4>
-                          </div>
-                          <div>
-                            <button type="button" className="customButton">
-                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Link href={'/'}>
-                      <div className="cardSlider">
-                        <div className="cardOverlay" />
-                        <div className="cardImage">
-                          <img src={spain} alt="" className="image" />
-                        </div>
-                        <div className="cardLabel border rounded-4 py-1 px-3 text-white">
-                          <span className="fw-bold">15</span> Airlines
-                        </div>
-                        <div className="cardDescription flexRow">
-                          <div className="flexCol flexAuto">
-                            <p>Bali</p>
-                            <h4>Indonesia</h4>
-                          </div>
-                          <div>
-                            <button type="button" className="customButton">
-                              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                </Swiper>
+                  
+                </Swiper> */}
               </div>
             </div>
             <div className="customSpace"></div>
@@ -425,16 +345,18 @@ const Index = () => {
                       },
                     }}
                   >
-                    <SwiperSlide>
-                      <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
-                        <div className="row">
-                          <div className="col-md-12 story">
-                            <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
-                            <h5 className="mt-4 text-center">Bali</h5>
+                    {destination?.map((item) => (
+                      <SwiperSlide>
+                        <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
+                          <div className="row">
+                            <div className="col-md-12 story">
+                              <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
+                              <h5 className="mt-4 text-center">{item?.name}</h5>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </SwiperSlide>
+                      </SwiperSlide>
+                    ))}
                     <SwiperSlide>
                       <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
                         <div className="row">
