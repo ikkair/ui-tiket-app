@@ -54,7 +54,7 @@ const Index = () => {
       capacity: Number(child) + Number(adult),
     };
     const queryParams = generateUrlSearch(searchData);
-    return navigate(`/flights?${queryParams}`);
+    return navigate(`/flights?${queryParams}page=1`);
   };
 
   // Destination
