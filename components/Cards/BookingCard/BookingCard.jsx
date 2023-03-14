@@ -21,11 +21,11 @@ const BookingCard = ({ header, classHeader, id_flight, status, id_booking }) => 
               <span className="text-dark">{`Monday, ${flight?.departure_date} - ${flight?.departure_time}`}</span>
             </div>
             <div className="col-12 d-flex gap-4 my-1">
-              <span className="fw-bold fs-4 text-dark">Medan</span>
+              <span className="fw-bold fs-4 text-dark">{starting_place}</span>
               <span className="text-dark fs-5">
                 <FontAwesomeIcon icon={faPlaneDeparture} className={`text-secondary`} />
               </span>
-              <span className="fw-bold fs-4 text-dark">Bali</span>
+              <span className="fw-bold fs-4 text-dark">{destination_place}</span>
             </div>
             <div className="col-12 pb-1">
               <span className="text-secondary ">{`${flight?.name_airline}, ${flight?.gate}${flight?.terminal} `}</span>
