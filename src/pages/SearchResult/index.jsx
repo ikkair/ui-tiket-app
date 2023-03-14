@@ -81,14 +81,18 @@ export const SearchResult = () => {
         </div>
 
         {flights?.map((f,i) => (
-          // console.log(f?.id_airlane),
           <>
             <TicketCard
               key={i}
               id={f?.id}
+              capacity={searchResult?.capacity}
               id_airline={f?.id_airlane}
+              name_airline={f?.name_airline}
+              transit={f?.transit}
+              duration_time={f?.duration_time}
               price={<FormatRupiah value={f?.price} />}
               departure_time={f?.departure_time}
+              photo={f?.image_airline}
               arrived_time={f?.arrived_time}
               starting_place={f?.starting_place}
               departure_date={f?.departure_date}

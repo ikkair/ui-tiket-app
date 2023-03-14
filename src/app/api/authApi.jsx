@@ -5,14 +5,10 @@ const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_ENDPOINT,
   credentials: "same-origin",
   prepareHeaders: (headers, {getState}) => {
-    // if(getState()?.auth?.token){
-    //   const token = getState().auth.token
-    //   headers.set('authorization', `Bearer ${token}`)
-    // }  
 
-    // if(localStorage.getItem('token')) {
-    //   headers.set('authorization', `Bearer ${localStorage.getItem('token')}`)
-    // }
+    if(localStorage.getItem('token')) {
+      headers.set('authorization', `Bearer ${localStorage.getItem('token')}`)
+    }
 
     return headers
   }

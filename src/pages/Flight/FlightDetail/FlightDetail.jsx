@@ -13,13 +13,20 @@ import { Card } from 'react-bootstrap'
 import PassangerCard from '../../../../components/Cards/PassangerCard/PassangerCard'
 import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
 import { useParams } from 'react-router'
+import { useSearchParams } from 'react-router-dom'
+import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
+import { useGetSeatByIdFlightQuery } from '../../../features/seat/seatApi'
+import { flightTerminal } from '../../../../lib/Flight/FlightForm'
 
 const FlightDetail = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [createBooking, {isLoading: isLoadingCreateBooking, isSuccess: isSuccessCreateBooking}] = useCreateBookingMutation()
   const {id} = useParams()
   const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
+  console.log(flight?.price)
+  const [price, setPrice] = useState(flight?.price)
 
   const [passangers, setPassangers] = useState([])
-  const [loading, setLoading] = useState(false)
   const [booking, setBooking] = useState({
     contact_name: "", 
     contact_email: "", 
@@ -27,10 +34,11 @@ const FlightDetail = () => {
     insurance: false,
     capacity: 0,
     status: 0,
-    total_price: 0
+    total_price: flight?.price
   })
 
   const changeHandlerContact = (e) => {
+    console.log(booking)
     setBooking(prev => {
       return {
         ...prev,
@@ -41,12 +49,19 @@ const FlightDetail = () => {
 
   const changeHandlerPassanger = (e, i) => {
     console.log(passangers)
-    console.log(booking)
     setPassangers(prev => {
       const currentData = {...prev[i], [e.target.name] : e.target.value}
       prev[i] = currentData 
       return prev
     })
+  }
+
+  function getCapacity() {
+    if(Number(searchParams.get('capacity')) <= 1){
+      return 1
+    }else {
+      return Number(searchParams.get('capacity'))
+    }
   }
 
   const addBookingHandler = async (e) => {
@@ -55,15 +70,15 @@ const FlightDetail = () => {
 
   const renderCardPassanger = () => {
     let element = []
-    if(passangers.length > 1){
-      for(let i = 0; i < 3; i++) {
+    if(passangers.length > 0){
+      for(let i = 0; i < getCapacity(); i++) {
+        console.log('tes')
         element.push(
           <div key={i} >
             <span className={`fw-semibold fs-5 mb-2 d-block mt-4`}>Passangers Details</span>     
             <SectionCard className={`pt-4`}>
               <PassangerCard 
                 data={passangers[i]} 
-                seats={['A-1', 'A-2', 'A-3']} 
                 onchange={(e) => changeHandlerPassanger(e, i)} 
               />
             </SectionCard>
@@ -78,8 +93,8 @@ const FlightDetail = () => {
     function setDataPassangers() {
       return setPassangers(prev => {
         const data = prev
-        if(passangers.length < 3) {
-          for(let i = 0; i < 3; i++) {
+        if(passangers.length < getCapacity()) {
+          for(let i = 0; i < getCapacity(); i++) {
             data.push({
               name: "",
               category_passanger: "",
@@ -180,7 +195,7 @@ const FlightDetail = () => {
       }
     >
       <span className={`fw-semibold fs-5 mb-3 d-block text-light`}>Flight Details</span>
-      <FlightAirlineDetailCard data={flight}/> 
+      <FlightAirlineDetailCard data={{...flight, price: booking?.price}} passangerCapacity={getCapacity()}/> 
     </DoubleSideLayout>
   )
 }

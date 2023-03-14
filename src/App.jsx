@@ -17,10 +17,13 @@ import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import PageNotFound from './pages/404/404';
+import Coba from './pages/Coba';
 
 function App() {
   return (
     <Routes>
+      <Route path="/*" element={<PageNotFound />} />
+      <Route path="/coba" element={<Coba />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-booking" element={<MyBooking />} />
       <Route path="/my-booking/:id" element={<BookingDetail />} />
@@ -32,8 +35,10 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
       <Route path="/*" element={<PageNotFound />} />
+      <Route path="/coba" element={<Coba />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
+      <Route path="/admin/register" element={<RegisterAdmin />} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={<Airline />} />
         <Route path="flights" element={<FlightInformation />} />

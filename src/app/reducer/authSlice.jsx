@@ -9,6 +9,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, { payload }) => {
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("id", payload.user.id);
       state.user = payload.user;
       state.token = payload.token;
     },
