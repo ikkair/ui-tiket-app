@@ -17,6 +17,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
 import { authApi } from '../../../features/auth/authApi'
 import { useCreatePassangerMutation } from '../../../features/passanger/passangerApi'
+import { useSelector } from 'react-redux'
 
 const FlightDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -105,7 +106,7 @@ const FlightDetail = () => {
           for(let i = 0; i < getCapacity(); i++) {
             data.push({
               name: "",
-              category_passanger: "",
+              category_passenger: "",
               id_seat : ""
             })
           }

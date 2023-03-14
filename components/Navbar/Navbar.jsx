@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faRightFromBracket, faCaretDown, faUser, faSearch, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import logo from '../../src/assets/navbar/logo.png';
@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetUserProfileQuery } from '../../src/features/auth/authApi';
 import { setCredentials } from '../../src/app/reducer/authSlice';
 
-
 export const Navbar = () => {
   const dispatch = useDispatch()
   const urlPath = window.location.pathname;
@@ -20,7 +19,6 @@ export const Navbar = () => {
   const user = useSelector(state => state.auth.user)
   const logoutHandler = async (e) => {};
   const urlWithoutBanner = ['/home', '/'];
-
 
   useEffect(() => {
     if(!user) {
