@@ -23,7 +23,7 @@ export const SearchResult = () => {
     class_flight: searchParams.get('class_flight') || '',
     transit:""
   })
-  const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery(
+  const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
       starting_place: searchResult?.starting_place,
       destination_place: searchResult?.destination_place,
@@ -65,8 +65,10 @@ export const SearchResult = () => {
   }
 
   useEffect(() => {
-    console.log(searchResult.transit)
-  }, [searchResult])
+    if(isSuccess) Swal.close()
+    if(isLoading) showLoading('Please wait...')
+    if(isError) Swal.close()
+  }, [isLoading, isSuccess, isError])
   return (
     <>
       <div className={`optionrute container position-relative`}>

@@ -14,9 +14,7 @@ const Sidebar = () => {
     if(window.confirm('are you sure want to logout?')){ 
       dispatch(logout())
     }
-
     return navigate('/admin/login')
-
   }
 
   return (
