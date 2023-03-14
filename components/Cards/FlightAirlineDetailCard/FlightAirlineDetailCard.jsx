@@ -6,7 +6,7 @@ import style from "./FlightAirlineDetailCard.module.css";
 import airlineLogo from '../../../src/assets/flight/airlineLogo.png'
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
  
-const FlightAirlineDetailCard = ({ data, passangerCapacity }) => {
+const FlightAirlineDetailCard = ({ data, price ,passangerCapacity }) => {
   return (
     <Card className={"border-0 mb-3 shadow-none main-border overflow-hidden"}>
       <Card.Header className={`${style.cardHeader} p-3`}>
@@ -44,7 +44,7 @@ const FlightAirlineDetailCard = ({ data, passangerCapacity }) => {
       </Card.Header>
       <Card.Body className={`px-4 py-3 d-flex justify-content-between align-items-center`}>
         <span className="fs-6 fw-semibold d-block">Total Payment</span>
-        <span className="fs-5 fw-semibold text-blue">Rp. {data?.price * passangerCapacity}</span>
+        <span className="fs-5 fw-semibold text-blue">Rp. {price * passangerCapacity}</span>
       </Card.Body>
     </Card>
   );

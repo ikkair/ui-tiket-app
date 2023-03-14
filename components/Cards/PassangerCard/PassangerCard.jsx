@@ -40,6 +40,7 @@ const PassangerCard = ({data, onchange}) => {
         className='mb-3 shadow-none' 
         name={'id_seat'} 
         onChange={changeHandler}>
+          <option selected>Select Seat</option>
           {seats?.map((seat, i) => (
             <option key={i} value={seat?.id}>{seat?.no_seat}</option>
           ))}

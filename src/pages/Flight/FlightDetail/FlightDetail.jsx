@@ -23,7 +23,6 @@ const FlightDetail = () => {
   const [createBooking, {isLoading: isLoadingCreateBooking, isSuccess: isSuccessCreateBooking}] = useCreateBookingMutation()
   const {id} = useParams()
   const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
-  console.log(flight?.price)
   const [price, setPrice] = useState(flight?.price)
 
   const [passangers, setPassangers] = useState([])
@@ -32,10 +31,12 @@ const FlightDetail = () => {
     contact_email: "", 
     phone_contact: "", 
     insurance: false,
-    capacity: 0,
+    capacity: getCapacity(),
     status: 0,
     total_price: flight?.price
   })
+  console.log(booking)
+
 
   const changeHandlerContact = (e) => {
     console.log(booking)
@@ -64,15 +65,23 @@ const FlightDetail = () => {
     }
   }
 
+  async function createPassanger () {
+    return await Promise.all(passangers?.map(async (passanger) => {
+      await createPassanger(passanger)
+    }))
+  }
+
   const addBookingHandler = async (e) => {
     e.preventDefault()
+
+    await createBooking(booking)
+    await createPassanger()
   }
 
   const renderCardPassanger = () => {
     let element = []
     if(passangers.length > 0){
       for(let i = 0; i < getCapacity(); i++) {
-        console.log('tes')
         element.push(
           <div key={i} >
             <span className={`fw-semibold fs-5 mb-2 d-block mt-4`}>Passangers Details</span>     
@@ -195,7 +204,7 @@ const FlightDetail = () => {
       }
     >
       <span className={`fw-semibold fs-5 mb-3 d-block text-light`}>Flight Details</span>
-      <FlightAirlineDetailCard data={{...flight, price: booking?.price}} passangerCapacity={getCapacity()}/> 
+      <FlightAirlineDetailCard data={flight} price={flight?.price} passangerCapacity={getCapacity()}/> 
     </DoubleSideLayout>
   )
 }
