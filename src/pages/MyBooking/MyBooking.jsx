@@ -9,19 +9,19 @@ import { useSelector } from 'react-redux'
 
 const MyBooking = () => {
 
-  const user = useSelector(state => state.auth.user )
-  console.log(user);
+  const user = useSelector(state => state.auth.user)
+  // console.log(user);
 
   // const {data : myBooking, isLoading} = useGetBookingByIdQuery(id)
   // console.log(myBooking);
 
 
-  const changeHandler = (e) => {
+  // const changeHandler = (e) => {
 
-  }
-  const updateHandler = async (e) => {
-    e.preventDefault()
-  }
+  // }
+  // const updateHandler = async (e) => {
+  //   e.preventDefault()
+  // }
   return (
     <DoubleSideLayout
       classLeft={'col-12 col-md-5 col-lg-4'}

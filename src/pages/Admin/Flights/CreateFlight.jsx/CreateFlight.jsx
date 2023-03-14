@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 import FormInput from '../../../../../components/Dashboard/Form/FormInput/FormInput'
 import { flightFacility, flightForm, flightTerminal } from '../../../../../lib/Flight/FlightForm'
 import DashboardLayout from '../../../../../template/DashboardLayout/DashboardLayout'
 import { changeDate } from '../../../../common/helper'
+import { showLoading, successLoading } from '../../../../common/loadingHandler'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
 import { useCreateFlightMutation } from '../../../../features/flight/flightApi'
+import { useCreateSeatMutation } from '../../../../features/seat/seatApi'
 
 const CreateFlight = () => {
   const {data:airlines, isLoading, isSuccess} = useGetAllAirlineQuery()
   const [createFlight, {isLoading : isLoadingCreateFlight, isSuccess: isSuccessCreateFlight, isError}] = useCreateFlightMutation()
+  const [createSeat] = useCreateSeatMutation()
   const [flight, setFlight] = useState({  
     id_airline: "",
     departure_date: "",
@@ -24,8 +28,7 @@ const CreateFlight = () => {
     wifi : false,
     type_trip : "one way",
     class_flight : "first class",
-    capacity : 8,
-    // terminal : "",
+    terminal : "",
     // gate : "",
     // price : ""
   })
@@ -37,6 +40,7 @@ const CreateFlight = () => {
     return data
   } 
 
+
   const changeHandler = (e) => {
     setFlight(prev => {
       return {
@@ -46,15 +50,30 @@ const CreateFlight = () => {
     })
   }
 
+  function setCapacity(classFlight)  {
+    if(classFlight == "economy") return 120
+    if(classFlight == "business") return 36
+    if(classFlight == "first class") return 8
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault()
-    console.log(changeDate(flight.departure_date))
-    await createFlight({
+    const res = await createFlight({
       ...flight, 
+      capacity: setCapacity(flight?.class_flight),
       departure_date: changeDate(flight.departure_date), 
       arrived_date: changeDate(flight.arrived_date)
     })
+
+    await createSeat({id_flight: res.data.id, type_seat: res.data.class_flight})
   }
+
+  useEffect(() => {
+    if(isSuccessCreateFlight) successLoading('Success Create flight')
+    if(isLoadingCreateFlight) showLoading('Please Wait...')
+    if(isError) Swal.close()
+
+  }, [isLoadingCreateFlight, isSuccessCreateFlight, isError])
 
   return (
     <DashboardLayout title={`Create New Flight`}>
@@ -102,6 +121,18 @@ const CreateFlight = () => {
               <Form.Select aria-label="Default select example" name='transit' onChange={changeHandler}>
                 <option value={`direct`}>Direct</option>
                 <option value={`transit`}>Transit</option>
+              </Form.Select>
+            </Form.Group>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-4">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Class</Form.Label>
+              <Form.Select aria-label="Default select example" name='class_flight' onChange={changeHandler}>
+                  <option selected>Choose Class</option>
+                  <option value="economy">economy</option>
+                  <option value="business">business</option>
+                  <option value="first class">first class</option>
               </Form.Select>
             </Form.Group>
           </div>

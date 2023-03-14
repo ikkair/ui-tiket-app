@@ -23,10 +23,10 @@ export const bookingApi = apiSlice.injectEndpoints({
 
     getBookingByIdUser: builder.query({
       query: (id) =>  ({
-        url: `bookings/?id_user=${id}`
+        url: `bookings?id_user=${id}`
       }),
 
-      providesTags: ['getBookingByIdFlights'],
+      providesTags: ['getBookingByIdUser'],
       transformResponse: (response, meta, args) => response
     }),
 
@@ -64,4 +64,4 @@ export const bookingApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllBookingQuery, useGetBookingByIdQuery, useCreateBookingMutation, useUpdateBookingByIdMutation, useDeleteBookingByIdMutation, useGetBookingByIdUser } = bookingApi 
+export const { useGetAllBookingQuery, useGetBookingByIdQuery, useCreateBookingMutation, useUpdateBookingByIdMutation, useDeleteBookingByIdMutation, useGetBookingByIdUserQuery } = bookingApi 
