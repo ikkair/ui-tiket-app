@@ -203,7 +203,7 @@ const Index = () => {
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" value={`busniess`} name={'class_flight'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
+                          <input class="form-check-input" value={`business`} name={'class_flight'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
                           <label class="form-check-label" htmlFor="flexRadioDefault2">
                             Business
                           </label>
