@@ -9,8 +9,6 @@ import { useGetFlightByIdQuery } from '../../features/flight/flightApi'
 
 const MyBooking = () => {
   const user = useSelector(state => state?.auth?.user)
-  console.log(user);
-
   const {data : myBooking, isLoading} = useGetBookingByIdUserQuery(user?.id)
   // const {data : flight} = useGetFlightByIdQuery(myBooking)
   // console.log(myBooking?.data?.id_flight);

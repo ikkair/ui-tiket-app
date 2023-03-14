@@ -4,8 +4,8 @@ export const userApi = apiSlice.injectEndpoints({
   tagTypes: ['getUserProfile'],
   endpoints: (builder) => ({
     updateUserProfile: builder.mutation({
-      query: ({id, data}) =>  ({
-        url: `user/${id}`,
+      query: ({data}) =>  ({
+        url: `user/edit`,
         method: "PUT",
         body: data
       }),
