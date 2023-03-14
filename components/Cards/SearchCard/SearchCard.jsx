@@ -3,16 +3,41 @@ import { Card } from 'react-bootstrap'
 import RangeSlider from 'react-range-slider-input/dist/components/RangeSlider'
 import 'react-range-slider-input/dist/style.css'
 import { useState } from 'react'
+import { useGetAllAirlineQuery } from '../../../src/features/airline/airlineApi'
 
 export const SearchCard = ({onchange}) => {
   const [value, setValue] = useState([30, 60]);
 
+  const {data: airlines, isLoading, isSuccess} = useGetAllAirlineQuery()
+
   const changeHandler = (e) => {
     const checkChecked = document.querySelector(`#${e.target.id}`).checked
     if(checkChecked){
-      onchange(e)
+      if(e.target.value == 'true'){
+        onchange({target: {value: true, name: e.target.name}})
+      }else {
+        onchange({target: {value: false, name: e.target.name}})
+      }
     }else {
-      onchange({target: {value: ""}})
+      if(e.target.name == 'filter_wifi' || e.target.name == 'filter_meal' || e.target.name == 'filter_luggage') {
+        onchange({target: {value: false, name: e.target.name}})
+      }else {
+        onchange({target: {value: "", name: e.target.name}})
+      }
+    }
+  }
+
+  const changeHandlerFacilities = (e) => {
+    const checkChecked = document.querySelector(`#${e.target.id}`).checked
+    if(checkChecked){
+      onchange(e)
+    }
+  }
+
+  const changeHandlerTransit = (e) => {
+    const checkChecked = document.querySelector(`#${e.target.id}`).checked
+    if(checkChecked){
+      onchange(e)
     }
   }
   return (
@@ -26,15 +51,15 @@ export const SearchCard = ({onchange}) => {
           </h2>
           <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
             <div className="accordion-body">
-              <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                <input className="form-check me-1" name={`transit`} id={`direct`} type="checkbox" value="direct" onChange={changeHandler}/>
-                <label className="form-check-label p-0 m-0" for="defaultCheck1">
+              <div className="form-check d-flex justify-content-between flex-row-reverse">
+                <input className="form-check me-1" name={`transit`} id={`direct`} type="checkbox" value="direct" onChange={changeHandlerTransit}/>
+                <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
                   <span style={{ marginLeft: '-25px' }}>Direct</span>
                 </label>
               </div>
               <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                <input className="form-check me-1" name={`transit`} id={`transit`} type="checkbox" value="transit" onChange={changeHandler} />
-                <label className="form-check-label p-0 m-0" for="defaultCheck1">
+                <input className="form-check me-1" name={`transit`} id={`transit`} type="checkbox" value="transit" onChange={changeHandlerTransit} />
+                <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
                   <span style={{ marginLeft: '-25px' }}>Transit</span>
                 </label>
               </div>
@@ -42,19 +67,51 @@ export const SearchCard = ({onchange}) => {
           </div>
           <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
             <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-              Transit
+              Facilites
             </button>
           </h2>
           <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
             <div className="accordion-body">
+              <div className="form-check d-flex justify-content-between flex-row-reverse">
+                <input className="form-check me-1" name={`filter_wifi`} id={`filter_wifi`} type="checkbox" value={"wifi"} onChange={changeHandlerFacilities}/>
+                <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
+                  <span style={{ marginLeft: '-25px' }}>Wifi</span>
+                </label>
+              </div>
+              <div className="form-check d-flex justify-content-between flex-row-reverse">
+                <input className="form-check me-1" name={`filter_meal`} id={`filter_meal`} type="checkbox" value={"meal"} onChange={changeHandlerFacilities} />
+                <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
+                  <span style={{ marginLeft: '-25px' }}>Meal</span>
+                </label>
+              </div>
               <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                <input className="form-check me-1" type="checkbox" value="" id="defaultCheck2" />
-                <label className="form-check-label p-0 m-0" for="defaultCheck2">
-                  <span style={{ marginLeft: '-25px' }}>Price</span>
+                <input className="form-check me-1" name={`filter_luggage`} id={`filter_luggage`} type="checkbox" value={'luggage'} onChange={changeHandlerFacilities} />
+                <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
+                  <span style={{ marginLeft: '-25px' }}>Luggage</span>
                 </label>
               </div>
             </div>
           </div>
+
+
+          <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+            <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo2" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+              Airlines
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo2" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+            <div className="accordion-body">
+              {airlines?.map(airline => (
+                <div className="form-check d-flex justify-content-between flex-row-reverse">
+                 <input className="form-check me-1" name={`airlines`} id={`airlines${airline.id}`} type="checkbox" value={airline.name} onChange={changeHandler}/>
+                 <label className="form-check-label p-0 m-0" htmlFor="defaultCheck1">
+                   <span style={{ marginLeft: '-25px' }}>{airline.name}</span>
+                 </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <h2 className="accordion-header" id="panelsStayOpen-headingThree">
             <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
               Price

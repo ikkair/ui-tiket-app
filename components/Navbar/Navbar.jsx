@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faRightFromBracket, faCaretDown, faUser, faSearch, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import logo from '../../src/assets/navbar/logo.png';
 import photo from '../../src/assets/profile/profile.jpg';
 import style from './Navbar.module.css';
@@ -10,14 +10,14 @@ import navbarBannerLogo from '../../src/assets/navbar/bannerLogo.png';
 import Notifications from '../Notifications/Notifications';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetUserProfileQuery } from '../../src/features/auth/authApi';
-import { setCredentials } from '../../src/app/reducer/authSlice';
+import { logout, setCredentials } from '../../src/app/reducer/authSlice';
 
 export const Navbar = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const urlPath = window.location.pathname;
   const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
   const user = useSelector(state => state.auth.user)
-  const logoutHandler = async (e) => { };
   const urlWithoutBanner = ['/home', '/'];
 
   useEffect(() => {
@@ -38,6 +38,12 @@ export const Navbar = () => {
       );
     }
   };
+
+  const logoutHandler = async (e) => {
+    dispatch(logout())
+    navigate('/login')
+  };
+
 
   return (
     <div className="position-relative bg-transparent">
@@ -93,10 +99,10 @@ export const Navbar = () => {
                 </div>
               </div>
               <div className="findTicket mt-4 d-grid">
-                <Link to={'/tickets'} className={'btn btn-blue mb-2'}>
+                <Link to={'/home'} className={'btn btn-blue mb-2'}>
                   Find Ticket
                 </Link>
-                <Link to={'/tickets'} className={'btn btn-blue'}>
+                <Link to={'/my-booking'} className={'btn btn-blue'}>
                   My Booking
                 </Link>
               </div>
@@ -144,7 +150,7 @@ export const Navbar = () => {
                 </div>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <Link to={`/profile`} className="dropdown-item">
+                    <Link to={`/profile`} className="dropdown-item fs-6">
                       <FontAwesomeIcon className="me-2" icon={faUser} /> Profile
                     </Link>
                   </li>

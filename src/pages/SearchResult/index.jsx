@@ -21,7 +21,12 @@ export const SearchResult = () => {
     departure_date: searchParams.get('departure_date') || '',
     capacity: searchParams.get('capacity') || 1,
     class_flight: searchParams.get('class_flight') || '',
-    transit:""
+    page: searchParams.get('page') || '1',
+    limit: searchParams.get('limit'),
+    transit:"",
+    filter_luggage: "",
+    filter_wifi: "",
+    filter_meal: ""
   })
   const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
@@ -31,38 +36,50 @@ export const SearchResult = () => {
       departure_date: searchResult?.departure_date,
       class_flight: searchResult?.class_flight,
       transit: searchResult?.transit,
+      filter_luggage: searchResult?.filter_luggage,
+      filter_wifi: searchResult?.filter_wifi,
+      filter_meal: searchResult?.filter_meal,
+      limit: searchResult?.limit,
+      page: searchResult?.page
     }
   )
 
   function reDestructTransit(value) {
-    if(value) {
-      if(searchResult.transit.length > 1 && value){
-        setSearchResult(prev => {
-          return {
-            ...prev,
-            transit: `${searchResult.transit},${value}`
-          }
-        })
+   
+  }
+
+  function regenerateUrl(lastQuery){
+    let page = window.location.href.split("&")
+    let url = ''
+    page.forEach((query, i) => {
+      if(i == page.length -1){ 
+        url += `page=`+lastQuery
       }else {
-        setSearchResult(prev => {
-          return {
-            ...prev,
-            transit: value
-          }
-        })
+        url += `${query}&`
       }
-    }else {
-      const arrTransit = searchResult?.transit?.split(",")
-      if(arrTransit.includes(value)){
-        setSearchResult(prev => {
-          return {
-            ...prev,
-            transit: arrTransit.filter(data => data != value)[0]
-          }
-        })
+    })
+
+    return url
+  }
+
+  console.log(flights?.pagination)
+  const renderPagination = () => {
+  
+    const element = []
+    if(element < flights?.pagination?.totalPage){
+      for(let i = 0; i < flights?.pagination?.totalPage; i++) {
+        element.push(
+          <li key={i} class="page-item px-0"><a class="page-link" href={`${regenerateUrl(i+1)}`}>{i + 1}</a></li>
+        )
       }
     }
+  
+
+    return element
   }
+
+  useEffect(() => {
+  }, [searchResult])
 
   useEffect(() => {
     if(isSuccess) Swal.close()
@@ -103,7 +120,7 @@ export const SearchResult = () => {
       <DoubleSideLayout
         className={style.styleBaseLayout}
         classLeft={'col-12 col-md-5 col-lg-4'}
-        classRight={'col-12 col-md-7 col-lg-8 mt-3 mt-md-0'}
+        classRight={'col-12 col-md-7 col-lg-8 mt-3 mt-md-0 overflow-hidden'}
         leftside={
           <>
             <div className="headLeft d-md-flex justify-content-between align-items-center d-none">
@@ -111,18 +128,18 @@ export const SearchResult = () => {
               <Link className='text-blue no-underline fw-bolder'>Reset</Link>
             </div>
             <SearchCard onchange={(e) => setSearchResult(prev => 
-              ({...prev, transit : reDestructTransit(e.target.value)}))
+              ({...prev, [e.target.name] : e.target.value}))
             }/>
           </>
         }
       >
         <div className="headRight d-flex justify-content-between">
-          <h4 className='d-none d-md-block'>Select tickets <span className='text-secondary h5 '>({flights?.length} flight found)</span></h4>
-          <span className='text-secondary h5 d-block d-md-none h-6'>{flights?.length} flight found</span>
+          <h4 className='d-none d-md-block'>Select tickets <span className='text-secondary h5 '>({flights?.data?.length} flight found)</span></h4>
+          <span className='text-secondary h5 d-block d-md-none h-6'>{flights?.data?.length} flight found</span>
           <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} /> </Link>
         </div>
 
-        {flights?.map((f,i) => (
+        {flights?.data?.map((f,i) => (
           <>
             <TicketCard
               key={i}
@@ -145,6 +162,14 @@ export const SearchResult = () => {
             />
           </>
         ))}
+        <nav aria-label="Page navigation example">
+          <ul class="pagination d-flex justify-content-center">
+            <li class="page-item px-0"><a class="page-link" href="#">{`<<`}</a></li>
+            {renderPagination()?.map(page => page)}
+            <li class="page-item px-0"><a class="page-link" href="#">{`>>`}</a></li>
+          </ul>
+        </nav>
+      
       </DoubleSideLayout>
     </>
   )
