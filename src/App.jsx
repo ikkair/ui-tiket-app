@@ -22,7 +22,6 @@ import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 function App() {
   return (
     <Routes>
-      <Route path="/*" element={<PageNotFound />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-booking" element={<MyBooking />} />
       <Route path="/my-booking/:id" element={<BookingDetail />} />
