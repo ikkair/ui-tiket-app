@@ -80,51 +80,51 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* {localStorage.getItem('token') ? ( */}
-          <div className="d-none d-lg-flex gap-2">
-            <Link to="" className={`btn fs-5 text-light btn position-relative text-light`} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-              <FontAwesomeIcon className="text-softdark" icon={faEnvelope}></FontAwesomeIcon>
-            </Link>
+          {localStorage.getItem('token') ? (
+            <div className="d-none d-lg-flex gap-2">
+              <Link to="" className={`btn fs-5 text-light btn position-relative text-light`} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                <FontAwesomeIcon className="text-softdark" icon={faEnvelope}></FontAwesomeIcon>
+              </Link>
 
-            {/* <Link to="" className="text-light btn fs-5">
+              {/* <Link to="" className="text-light btn fs-5">
               <FontAwesomeIcon className="text-softdark" icon={faBell}></FontAwesomeIcon>
             </Link> */}
 
-            <Notifications />
+              <Notifications />
 
-            <div className="dropdown navbar-profile profile ms-2">
-              <div className="img-group d-flex align-items-center" data-bs-trigger="focus" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src={photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
-                <FontAwesomeIcon className="fs-4 text-dark" icon={faCaretDown} />
+              <div className="dropdown navbar-profile profile ms-2">
+                <div className="img-group d-flex align-items-center" data-bs-trigger="focus" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src={photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
+                  <FontAwesomeIcon className="fs-4 text-dark" icon={faCaretDown} />
+                </div>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <Link to={`/profile`} className="dropdown-item">
+                      <FontAwesomeIcon className="me-2" icon={faUser} /> Profile
+                    </Link>
+                  </li>
+
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <button className="dropdown-item" type="button" onClick={logoutHandler}>
+                      <FontAwesomeIcon className="me-2" icon={faRightFromBracket} /> Logout
+                    </button>
+                  </li>
+                </ul>
               </div>
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li>
-                  <Link to={`/profile`} className="dropdown-item">
-                    <FontAwesomeIcon className="me-2" icon={faUser} /> Profile
-                  </Link>
-                </li>
-
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <button className="dropdown-item" type="button" onClick={logoutHandler}>
-                    <FontAwesomeIcon className="me-2" icon={faRightFromBracket} /> Logout
-                  </button>
-                </li>
-              </ul>
             </div>
-          </div>
-          {/* ) : ( */}
-          <div className="d-none d-lg-flex gap-2">
-            <Link to={`/register`} className={`btn bg-blue pt-1`}>
-              Sign Up
-            </Link>
-            <Link to={`/login`} className={`btn border-blue text-blue pt-1`}>
-              Sign In
-            </Link>
-          </div>
-          {/* )} */}
+          ) : (
+            <div className="d-none d-lg-flex gap-2">
+              <Link to={`/register`} className={`btn bg-blue pt-1`}>
+                Sign Up
+              </Link>
+              <Link to={`/login`} className={`btn border-blue text-blue pt-1`}>
+                Sign In
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
 
