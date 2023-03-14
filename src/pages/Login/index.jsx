@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../app/reducer/authSlice'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { showLoading } from '../../common/loadingHandler'
 
 
 const Login = () => {
@@ -46,7 +47,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isLoading) {
-      <p>Loading ....</p>
+      showLoading('Please Wait...')
     }
 
     if (isError) {
@@ -83,7 +84,7 @@ const Login = () => {
       )}
       <form onSubmit={loginHandler}>
         <InputAuthForm title="Email" name={'email'} value={data.email} type={'email'} placeholder='Email' onchange={changeHandler} />
-        <InputAuthForm title="Password" name={'password'} value={data.password} type="password" placeholder='Password' onchange={changeHandler} minlength={'8'} />
+        <InputAuthForm title="Password" name={'password'} value={data.password} type="password" placeholder='Password' onchange={changeHandler} />
 
 
         <div className="button d-grid my-2">
@@ -105,6 +106,9 @@ const Login = () => {
               <img src={facebook} alt="" />
             </Link>
           </div>
+        </div>
+        <div className="direct text-center mt-4">
+          <p className='text-secondary'>Dont have account? <Link to={'/register'} className='text-blue no-underline'>Register</Link></p>
         </div>
       </form>
 
