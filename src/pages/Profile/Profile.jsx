@@ -12,13 +12,13 @@ import { failedLoading, showLoading, successLoading } from '../../common/loading
 import { useGetUserProfileQuery, useUpdateUserProfileMutation } from '../../features/user/userApi'
 import style from './Profile.module.css'
 import Swal from 'sweetalert2'
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
-  const staticId = 1
-  const {data, isLoading, isSuccess} = useGetUserProfileQuery(staticId)
+
+  const {data, isLoading, isSuccess} = useGetUserProfileQuery()
   const [updateUserProfile, {isLoading: isLoadingUpdateUser, isSuccess: isSuccessUpdateUser, isError: isErrorUpdateUser}] = useUpdateUserProfileMutation()
   const [profile, setProfile] = useState({})
-
 
   const changeHandler = (e) => {
     console.log(profile)
@@ -32,11 +32,15 @@ const Profile = () => {
 
   const updateHandler = async (e) => {
     e.preventDefault()
-    // const formData = new FormData()
-    // for(let attr in profile){
-    //   formData.append(attr, profile[attr])
-    // }
-    await updateUserProfile({id: staticId, data: profile})
+    const formData = new FormData()
+    for(let attr in profile){
+      if(attr === 'title'){
+        formData.append('title', 'ms')
+      }else {
+        formData.append(attr, profile[attr])
+      }
+    }
+    await updateUserProfile({data: formData})
   }
 
   useEffect(() => {

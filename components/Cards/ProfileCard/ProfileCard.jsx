@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { faGear, faRightFromBracket, faStar, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const ProfileCard = ({ data, className, onchange}) => {
+  console.log(data);
 
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
@@ -45,7 +46,7 @@ const ProfileCard = ({ data, className, onchange}) => {
       <Card.Img
         className={`${style.userPhoto} mx-auto img-fluid rounded-circle border-photo-blue`}
         variant="top"
-        src={preview ? preview : photo}
+        src={preview ? preview : data?.photo ? data?.photo : photo}
         width={137}
         height={137}
       />
