@@ -9,6 +9,8 @@ import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import Line from '../../assets/booking/Line.png';
 
 const BookingDetail = () => {
+  // const { data: destination } = useGetAllDestinationQuery();
+
   return (
     <>
       <BaseLayout>
