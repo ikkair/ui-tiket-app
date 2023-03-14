@@ -1,16 +1,21 @@
 import React from 'react'
 import { Form } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
+import { useParams } from 'react-router-dom';
+import { useGetFlightByIdQuery } from '../../../src/features/flight/flightApi';
+import { useGetSeatByIdFlightQuery } from '../../../src/features/seat/seatApi';
 import ProfileInputForm from '../../Forms/ProfileInputForm/ProfileInputForm';
 
-const PassangerCard = ({data, seats, onchange}) => {
+const PassangerCard = ({data, onchange}) => {
+  const {id} = useParams()
+  const {data:seats} = useGetSeatByIdFlightQuery(id, {skip: id ? false : true})
   const changeHandler = (e) => {
     onchange(e)
   }
   return (
     <>
       <Alert className='py-2 d-flex align-items-center flex-wrap justify-content-between' variant={`primary`}>
-        <span className='text-medium'>Passanger: 1 Adult</span>
+        <span className='text-medium'>Passanger</span>
         <div className='d-flex gap-2 align-items-start'>
           <span className='d-block text-medium'>Same as contact person</span>
           <Form.Check 
@@ -36,7 +41,7 @@ const PassangerCard = ({data, seats, onchange}) => {
         name={'id_seat'} 
         onChange={changeHandler}>
           {seats?.map((seat, i) => (
-            <option key={i} value={seat}>{seat}</option>
+            <option key={i} value={seat?.id}>{seat?.no_seat}</option>
           ))}
       </Form.Select>
       

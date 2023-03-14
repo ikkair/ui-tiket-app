@@ -23,6 +23,8 @@ import Coba from './pages/Coba';
 function App() {
   return (
     <Routes>
+      <Route path="/*" element={<PageNotFound />} />
+      <Route path="/coba" element={<Coba />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-booking" element={<MyBooking />} />
       <Route path="/my-booking/:id" element={<BookingDetail />} />
@@ -33,8 +35,6 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
-      <Route path="/*" element={<PageNotFound />} />
-      <Route path="/coba" element={<Coba />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/register" element={<RegisterAdmin />} />

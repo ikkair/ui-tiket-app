@@ -21,11 +21,19 @@ const Airline = () => {
 
   const updateHandler = async (e, id) => {
     e.preventDefault()
-    await updateAirlineById({id, data: {...dataAirlineUpdate, photo: 'github.com'}})
+    const formData = new FormData()
+    for(let attr in dataAirlineUpdate){
+      formData.append(attr, dataAirlineUpdate[attr])
+    }
+    await updateAirlineById({id, data: formData})
   }
 
   const updateStatus = async (data) => {
-    await updateAirlineById({id:data.id, data:{...data, status: !data.status}})
+    const formData = new FormData()
+    formData.append('status', !data.status)
+    formData.append('photo', data.photo)
+    formData.append('name', data.name)
+    await updateAirlineById({id:data.id, data:formData})
   }
   
   const updateChangeHandler = (e) => {
@@ -47,7 +55,11 @@ const Airline = () => {
 
   const createHandler = async (e) => {
     e.preventDefault()
-    await createAirline({...airlane, photo: 'gdrive.com'})
+    const formData = new FormData()
+    for(let attr in airlane){
+      formData.append(attr, airlane[attr])
+    }
+    await createAirline(formData)
     setAirlane({
       name:"",
       photo:null,
@@ -117,7 +129,9 @@ const Airline = () => {
                     {airlanes?.map((airline, i) => (
                       <tr key={i}>
                         <td>{i+1}</td>
-                        <td>{airline.photo}</td>
+                        <td>
+                          <img src={airline.photo} className={`img-fluid`} width={60} height={60} alt="" />
+                        </td>
                         <td>{airline.name}</td>
                         <td>{airline.status ? 'active' : 'Off'}</td>
                         <td className='d-flex justify-content-center'>

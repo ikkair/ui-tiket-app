@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import FormInput from '../../../../../components/Dashboard/Form/FormInput/FormInput'
 import { flightFacility, flightForm, flightTerminal } from '../../../../../lib/Flight/FlightForm'
 import DashboardLayout from '../../../../../template/DashboardLayout/DashboardLayout'
+import { changeDate } from '../../../../common/helper'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
 import { useCreateFlightMutation } from '../../../../features/flight/flightApi'
 
@@ -11,9 +12,9 @@ const CreateFlight = () => {
   const [createFlight, {isLoading : isLoadingCreateFlight, isSuccess: isSuccessCreateFlight, isError}] = useCreateFlightMutation()
   const [flight, setFlight] = useState({  
     id_airline: "",
-    // departure_date: "",
+    departure_date: "",
     // departure_time: "",
-    // arrived_date : "",
+    arrived_date : "",
     // arrived_time : "",
     // starting_place : "",
     // destination_place : "",
@@ -37,7 +38,6 @@ const CreateFlight = () => {
   } 
 
   const changeHandler = (e) => {
-    console.log(flight)
     setFlight(prev => {
       return {
         ...prev,
@@ -48,8 +48,12 @@ const CreateFlight = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    console.log(flight)
-    await createFlight(flight)
+    console.log(changeDate(flight.departure_date))
+    await createFlight({
+      ...flight, 
+      departure_date: changeDate(flight.departure_date), 
+      arrived_date: changeDate(flight.arrived_date)
+    })
   }
 
   return (
@@ -62,7 +66,7 @@ const CreateFlight = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Choose Airlane</Form.Label>
               <Form.Select aria-label="Default select example" name='id_airline' onChange={changeHandler}>
-                <option value={`none`}>Pick Airline</option>
+                <option value={`none`}>Choose</option>
                 {airlines?.map((airline, i) => (
                   <option key={i} value={airline.id}>{airline.name}</option>
                 ))}

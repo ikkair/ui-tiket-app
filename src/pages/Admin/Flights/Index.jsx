@@ -41,7 +41,7 @@ const FlightInformation = () => {
                   </thead>
                   <tbody>
                     {flights?.map((flight, i) => (
-                      <tr>
+                      <tr key={i}>
                         <td>{i+1}</td>
                         <td>{flight.id}</td>
                         <td>{flight.starting_place}</td>
@@ -50,11 +50,6 @@ const FlightInformation = () => {
                           <div className="dropdown">
                             <FontAwesomeIcon className='pointer py-1 px-2 btn btn-primary' icon={faEllipsisVertical} data-bs-toggle="dropdown" aria-expanded="false"/>
                             <ul className="dropdown-menu">
-                              <li>
-                                <Link className="dropdown-item" to={`/admin/dashboard/flights/edit/${flight.id}`}>
-                                <FontAwesomeIcon className='text-primary me-2' icon={faCircleInfo} /> 
-                                Information Flight</Link>
-                              </li>
                               <li>
                                 <Link className="dropdown-item" to={`/admin/dashboard/flights/edit/${flight.id}`}>
                                 <FontAwesomeIcon className='text-success me-2' icon={faPenSquare} /> 
