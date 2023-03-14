@@ -18,8 +18,6 @@ import { useSelector } from 'react-redux';
 
 const Index = () => {
   const navigate = useNavigate();
-  const user = useSelector(state => state.auth)
-  console.log(user)
   const date = new Date();
   const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   const [child, setChild] = useState(0);
@@ -27,9 +25,9 @@ const Index = () => {
   const [searchFlight, setSearchFlight] = useState({
     starting_place: 'Medan',
     destination_place: 'Jakarta',
-    transit: 'direct',
+    type_trip: 'one way',
     departure_date: currentDate,
-    type_seat: '',
+    class_flight: 'economy',
   });
 
   const changeHandler = (e) => {
@@ -130,12 +128,12 @@ const Index = () => {
                         <div className="col-6 ps-0">
                           <button
                             type="button"
-                            className={`btn ${searchFlight?.transit == 'direct' ? 'bg-blue' : 'btnGray'} ms-0 fw-semibold w-100`}
+                            className={`btn ${searchFlight?.type_trip == 'one way' ? 'bg-blue' : 'btnGray'} ms-0 fw-semibold w-100`}
                             onClick={(e) =>
                               setSearchFlight((prev) => {
                                 return {
                                   ...prev,
-                                  transit: 'direct',
+                                  type_trip: 'one way',
                                 };
                               })
                             }
@@ -147,18 +145,18 @@ const Index = () => {
                         <div className="col-6 d-flex justify-content-end px-0">
                           <button
                             type="button"
-                            className={`btn ms-auto  ${searchFlight?.transit == 'transit' ? 'bg-blue' : 'btnGray'}  w-100`}
+                            className={`btn ms-auto  ${searchFlight?.type_trip == 'rounded trip' ? 'bg-blue' : 'btnGray'}  w-100`}
                             onClick={(e) =>
                               setSearchFlight((prev) => {
                                 return {
                                   ...prev,
-                                  transit: 'transit',
+                                  type_trip: 'rounded trip',
                                 };
                               })
                             }
                           >
                             <FontAwesomeIcon icon={faArrowRotateRight}></FontAwesomeIcon>
-                            <span className="p-2 fw-semibold">Round trip</span>
+                            <span className="p-2 fw-semibold">Rounded trip</span>
                           </button>
                         </div>
                       </div>
@@ -193,19 +191,19 @@ const Index = () => {
                       </label>
                       <div className="d-flex justify-content-between fw-semibold">
                         <div class="form-check">
-                          <input class="form-check-input" value={`economy`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault1" checked />
+                          <input class="form-check-input" value={`economy`} name={'class_flight'} onChange={changeHandler} type="radio" id="flexRadioDefault1" checked />
                           <label class="form-check-label" htmlFor="flexRadioDefault1">
                             Economy
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" value={`busniess`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
+                          <input class="form-check-input" value={`busniess`} name={'class_flight'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
                           <label class="form-check-label" htmlFor="flexRadioDefault2">
                             Business
                           </label>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" value={`first class`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
+                          <input class="form-check-input" value={`first class`} name={'class_flight'} onChange={changeHandler} type="radio" id="flexRadioDefault2" />
                           <label class="form-check-label" htmlFor="flexRadioDefault2">
                             First Class
                           </label>

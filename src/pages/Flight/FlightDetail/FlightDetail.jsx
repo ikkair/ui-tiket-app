@@ -17,6 +17,8 @@ import { useSearchParams } from 'react-router-dom'
 import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
 import { useGetSeatByIdFlightQuery } from '../../../features/seat/seatApi'
 import { flightTerminal } from '../../../../lib/Flight/FlightForm'
+import { useSelector } from 'react-redux'
+import { authApi } from '../../../features/auth/authApi'
 
 const FlightDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -28,6 +30,7 @@ const FlightDetail = () => {
   const [passangers, setPassangers] = useState([])
   const [booking, setBooking] = useState({
     contact_name: "", 
+    id_flight: id, 
     contact_email: "", 
     phone_contact: "", 
     insurance: false,

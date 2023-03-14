@@ -17,14 +17,17 @@ export const SearchResult = () => {
   const [searchResult, setSearchResult] = useState({
     starting_place : searchParams.get('starting_place') || "",
     destination_place : searchParams.get('destination_place') || "",
-    transit: searchParams.get('transit') || "direct",
+    type_trip: searchParams.get('type_trip') || "one way",
     departure_date: searchParams.get('departure_date') || '',
     capacity: searchParams.get('capacity') || 1,
-    type_seat: searchParams.get('type_seat') || ''
+    class_flight: searchParams.get('class_flight') || ''
   })
   const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
     starting_place: searchResult?.starting_place,
-    destination_place: searchResult?.destination_place
+    destination_place: searchResult?.destination_place,
+    type_trip: searchResult?.type_trip,
+    departure_date: searchResult?.departure_date,
+    class_flight: searchResult?.class_flight
   })
 
 //   useEffect(() => {
@@ -52,7 +55,7 @@ export const SearchResult = () => {
                 </div>
                 <p className='m-0 p-0 text-lighter' style={{ fontSize: '12px' }}>
                   <span className='me-2'>Monday. {searchResult.departure_date}</span><FontAwesomeIcon icon={faCircle} />
-                  <span className='ms-2 me-2'>{searchResult.capacity} Passenger</span><FontAwesomeIcon icon={faCircle} />
+                  <span className='ms-2 me-2'>{searchResult.capacity == 0 ? 1 : searchResult.capacity} Passenger</span><FontAwesomeIcon icon={faCircle} />
                 </p>
               </div>
             </div>

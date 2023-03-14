@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 import FormInput from '../../../../../components/Dashboard/Form/FormInput/FormInput'
 import { flightFacility, flightForm, flightTerminal } from '../../../../../lib/Flight/FlightForm'
 import DashboardLayout from '../../../../../template/DashboardLayout/DashboardLayout'
 import { changeDate } from '../../../../common/helper'
+import { showLoading, successLoading } from '../../../../common/loadingHandler'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
 import { useCreateFlightMutation } from '../../../../features/flight/flightApi'
 
@@ -24,7 +26,6 @@ const CreateFlight = () => {
     wifi : false,
     type_trip : "one way",
     class_flight : "first class",
-    capacity : 8,
     // terminal : "",
     // gate : "",
     // price : ""
@@ -37,6 +38,7 @@ const CreateFlight = () => {
     return data
   } 
 
+
   const changeHandler = (e) => {
     setFlight(prev => {
       return {
@@ -46,15 +48,28 @@ const CreateFlight = () => {
     })
   }
 
+  function setCapacity(classFlight)  {
+    if(classFlight == "economy") return 120
+    if(classFlight == "business") return 36
+    if(classFlight == "first class") return 8
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault()
-    console.log(changeDate(flight.departure_date))
     await createFlight({
       ...flight, 
+      capacity: setCapacity(flight?.class_flight),
       departure_date: changeDate(flight.departure_date), 
       arrived_date: changeDate(flight.arrived_date)
     })
   }
+
+  useEffect(() => {
+    if(isSuccess) successLoading('Success Create flight')
+    if(isLoading) showLoading('Please Wait...')
+    if(isError) Swal.close()
+
+  }, [isLoadingCreateFlight, isSuccessCreateFlight, isError])
 
   return (
     <DashboardLayout title={`Create New Flight`}>
@@ -102,6 +117,18 @@ const CreateFlight = () => {
               <Form.Select aria-label="Default select example" name='transit' onChange={changeHandler}>
                 <option value={`direct`}>Direct</option>
                 <option value={`transit`}>Transit</option>
+              </Form.Select>
+            </Form.Group>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-4">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Transit</Form.Label>
+              <Form.Select aria-label="Default select example" name='class_flight' onChange={changeHandler}>
+                  <option selected>Choose Class</option>
+                  <option value="economy">economy</option>
+                  <option value="business">business</option>
+                  <option value="first class">first class</option>
               </Form.Select>
             </Form.Group>
           </div>
