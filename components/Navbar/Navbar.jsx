@@ -15,13 +15,13 @@ import { setCredentials } from '../../src/app/reducer/authSlice';
 export const Navbar = () => {
   const dispatch = useDispatch()
   const urlPath = window.location.pathname;
-  const {data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
+  const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
   const user = useSelector(state => state.auth.user)
-  const logoutHandler = async (e) => {};
+  const logoutHandler = async (e) => { };
   const urlWithoutBanner = ['/home', '/'];
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       dispatch(setCredentials({
         user: userLogin,
         token: localStorage.getItem('token')
@@ -56,21 +56,53 @@ export const Navbar = () => {
           </div>
           {/* End Search Tablet Mode */}
 
-          <div className="mobile-menu d-flex gap-2">
-            <FontAwesomeIcon className={`pointer d-block d-sm-none text-light bg-blue rounded-circle p-2`} icon={faSearch} />
-
+          <div className="mobile-menu d-flex gap-2 d-sm-none">
             <button
-              className="navbar-toggler border-0 shadow-none"
+              class="border-0 shadow-none bg-transparent"
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasScrolling"
+              aria-controls="offcanvasScrolling">
               <FontAwesomeIcon icon={faBarsStaggered} />
             </button>
           </div>
+
+          <div class="offcanvas offcanvas-start d-sm-none d-block" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+              <h2 className='fw-bolder text-blue'>Ankasa</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div className="img-group d-flex justify-content-between align-items-center">
+                <div className="image d-flex gap-2 align-items-center">
+                  <img src={photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
+                  <Link to={`/profile`} className="dropdown-item">
+                    <span className="me-2 fw-bold text-blue"> Profile </span>
+                  </Link>
+                </div>
+                <div className="logout">
+                  <button className="dropdown-item" type="button" onClick={logoutHandler}>
+                    <FontAwesomeIcon className="me-2" icon={faRightFromBracket} /> Logout
+                  </button>
+                </div>
+              </div>
+              <div className="search mt-4">
+                <div className={`d-md-none d-flex d-lg-none position-relative align-items-center`}>
+                  <input type="text" name={`search`} className={'text-medium py-2 pe-3 ps-5 form-control bg-trinary border-0 shadow-none '} placeholder={'Where you want to go?'} />
+                  <FontAwesomeIcon className={`${style.searchIcon}`} icon={faSearch} />
+                </div>
+              </div>
+              <div className="findTicket mt-4 d-grid">
+                <Link to={'/tickets'} className={'btn btn-blue mb-2'}>
+                  Find Ticket
+                </Link>
+                <Link to={'/tickets'} className={'btn btn-blue'}>
+                  My Booking
+                </Link>
+              </div>
+            </div>
+          </div>
+
           {/* <!-- End Nav Logo --> */}
 
           <div className="d-none d-lg-flex gap-4">
