@@ -23,7 +23,7 @@ export const passangerApi = apiSlice.injectEndpoints({
 
     getPassangersByIdBooking: builder.query({
       query: (id) =>  ({
-        url: `passengers/booking/${id}`
+        url: `passengers?id_booking=${id}`
       }),
 
       providesTags: ['getPasssangerByIdBooking'],
