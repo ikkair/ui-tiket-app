@@ -17,7 +17,6 @@ import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import PageNotFound from './pages/404/404';
-import Coba from './pages/Coba';
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
       <Route path="/*" element={<PageNotFound />} />
-      <Route path="/coba" element={<Coba />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/dashboard">

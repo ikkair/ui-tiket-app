@@ -13,16 +13,14 @@ import { faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesom
 
 const TicketCard = (props) => {
 
-    
-
     return (
 
         <Card className={`border-0 shadow-small px-3 py-4 mb-3`}>
             <div className="airlines d-flex justify-content-md-start justify-content-between align-items-center view-details">
                 <img src={garuda} alt="" className='d-none d-md-block' />
                 <p className='text-secondary ms-0 ms-md-4 my-0 py-0'>Garuda Indonesia</p>
-                <h2 className='accordion-header d-md-none d-block' id={`flush-heading${props.id_airline}`}>
-                    <button className='accordion-button fw-bolder text-blue' type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${props.id_airline}`} aria-expanded="true" aria-controls={`flush-collapseOne${props.id_airline}`}>
+                <h2 className='accordion-header d-md-none d-block' id={`flush-heading${props.id}`}>
+                    <button className='accordion-button fw-bolder text-blue' type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${props.id}`} aria-expanded="true" aria-controls={`flush-collapseOne${props.id}`}>
                         View Details
                     </button>
                 </h2>
@@ -55,13 +53,13 @@ const TicketCard = (props) => {
                 <div className="col-12 mt-3">
                     <div className="accordion accordion-flush" id="accordionFlushExample">
                         <div className="accordion-item">
-                            <h2 className="accordion-header d-none d-md-block" id={`flush-heading${props.id_airline}`}>
-                                <button className="accordion-button accordions collapsed text-blue fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${props.id_airline}`} aria-expanded="false" aria-controls={`flush-collapseOne${props.id_airline}`}>
+                            <h2 className="accordion-header d-none d-md-block" id={`flush-heading${props.id}`}>
+                                <button className="accordion-button accordions collapsed text-blue fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${props.id}`} aria-expanded="false" aria-controls={`flush-collapseOne${props.id}`}>
                                     View Details
                                 </button>
                                 
                             </h2>
-                            <div id={`flush-collapse${props.id_airline}`} className="accordion-collapse collapse" aria-labelledby={`flush-heading${props.id_airline}`} data-bs-parent="#accordionFlushExample">
+                            <div id={`flush-collapse${props.id}`} className="accordion-collapse collapse" aria-labelledby={`flush-heading${props.id}`} data-bs-parent="#accordionFlushExample">
                                 <div className="accordion-body">
                                     <div className="row">
                                         <div className="col-12 text-start d-flex justify-content-between d-block">
