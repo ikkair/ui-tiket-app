@@ -1,28 +1,20 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import BookingCard from '../../../components/Cards/BookingCard/BookingCard'
 import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
 import {useGetBookingByIdUserQuery} from '../../features/booking/bookingApi'
-import style from './MyBooking.module.css'
-import { useSelector } from 'react-redux'
+import { useGetFlightByIdQuery } from '../../features/flight/flightApi'
 
 const MyBooking = () => {
-
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector(state => state?.auth?.user)
   console.log(user);
-  // const {id} = user.id;
 
-  const {data : myBooking, isLoading} = useGetBookingByIdUserQuery(user.id)
-  console.log(myBooking);
+  const {data : myBooking, isLoading} = useGetBookingByIdUserQuery(user?.id)
+  // const {data : flight} = useGetFlightByIdQuery(myBooking)
+  // console.log(myBooking?.data?.id_flight);
 
-
-  // const changeHandler = (e) => {
-
-  // }
-  // const updateHandler = async (e) => {
-  //   e.preventDefault()
-  // }
   return (
     <DoubleSideLayout
       classLeft={'col-12 col-md-5 col-lg-4'}
@@ -36,7 +28,18 @@ const MyBooking = () => {
           </div>
         </div>
       </SectionCard>
-      <BookingCard header={true}/>
+
+      {myBooking?.data?.map(boks => (
+        // console.log('hello'),
+        <>
+        <BookingCard 
+          header={true}
+          id_booking={boks.id}
+          id_flight={boks.id_flight}  
+          status={boks.status}
+        />
+        </>
+      ))}
     </DoubleSideLayout>
 
   )
