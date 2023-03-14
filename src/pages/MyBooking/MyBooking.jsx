@@ -3,13 +3,22 @@ import BookingCard from '../../../components/Cards/BookingCard/BookingCard'
 import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
+import { useGetBookingByIdQuery } from '../../features/booking/bookingApi'
 import style from './MyBooking.module.css'
+import { useSelector } from 'react-redux'
 
 const MyBooking = () => {
+
+  const user = useSelector(state => state.auth.user )
+  console.log(user);
+
+  // const {data : myBooking, isLoading} = useGetBookingByIdQuery(id)
+  // console.log(myBooking);
+
+
   const changeHandler = (e) => {
 
   }
-
   const updateHandler = async (e) => {
     e.preventDefault()
   }

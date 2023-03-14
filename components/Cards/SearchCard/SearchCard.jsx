@@ -6,6 +6,20 @@ import { useState } from 'react'
 
 export const SearchCard = () => {
     const [value, setValue] = useState([30, 60]);
+    const [filters, setFilters] = useState({
+        transit: false
+      });
+
+    const handleFilter = (event) => {
+        const filterName = event.target.name;
+        const isChecked = event.target.checked;
+        setFilters({
+          ...filters,
+          [filterName]: isChecked
+        });
+      };
+
+      
     return (
         <Card className={`border-0 shadow px-3 py-4 d-none d-md-block`}>
             <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
@@ -18,9 +32,15 @@ export const SearchCard = () => {
                     <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                         <div className="accordion-body">
                             <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
-                                <input className="form-check me-1" type="checkbox" value="" id="defaultCheck1" />
+                                <input className="form-check me-1" type="checkbox" name={'transit'} checked={filters.transit} onChange={handleFilter} id="defaultCheck1"  />
                                 <label className="form-check-label p-0 m-0" for="defaultCheck1">
-                                    <span style={{ marginLeft: '-25px' }}>Price</span>
+                                    <span style={{ marginLeft: '-25px' }}>Transit</span>
+                                </label>
+                            </div>
+                            <div className="form-check d-flex justify-content-between flex-row-reverse mb-3">
+                                <input className="form-check me-1" type="checkbox" value="" id="defaultCheck2" />
+                                <label className="form-check-label p-0 m-0" for="defaultCheck2">
+                                    <span style={{ marginLeft: '-25px' }}>Direct</span>
                                 </label>
                             </div>
                         </div>
