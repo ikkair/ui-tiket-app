@@ -1,0 +1,121 @@
+.border-blue {
+  border: 1px solid #2395ff !important;
+}
+
+#popover-trigger-click-root-close {
+  max-width: 425px !important;
+  background: #ffffff;
+  box-shadow: 0px 8px 27px rgba(14, 63, 108, 0.19);
+  border-radius: 20px !important;
+  margin-top: 10px !important;
+}
+
+.border-photo-blue {
+  border: 3px solid #2395ff !important;
+}
+
+.text-blue {
+  color: #2395ff !important;
+}
+
+.bg-blue {
+  background-color: #2395ff !important;
+}
+.text-blue-secondary {
+  color: #aefaff !important;
+}
+
+.main-border {
+  border-radius: 10px !important;
+}
+
+.btn-shadow {
+  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
+}
+
+.btn-blue {
+  background: #2395ff !important;
+  color: #ffffff !important;
+  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
+  border-radius: 10px !important;
+}
+
+.btn-blue-height {
+  background: #2395ff !important;
+  height: 50px;
+  color: #ffffff !important;
+  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
+  border-radius: 10px !important;
+}
+
+.btn-border-blue-height {
+  background: #ffffff !important;
+  height: 50px;
+  color: #ffffff !important;
+  border: 1px solid #2395ff !important;
+  border-radius: 10px !important;
+}
+
+.text-small {
+  font-size: 12px !important;
+}
+.text-medium {
+  font-size: 14px !important;
+}
+
+.text-softdark {
+  color: #595959 !important;
+}
+
+.text-dark-secondary {
+  color: #6b6b6b !important;
+}
+
+.bg-trinary {
+  background-color: #f5f5f5 !important;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+.no-underline {
+  text-decoration: none !important;
+}
+
+.btn-width {
+  width: 80%;
+}
+
+/* Accordion */
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.accordion-button {
+  padding: 10px 0 10px !important;
+  border: none !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+  border-color: rgba(0, 0, 0, 0.125) !important;
+}
+
+.accordion-body {
+  padding: 10px 0 10px !important;
+}
+
+/* Accordion Ticket Card */
+.accordions::after {
+  margin-left: 20px !important;
+  background-size: 15px !important;
+  position: absolute;
+  left: 80px;
+  top: 15px;
+  /* margin-top: 6px; */
+}
+.accordions:not(.collapsed)::after {
+  position: absolute;
+  left: 78px;
+  top: 10px;
+}

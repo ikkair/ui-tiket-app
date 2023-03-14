@@ -1,0 +1,12 @@
+.userPhoto {
+  width:137px !important;
+ height: 137px !important;
+}
+
+.card {
+  border-radius: 15px !important;
+}
+
+.btnSelectPhoto {
+  max-width: 150px;
+}

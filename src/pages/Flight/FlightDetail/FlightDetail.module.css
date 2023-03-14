@@ -1,0 +1,26 @@
+.styleBaseLayout {
+  position: relative;
+  z-index: 10;
+}
+
+.airlineLogo {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.textColorOptional {
+  color: #ffffff;
+}
+
+@media (max-width: 768px){
+  .textColorOptional {
+    color: #000000;
+  }
+}
+
+.cardInsurance {
+  background: #ffffff !important;
+}
+.btnSubmit {
+  width: 230px !important;
+}
