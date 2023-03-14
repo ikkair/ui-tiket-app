@@ -17,6 +17,8 @@ const Airline = () => {
     photo: null,
     active: false
   })
+
+  console.log(airlanes)
   const [dataAirlineUpdate, setDataAirlineUpdate] = useState({})
 
   const updateHandler = async (e, id) => {
@@ -29,8 +31,9 @@ const Airline = () => {
   }
 
   const updateStatus = async (data) => {
+    console.log(data)
     const formData = new FormData()
-    formData.append('status', !data.status)
+    formData.append('active', !data.active)
     formData.append('photo', data.photo)
     formData.append('name', data.name)
     await updateAirlineById({id:data.id, data:formData})
@@ -133,7 +136,7 @@ const Airline = () => {
                           <img src={airline.photo} className={`img-fluid`} width={60} height={60} alt="" />
                         </td>
                         <td>{airline.name}</td>
-                        <td>{airline.status ? 'active' : 'Off'}</td>
+                        <td>{airline.active ? 'active' : 'Off'}</td>
                         <td className='d-flex justify-content-center'>
                           <div className="dropdown mx-auto">
                             <FontAwesomeIcon className='pointer py-1 px-2 btn btn-primary' icon={faEllipsisVertical} data-bs-toggle="dropdown" aria-expanded="false"/>
