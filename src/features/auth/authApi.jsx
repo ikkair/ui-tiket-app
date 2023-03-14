@@ -21,6 +21,14 @@ export const authApi = apiSlice.injectEndpoints({
       transformResponse: (response, meta, args) => response.data
     }),
 
+    getUserProfile: builder.query({
+      query: () =>  ({
+        url: "user/profile"
+      }),
+
+      transformResponse: (response, meta, args) => response.data
+    }),
+
     adminLogin: builder.mutation({
       query: (data) =>  ({
         url: "admin/login",
@@ -43,4 +51,4 @@ export const authApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useAdminLoginMutation, useUserLoginMutation, useUserRegisterMutation, useAdminRegisterMutation } = authApi 
+export const { useAdminLoginMutation, useUserLoginMutation, useUserRegisterMutation, useAdminRegisterMutation, useGetUserProfileQuery } = authApi 

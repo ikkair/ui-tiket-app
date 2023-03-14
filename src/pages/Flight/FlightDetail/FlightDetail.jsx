@@ -15,28 +15,28 @@ import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
 import { useParams } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
-import { useGetSeatByIdFlightQuery } from '../../../features/seat/seatApi'
-import { flightTerminal } from '../../../../lib/Flight/FlightForm'
+import { authApi } from '../../../features/auth/authApi'
+import { useCreatePassangerMutation } from '../../../features/passanger/passangerApi'
 
 const FlightDetail = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [createBooking, {isLoading: isLoadingCreateBooking, isSuccess: isSuccessCreateBooking}] = useCreateBookingMutation()
+  const [createPassanger, {isLoading: isLoadingCreatePassanger, isSuccess: isSuccessCreatePassanger}] = useCreatePassangerMutation()
   const {id} = useParams()
+  
   const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
   const [price, setPrice] = useState(flight?.price)
 
   const [passangers, setPassangers] = useState([])
   const [booking, setBooking] = useState({
-    contact_name: "", 
-    contact_email: "", 
+    name_contact: "", 
+    id_flight: id, 
+    email_contact: "", 
     phone_contact: "", 
     insurance: false,
     capacity: getCapacity(),
     status: 0,
-    total_price: flight?.price
   })
-  console.log(booking)
-
 
   const changeHandlerContact = (e) => {
     console.log(booking)
@@ -49,7 +49,6 @@ const FlightDetail = () => {
   }
 
   const changeHandlerPassanger = (e, i) => {
-    console.log(passangers)
     setPassangers(prev => {
       const currentData = {...prev[i], [e.target.name] : e.target.value}
       prev[i] = currentData 
@@ -65,17 +64,17 @@ const FlightDetail = () => {
     }
   }
 
-  async function createPassanger () {
+  async function generatePassanger (id) {
     return await Promise.all(passangers?.map(async (passanger) => {
-      await createPassanger(passanger)
+      await createPassanger({...passanger, id_booking: id})
     }))
   }
 
   const addBookingHandler = async (e) => {
     e.preventDefault()
 
-    await createBooking(booking)
-    await createPassanger()
+    const res = await createBooking({...booking, total_price: flight.price * booking.capacity})
+    await generatePassanger(res.data.queryId)
   }
 
   const renderCardPassanger = () => {
