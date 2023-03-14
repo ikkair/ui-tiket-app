@@ -17,7 +17,7 @@ import { useGetAllDestinationQuery } from '../../features/destination/destinatio
 
 const Index = () => {
   const navigate = useNavigate();
-  
+
   const date = new Date();
   const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   const [child, setChild] = useState(0);
@@ -58,11 +58,6 @@ const Index = () => {
   };
 
   // Destination
-  // const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
-  //   starting_place: searchResult?.starting_place,
-  //   destination_place: searchResult?.destination_place
-  // })
-
   const { data: destination } = useGetAllDestinationQuery();
 
   return (
