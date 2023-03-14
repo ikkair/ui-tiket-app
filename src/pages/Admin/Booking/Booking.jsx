@@ -7,40 +7,16 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import ModalMedium from '../../../../components/Dashboard/Modals/ModalMedium/ModalMedium';
 import FormInput from '../../../../components/Dashboard/Form/FormInput/FormInput';
 
-import { useGetAllBookingQuery } from '../../../features/booking/bookingApi';
+import { useGetAllBookingQuery, useUpdateBookingByIdMutation } from '../../../features/booking/bookingApi';
+
 
 const BookingInformation = () => {
   const {data: bookings, isLoading, isSuccess} = useGetAllBookingQuery()
-
-  const [airlane, setAirlane] = useState({
-    name: "",
-    photo: null,
-    active: false
-  })
-
-  const updateHandler = async (e, id) => {
-    e.preventDefault()
-  }
+  const [updateBookingById] = useUpdateBookingByIdMutation()
 
   const updateStatus = async (data) => {
+    await updateBookingById({id: data.id, data: {...data, status: 1}})
   }
-  
-  // const updateChangeHandler = (e) => {
-  //   setDataAirlineUpdate(prev => {
-  //     if(e.target.name == 'photo') {
-  //       return {
-  //         ...prev,
-  //         photo: e.target.files[0]
-  //       }
-  //     }else {
-  //       return {
-  //         ...prev,
-  //         [e.target.name] : e.target.value
-  //       }
-  //     }
-     
-  //   })
-  // }
 
   const setStatusPayment = (status) => {
     switch(status) {
@@ -50,18 +26,6 @@ const BookingInformation = () => {
         return 'Payment verifed'
     }
   }
-
-
-  const createHandler = async (e) => {
-    e.preventDefault()
-    await createAirline({...airlane, photo: 'gdrive.com'})
-    setAirlane({
-      name:"",
-      photo:null,
-      active: false
-    })
-  }
-
 
 
   return (

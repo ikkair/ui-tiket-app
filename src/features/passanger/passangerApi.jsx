@@ -23,11 +23,11 @@ export const passangerApi = apiSlice.injectEndpoints({
 
     getPassangersByIdBooking: builder.query({
       query: (id) =>  ({
-        url: `passengers/booking/${id}`
+        url: `passengers/?id_booking=${id}`
       }),
 
       providesTags: ['getPasssangerByIdBooking'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data
     }),
 
     createPassanger: builder.mutation({
@@ -44,4 +44,4 @@ export const passangerApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useCreatePassangerMutation } = passangerApi 
+export const { useCreatePassangerMutation, useGetPassangersByIdBookingQuery } = passangerApi 

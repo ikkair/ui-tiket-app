@@ -18,13 +18,26 @@ import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 import PageNotFound from './pages/404/404';
+import PrivateRoute from './middlewares/PrivateRoute';
 
 function App() {
   return (
     <Routes>
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/my-booking" element={<MyBooking />} />
-      <Route path="/my-booking/:id" element={<BookingDetail />} />
+      <Route path="/profile" element={
+        <PrivateRoute>
+          <Profile />
+        </PrivateRoute>
+      } />
+      <Route path="/my-booking" element={
+        <PrivateRoute>
+          <MyBooking />
+        </PrivateRoute>
+      } />
+      <Route path="/my-booking/ticket/:id" element={
+        <PrivateRoute>
+          <BookingDetail />
+        </PrivateRoute>
+      } />
       <Route path="/flights/:id" element={<FlightDetail />} />
       <Route path="/flights" element={<SearchResult />} />
       <Route path="/login" element={<Login />} />
@@ -37,11 +50,31 @@ function App() {
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/register" element={<RegisterAdmin />} />
       <Route path="/admin/dashboard">
-        <Route path="airlines" element={<Airline />} />
-        <Route path="flights" element={<FlightInformation />} />
-        <Route path="bookings" element={<BookingInformation />} />
-        <Route path="flights/edit/:id" element={<UpdateFlight />} />
-        <Route path="flights/create-flight" element={<CreateFlight />} />
+        <Route path="airlines" element={
+          <PrivateRoute>
+            <Airline />
+          </PrivateRoute>
+        } />
+        <Route path="flights" element={
+          <PrivateRoute>
+            <FlightInformation />
+          </PrivateRoute>
+        } />
+        <Route path="bookings" element={
+          <PrivateRoute>
+            <BookingInformation />
+          </PrivateRoute>
+        } />
+        <Route path="flights/edit/:id" element={
+          <PrivateRoute>
+           <UpdateFlight />
+          </PrivateRoute>
+        } />
+        <Route path="flights/create-flight" element={
+          <PrivateRoute>
+            <CreateFlight />
+          </PrivateRoute>
+        } />
       </Route>
     </Routes>
   );

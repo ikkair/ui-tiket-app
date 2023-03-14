@@ -12,17 +12,19 @@ import { Form, InputGroup } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
 import PassangerCard from '../../../../components/Cards/PassangerCard/PassangerCard'
 import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
 import { authApi } from '../../../features/auth/authApi'
 import { useCreatePassangerMutation } from '../../../features/passanger/passangerApi'
 import { useSelector } from 'react-redux'
+import { failedLoading, showLoading, successLoading } from '../../../common/loadingHandler'
 
 const FlightDetail = () => {
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const [createBooking, {isLoading: isLoadingCreateBooking, isSuccess: isSuccessCreateBooking}] = useCreateBookingMutation()
-  const [createPassanger, {isLoading: isLoadingCreatePassanger, isSuccess: isSuccessCreatePassanger}] = useCreatePassangerMutation()
+  const [createPassanger, {isLoading: isLoadingCreatePassanger, isSuccess: isSuccessCreatePassanger, isError: isErrorCreatePassanger}] = useCreatePassangerMutation()
   const {id} = useParams()
   
   const {data:flight, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : true})
@@ -118,6 +120,15 @@ const FlightDetail = () => {
     return () => {setDataPassangers()}
   }, [])
 
+
+  useEffect(() => {
+    if(isSuccessCreatePassanger) {
+      successLoading('Success Create Booking, Check your booking!')
+      return navigate('/my-booking')
+    }
+    if(isLoadingCreatePassanger) showLoading('Please wait...')
+    if(isErrorCreatePassanger) failedLoading('Failed Create Flight!')
+  }, [isLoadingCreatePassanger, isSuccessCreatePassanger, isErrorCreatePassanger])
 
 
   return (

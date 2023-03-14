@@ -9,7 +9,7 @@ export const bookingApi = apiSlice.injectEndpoints({
       }),
 
       providesTags: ['getAllBooking'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data
     }),
 
     getBookingById: builder.query({
