@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import BookingCard from '../../../components/Cards/BookingCard/BookingCard'
 import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
@@ -6,6 +7,8 @@ import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayou
 import style from './MyBooking.module.css'
 
 const MyBooking = () => {
+  const user = useSelector(state => state.auth.user)
+
   const changeHandler = (e) => {
 
   }
