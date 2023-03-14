@@ -4,7 +4,6 @@ import small from '../../assets/explore/img-small.png';
 import blue from '../../assets/explore/blue.png';
 import spain from '../../assets/explore/spain.png';
 import bali from '../../assets/explore/Bali.png';
-// import style from './dashboard.module.css';
 import './landing.css';
 import plane from '../../assets/explore/plane.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,47 +16,46 @@ import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Index = () => {
-  const navigate = useNavigate()
-  const date = new Date()
-  const currentDate =  `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-  const [child, setChild] = useState(0)
-  const [adult, setAdult] = useState(0)
+  const navigate = useNavigate();
+  const date = new Date();
+  const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  const [child, setChild] = useState(0);
+  const [adult, setAdult] = useState(0);
   const [searchFlight, setSearchFlight] = useState({
-    starting_place : "Medan",
-    destination_place : "Jakarta",
-    transit: "direct",
+    starting_place: 'Medan',
+    destination_place: 'Jakarta',
+    transit: 'direct',
     departure_date: currentDate,
-    type_seat: ''
-  })
+    type_seat: '',
+  });
 
   const changeHandler = (e) => {
-    setSearchFlight(prev => {
+    setSearchFlight((prev) => {
       return {
         ...prev,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
 
   const generateUrlSearch = (args) => {
-    let url = ""
-    for(let attr in args) {
-      url += `${attr}=${args[attr]}&`
+    let url = '';
+    for (let attr in args) {
+      url += `${attr}=${args[attr]}&`;
     }
 
-    return url
-  }
+    return url;
+  };
 
   const submitHandler = (e) => {
     const searchData = {
       ...searchFlight,
-      capacity: Number(child) + Number(adult)
-    }
-    const queryParams = generateUrlSearch(searchData)
-    return navigate(`/flights?${queryParams}`)
-  } 
- 
-  
+      capacity: Number(child) + Number(adult),
+    };
+    const queryParams = generateUrlSearch(searchData);
+    return navigate(`/flights?${queryParams}`);
+  };
+
   return (
     <>
       <BaseLayout>
@@ -65,27 +63,27 @@ const Index = () => {
         <section className="container-fluid Hero">
           <div className="row">
             <div className="col-md-6 my-5 Hero">
-              <div className="col-md-12 d-flex justify-content-center flex-column ms-4 pe-5 pb-5 pt-4">
+              <div className="col-md-12 d-flex justify-content-center flex-column ms-5 ps-5 pb-5 pt-4">
                 <h1 className="fw-bold">
                   Find your <span className="text-blue">Flight</span>
                 </h1>
                 <p className="fw-semibold mt-2">and explore the world with us</p>
               </div>
               <div className="col-md-12 text-start none Hero">
-                <img src={large} className="customImg" alt="" />
+                <img src={large} className="customImg img-fluid" alt="" />
               </div>
             </div>
             <div className="col-md-6 Hero">
-              <div className="col-md-12 text-end mt-2 Hero">
+              <div className="col-md-12 text-end mt-2 Hero none ">
                 <img src={small} className={`img-fluid imgFluidHero cusImg`} alt="" />
               </div>
-              <div className="col-md-12 text-end mt-5">
+              <div className="col-md-12 text-end mt-5 none">
                 <img src={blue} className={`img-fluid imgFluidHero customImageBubble`} width="180" alt="" />
               </div>
-              <div className="card card-body customCard cardHero">
+              <div className="card card-body customCard cardHero me-5">
                 <div className="col-12">
                   <p className="fw-semibold">Hey,</p>
-                  <h5 className='fw-semibold'>Where you want to go?</h5>
+                  <h5 className="fw-semibold">Where you want to go?</h5>
                   <div className="row">
                     <div className="col-8 text-start">
                       <p className={`fw-bold blue py-2`}>Recently searched</p>
@@ -106,7 +104,7 @@ const Index = () => {
                         <div className="col-12">
                           <div className="row">
                             <div className="col-5 d-flex flex-wrap justift-content-center">
-                              <input type="text" name='starting_place' className='form-control px-0 shadow-none border-0 fw-bold fs-5' value={searchFlight.starting_place} onChange={changeHandler}/>
+                              <input type="text" name="starting_place" className="form-control px-0 shadow-none border-0 fw-bold fs-5" value={searchFlight.starting_place} onChange={changeHandler} />
                               <p className="text-muted text-mediumms-auto">Indonesia</p>
                             </div>
                             <div className="col-2 text-center pt-3">
@@ -116,42 +114,46 @@ const Index = () => {
                               <div className="col-12"></div>
                             </div>
                             <div className="col-5 d-flex flex-wrap justift-content-center align-items-end">
-                              <input type="text" name='destination_place' className='text-end px-0 form-control shadow-none border-0 fw-bold fs-5' value={searchFlight.destination_place} onChange={changeHandler}/>
+                              <input type="text" name="destination_place" className="text-end px-0 form-control shadow-none border-0 fw-bold fs-5" value={searchFlight.destination_place} onChange={changeHandler} />
                               <p className="text-muted text-medium ms-auto">Indonesia</p>
                             </div>
                           </div>
                         </div>
-                       
                       </div>
                     </div>
 
                     <div className="col-12 mt-4">
                       <div className="row mb-3">
                         <div className="col-6 ps-0">
-                          <button 
-                            type="button" 
-                            className={`btn ${searchFlight?.transit == 'direct' ? 'bg-blue' : 'btnGray'} ms-0 fw-semibold w-100`} 
-                            onClick={(e) => setSearchFlight(prev => {
-                            return {
-                                ...prev,
-                                transit : 'direct'
-                              }
-                            })}>
+                          <button
+                            type="button"
+                            className={`btn ${searchFlight?.transit == 'direct' ? 'bg-blue' : 'btnGray'} ms-0 fw-semibold w-100`}
+                            onClick={(e) =>
+                              setSearchFlight((prev) => {
+                                return {
+                                  ...prev,
+                                  transit: 'direct',
+                                };
+                              })
+                            }
+                          >
                             <img src={plane} width="20" alt="" />
                             <span className="p-2">One way</span>
                           </button>
                         </div>
                         <div className="col-6 d-flex justify-content-end px-0">
-                          <button 
-                            type="button" 
+                          <button
+                            type="button"
                             className={`btn ms-auto  ${searchFlight?.transit == 'transit' ? 'bg-blue' : 'btnGray'}  w-100`}
-                            onClick={(e) => setSearchFlight(prev => {
-                              return {
+                            onClick={(e) =>
+                              setSearchFlight((prev) => {
+                                return {
                                   ...prev,
-                                  transit : 'transit'
-                                }
-                              })}
-                            >
+                                  transit: 'transit',
+                                };
+                              })
+                            }
+                          >
                             <FontAwesomeIcon icon={faArrowRotateRight}></FontAwesomeIcon>
                             <span className="p-2 fw-semibold">Round trip</span>
                           </button>
@@ -164,7 +166,7 @@ const Index = () => {
                         <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted">
                           Departure
                         </label>
-                        <input type="date" min={currentDate} value={searchFlight.departure_date} onChange={changeHandler} name={'departure_date'} className="form-control p-2 customBorderInput" id="inputDeparture"/>
+                        <input type="date" min={currentDate} value={searchFlight.departure_date} onChange={changeHandler} name={'departure_date'} className="form-control p-2 customBorderInput" id="inputDeparture" />
                       </div>
                     </div>
 
@@ -188,9 +190,9 @@ const Index = () => {
                       </label>
                       <div className="d-flex justify-content-between fw-semibold">
                         <div class="form-check">
-                          <input class="form-check-input" value={`economy`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault1" checked/>
+                          <input class="form-check-input" value={`economy`} name={'type_seat'} onChange={changeHandler} type="radio" id="flexRadioDefault1" checked />
                           <label class="form-check-label" htmlFor="flexRadioDefault1">
-                            Economy 
+                            Economy
                           </label>
                         </div>
                         <div class="form-check">
@@ -210,8 +212,8 @@ const Index = () => {
 
                     <div className="col-12 px-0 mb-2">
                       <button className="btn btn-blue px-3 py-2 mt-2 fw-bold w-100 d-flex justify-content-between align-items-center" onClick={submitHandler}>
-                      SEARCH FLIGHT <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
-                    </button>
+                        SEARCH FLIGHT <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -381,9 +383,7 @@ const Index = () => {
                 </Swiper>
               </div>
             </div>
-            <div className="customSpace">
-            
-            </div>
+            <div className="customSpace"></div>
           </div>
         </section>
         {/* End Trending */}
