@@ -47,33 +47,35 @@ const PassangerCard = ({data, onchange}) => {
       </Form.Select>
       
       <Form.Label className="text-secondary text-medium ps-2 mb-2">Passenger Type</Form.Label>
-      <div className="d-flex gap-4">
-        <div className="form-check">
-          <input 
-            className="form-check-input" 
-            type="radio" 
-            name="category_passanger" 
-            id="flexRadioDefault1" 
-            value={'child'}
-            onChange={changeHandler} 
-          />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">
-            Child
-          </label>
-        </div>
-        <div className="form-check">
-          <input 
-            className="form-check-input" 
-            type="radio" 
-            name="category_passanger" 
-            id="flexRadioDefault2"
-            value={'adult'}
-            onChange={changeHandler}
-          />
-          <label className="form-check-label" htmlFor="flexRadioDefault2">
-            Adult
-          </label>
-        </div>
+      <div>
+        <form className="d-flex gap-4">
+          <div className="form-check">
+            <input 
+              className="form-check-input" 
+              type="radio" 
+              name="category_passenger" 
+              id="flexRadioDefault1" 
+              value={'child'}
+              onChange={changeHandler} 
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+              Child
+            </label>
+          </div>
+          <div className="form-check">
+            <input 
+              className="form-check-input" 
+              type="radio" 
+              name="category_passenger" 
+              id="flexRadioDefault2"
+              value={'adult'}
+              onChange={changeHandler}
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+              Adult
+            </label>
+          </div>
+        </form>
       </div>
     </>
   )
