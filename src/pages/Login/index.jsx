@@ -41,7 +41,6 @@ const Login = () => {
     e.preventDefault();
     const res = await userLogin(data);
     const {token, refreshToken, ...user} = res.data
-    console.log(res.data)
     dispatch(setCredentials({ user: user, token: res?.data?.token }));
   };
 

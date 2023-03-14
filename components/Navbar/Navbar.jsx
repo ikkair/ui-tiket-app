@@ -21,8 +21,6 @@ export const Navbar = () => {
   const logoutHandler = async (e) => {};
   const urlWithoutBanner = ['/home', '/'];
 
-  console.log(userLogin)
-  console.log(user)
 
   useEffect(() => {
     if(!user) {

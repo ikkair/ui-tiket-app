@@ -8,10 +8,12 @@ import { changeDate } from '../../../../common/helper'
 import { showLoading, successLoading } from '../../../../common/loadingHandler'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
 import { useCreateFlightMutation } from '../../../../features/flight/flightApi'
+import { useCreateSeatMutation } from '../../../../features/seat/seatApi'
 
 const CreateFlight = () => {
   const {data:airlines, isLoading, isSuccess} = useGetAllAirlineQuery()
   const [createFlight, {isLoading : isLoadingCreateFlight, isSuccess: isSuccessCreateFlight, isError}] = useCreateFlightMutation()
+  const [createSeat] = useCreateSeatMutation()
   const [flight, setFlight] = useState({  
     id_airline: "",
     departure_date: "",
@@ -26,7 +28,7 @@ const CreateFlight = () => {
     wifi : false,
     type_trip : "one way",
     class_flight : "first class",
-    // terminal : "",
+    terminal : "",
     // gate : "",
     // price : ""
   })
@@ -56,17 +58,19 @@ const CreateFlight = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    await createFlight({
+    const res = await createFlight({
       ...flight, 
       capacity: setCapacity(flight?.class_flight),
       departure_date: changeDate(flight.departure_date), 
       arrived_date: changeDate(flight.arrived_date)
     })
+
+    await createSeat({id_flight: res.data.id, type_seat: res.data.class_flight})
   }
 
   useEffect(() => {
-    if(isSuccess) successLoading('Success Create flight')
-    if(isLoading) showLoading('Please Wait...')
+    if(isSuccessCreateFlight) successLoading('Success Create flight')
+    if(isLoadingCreateFlight) showLoading('Please Wait...')
     if(isError) Swal.close()
 
   }, [isLoadingCreateFlight, isSuccessCreateFlight, isError])
@@ -123,7 +127,7 @@ const CreateFlight = () => {
 
           <div className="col-12 col-sm-6 col-md-4">
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Transit</Form.Label>
+              <Form.Label>Class</Form.Label>
               <Form.Select aria-label="Default select example" name='class_flight' onChange={changeHandler}>
                   <option selected>Choose Class</option>
                   <option value="economy">economy</option>

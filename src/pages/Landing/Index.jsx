@@ -9,12 +9,10 @@ import plane from '../../assets/explore/plane.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import { EffectCards } from 'swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useGetAllDestinationQuery } from '../../features/destination/destinationApi';
 
 const Index = () => {

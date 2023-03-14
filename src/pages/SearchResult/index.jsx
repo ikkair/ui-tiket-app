@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
 import { SearchCard } from '../../../components/Cards/SearchCard/SearchCard'
 import style from './Search.module.css'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useAsyncValue, useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowsUpDown, faCircle } from '@fortawesome/free-solid-svg-icons'
 import TicketCard from '../../../components/Cards/TicketCard/TicketCard'
@@ -20,21 +20,53 @@ export const SearchResult = () => {
     type_trip: searchParams.get('type_trip') || "one way",
     departure_date: searchParams.get('departure_date') || '',
     capacity: searchParams.get('capacity') || 1,
-    class_flight: searchParams.get('class_flight') || ''
+    class_flight: searchParams.get('class_flight') || '',
+    transit:""
   })
-  const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
-    starting_place: searchResult?.starting_place,
-    destination_place: searchResult?.destination_place,
-    type_trip: searchResult?.type_trip,
-    departure_date: searchResult?.departure_date,
-    class_flight: searchResult?.class_flight
-  })
+  const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery(
+    {
+      starting_place: searchResult?.starting_place,
+      destination_place: searchResult?.destination_place,
+      type_trip: searchResult?.type_trip,
+      departure_date: searchResult?.departure_date,
+      class_flight: searchResult?.class_flight,
+      transit: searchResult?.transit,
+    }
+  )
 
-//   useEffect(() => {
-//     if(isLoading) showLoading('Please Wait....')
-//     if(isSuccess) Swal.close()
+  function reDestructTransit(value) {
+    if(value) {
+      if(searchResult.transit.length > 1 && value){
+        setSearchResult(prev => {
+          return {
+            ...prev,
+            transit: `${searchResult.transit},${value}`
+          }
+        })
+      }else {
+        setSearchResult(prev => {
+          return {
+            ...prev,
+            transit: value
+          }
+        })
+      }
+    }else {
+      const arrTransit = searchResult?.transit?.split(",")
+      if(arrTransit.includes(value)){
+        setSearchResult(prev => {
+          return {
+            ...prev,
+            transit: arrTransit.filter(data => data != value)[0]
+          }
+        })
+      }
+    }
+  }
 
-//   }, [isLoading, isSuccess])
+  useEffect(() => {
+    console.log(searchResult.transit)
+  }, [searchResult])
   return (
     <>
       <div className={`optionrute container position-relative`}>
@@ -76,7 +108,9 @@ export const SearchResult = () => {
               <p className='h4 p-0 '>Filter</p>
               <Link className='text-blue no-underline fw-bolder'>Reset</Link>
             </div>
-            <SearchCard />
+            <SearchCard onchange={(e) => setSearchResult(prev => 
+              ({...prev, transit : reDestructTransit(e.target.value)}))
+            }/>
           </>
         }
       >

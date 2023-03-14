@@ -1,13 +1,13 @@
 export const formContactPerson = [
   {
     title : "Full Name",
-    name : "contact_name",
+    name : "name_contact",
     type: "text",
     placeholder: 'Enter Your Full Name'
   },
   {
     title : "Email",
-    name : "contact_email",
+    name : "email_contact",
     type: "email",
     placeholder: 'example@gmail.com',
   }

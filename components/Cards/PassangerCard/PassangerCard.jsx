@@ -8,7 +8,7 @@ import ProfileInputForm from '../../Forms/ProfileInputForm/ProfileInputForm';
 
 const PassangerCard = ({data, onchange}) => {
   const {id} = useParams()
-  const {data:seats} = useGetSeatByIdFlightQuery(id, {skip: id ? false : true})
+  const {data:seats} = useGetSeatByIdFlightQuery({id, limit: 50}, {skip: id ? false : true})
   const changeHandler = (e) => {
     onchange(e)
   }

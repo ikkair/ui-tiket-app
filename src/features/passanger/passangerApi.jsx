@@ -5,7 +5,7 @@ export const passangerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPassanger: builder.query({
       query: (query) =>  ({
-        url: "passangers"
+        url: "passengers"
       }),
 
       providesTags: ['getAllPassanger'],
@@ -14,7 +14,7 @@ export const passangerApi = apiSlice.injectEndpoints({
 
     getPassangerById: builder.query({
       query: (id) =>  ({
-        url: `passangers/${id}`
+        url: `passengers/${id}`
       }),
 
       providesTags: ['getPassangerById'],
@@ -23,7 +23,7 @@ export const passangerApi = apiSlice.injectEndpoints({
 
     getPassangersByIdBooking: builder.query({
       query: (id) =>  ({
-        url: `passangers/booking/${id}`
+        url: `passengers/booking/${id}`
       }),
 
       providesTags: ['getPasssangerByIdBooking'],
@@ -32,7 +32,7 @@ export const passangerApi = apiSlice.injectEndpoints({
 
     createPassanger: builder.mutation({
       query: (data) =>  ({
-        url: "passangers",
+        url: "passengers",
         method: "POST",
         body: data
       }),
