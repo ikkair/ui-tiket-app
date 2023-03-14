@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { showLoading, successLoading } from '../../../common/loadingHandler'
 import { useAdminRegisterMutation } from '../../../features/auth/authApi'
 
 const RegisterAdmin = () => {
@@ -33,8 +34,12 @@ const RegisterAdmin = () => {
         password: "",
         phone: ""
       })
+      successLoading('Register Success Please Login!')
     }
-  }, [isSuccess])
+    if(isLoading) {
+      showLoading('Please wait...')
+    }
+  }, [isSuccess, isLoading])
 
   return (
     <div className="row min-vh-100">

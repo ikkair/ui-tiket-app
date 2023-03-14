@@ -40,7 +40,9 @@ const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
     const res = await userLogin(data);
-    dispatch(setCredentials({ user: res?.data?.data, token: res?.data?.token }));
+    const {token, refreshToken, ...user} = res.data
+    console.log(res.data)
+    dispatch(setCredentials({ user: user, token: res?.data?.token }));
   };
 
   useEffect(() => {

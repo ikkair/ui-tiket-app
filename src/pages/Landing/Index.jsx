@@ -14,9 +14,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Index = () => {
   const navigate = useNavigate();
+  const user = useSelector(state => state.auth)
+  console.log(user)
   const date = new Date();
   const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   const [child, setChild] = useState(0);

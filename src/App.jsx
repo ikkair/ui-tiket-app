@@ -16,9 +16,9 @@ import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
+import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 import PageNotFound from './pages/404/404';
 import RegisterAdmin from './pages/Admin/Register/RegisterAdmin'
-
 
 function App() {
   return (
