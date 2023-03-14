@@ -44,7 +44,7 @@ const Notifications = () => {
           </div>
         </div>
 
-        <a id="example" tabindex="0" class="btn text-light fs-5" role="button" data-bs-placement="bottom" data-bs-toggle="popover">
+        <a id="example" tabindex="0" className="btn text-light fs-5" role="button" data-bs-placement="bottom" data-bs-toggle="popover">
           <FontAwesomeIcon className="text-softdark" icon={faBell}></FontAwesomeIcon>
         </a>
       </section>
