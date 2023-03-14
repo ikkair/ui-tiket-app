@@ -4,8 +4,8 @@ const flightApi = apiSlice.injectEndpoints({
   tagTypes: ['getAllFlight'],
   endpoints: (builder) => ({
     getAllFlight: builder.query({
-      query: ({starting_place, destination_place}) =>  ({
-        url: `flights?starting_place=${starting_place}&destination_place=${destination_place}`
+      query: ({starting_place, destination_place, class_flight, type_trip, departure_date, transit}) =>  ({
+        url: `flights?starting_place=${starting_place}&destination_place=${destination_place}&class_flight=${class_flight}&type_trip=${type_trip}&departure_date=${departure_date}&transit=${transit}`
       }),
 
       providesTags: ['getAllFlight'],

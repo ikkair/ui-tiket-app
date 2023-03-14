@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faRightFromBracket, faCaretDown, faUser, faSearch, faBarsStaggered } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import logo from '../../src/assets/navbar/logo.png';
@@ -8,13 +8,26 @@ import photo from '../../src/assets/profile/profile.jpg';
 import style from './Navbar.module.css';
 import navbarBannerLogo from '../../src/assets/navbar/bannerLogo.png';
 import Notifications from '../Notifications/Notifications';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetUserProfileQuery } from '../../src/features/auth/authApi';
+import { setCredentials } from '../../src/app/reducer/authSlice';
 
 export const Navbar = () => {
+  const dispatch = useDispatch()
   const urlPath = window.location.pathname;
-
+  const {data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
+  const user = useSelector(state => state.auth.user)
   const logoutHandler = async (e) => {};
-
   const urlWithoutBanner = ['/home', '/'];
+
+  useEffect(() => {
+    if(!user) {
+      dispatch(setCredentials({
+        user: userLogin,
+        token: localStorage.getItem('token')
+      }))
+    }
+  }, [user, isSuccess])
 
   const renderBanner = () => {
     if (!urlWithoutBanner.includes(urlPath)) {
