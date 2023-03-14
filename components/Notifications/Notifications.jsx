@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import './Notification.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { Popover, OverlayTrigger} from 'react-bootstrap';
 
 
 const Notifications = () => {
 
   const popoverClickRootClose = (
-   
     <Popover id="popover-trigger-click-root-close" title="Popover bottom" className='popover'>
     <div className="row mx-2 mt-5">
       <div className="col-12 fw-semibold Notif-letter-spacing text-blue">NOTIFICATIONS</div>
