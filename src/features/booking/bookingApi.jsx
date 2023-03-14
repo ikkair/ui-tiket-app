@@ -1,67 +1,67 @@
-import { apiSlice } from "../../app/api/authApi"
+import { apiSlice } from '../../app/api/authApi';
 
 export const bookingApi = apiSlice.injectEndpoints({
   tagTypes: ['getAllBooking'],
   endpoints: (builder) => ({
     getAllBooking: builder.query({
-      query: (query) =>  ({
-        url: "bookings"
+      query: (query) => ({
+        url: 'bookings',
       }),
 
       providesTags: ['getAllBooking'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response.data,
     }),
 
     getBookingById: builder.query({
-      query: (id) =>  ({
-        url: `bookings/${id}`
+      query: (id) => ({
+        url: `bookings/${id}`,
       }),
 
       providesTags: ['getBookingById'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response.data[0],
     }),
 
     getBookingByIdUser: builder.query({
-      query: (id) =>  ({
-        url: `bookings?id_user=${id}`
+      query: (id) => ({
+        url: `bookings?id_user=${id}`,
       }),
 
       providesTags: ['getBookingByIdUser'],
-      transformResponse: (response, meta, args) => response
+      transformResponse: (response, meta, args) => response,
     }),
 
     createBooking: builder.mutation({
-      query: (data) =>  ({
-        url: "bookings",
-        method: "POST",
-        body: data
+      query: (data) => ({
+        url: 'bookings',
+        method: 'POST',
+        body: data,
       }),
 
       invalidatesTags: ['getAllBooking'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response.data,
     }),
 
     updateBookingById: builder.mutation({
-      query: ({id, data}) =>  ({
+      query: ({ id, data }) => ({
         url: `bookings/${id}`,
-        method: "PUT",
-        body: data
+        method: 'PUT',
+        body: data,
       }),
 
       invalidatesTags: ['getAllBooking'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response.data,
     }),
 
     deleteBookingById: builder.mutation({
-      query: (id) =>  ({
+      query: (id) => ({
         url: `bookings/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
 
       invalidatesTags: ['getAllBooking'],
-      transformResponse: (response, meta, args) => response.data
+      transformResponse: (response, meta, args) => response.data,
     }),
-  })
-})
+  }),
+});
 
-export const { useGetAllBookingQuery, useGetBookingByIdQuery, useCreateBookingMutation, useUpdateBookingByIdMutation, useDeleteBookingByIdMutation, useGetBookingByIdUserQuery } = bookingApi 
+export const { useGetAllBookingQuery, useGetBookingByIdQuery, useCreateBookingMutation, useUpdateBookingByIdMutation, useDeleteBookingByIdMutation, useGetBookingByIdUserQuery } = bookingApi;

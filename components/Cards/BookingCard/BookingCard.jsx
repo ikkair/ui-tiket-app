@@ -8,11 +8,8 @@ import { useGetPassangersByIdBookingQuery } from '../../../src/features/passange
 import style from './BookingCard.module.css';
 
 const BookingCard = ({ header, classHeader, id_flight, status, id_booking }) => {
-  // console.log(id_flight);
   const { data: flight } = useGetFlightByIdQuery(id_flight);
   const { data: passangers } = useGetPassangersByIdBookingQuery(id_booking);
-  console.log(passangers);
-  // console.log(flight);
 
   return (
     <Card className={'border-0 mb-3 main-border overflow-hidden'}>
@@ -42,8 +39,8 @@ const BookingCard = ({ header, classHeader, id_flight, status, id_booking }) => 
                 ''
               )}
               {passangers?.map((pas, i) => (
-                <div className="collapse mt-2" id={`collapseExample${pas.id_booking}`} key={i}>
-                  <Link to={`/my-booking/ticket/${pas.id}`} className="text-blue no-underline">
+                <div className="collapse pt-2" id={`collapseExample${pas.id_booking}`} key={i}>
+                  <Link to={status === 1 ? `/my-booking/ticket/${pas.id}` : '#'} className="text-blue no-underline">
                     {i + 1}. {pas.name}
                   </Link>
                 </div>
