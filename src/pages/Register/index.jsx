@@ -11,6 +11,7 @@ const Register = () => {
 
   const dispatch = useDispatch()
   const [registerUser] = useUserRegisterMutation()
+  const [checkTerms, setCheckTerms] = useState(false);
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -26,22 +27,25 @@ const Register = () => {
     })
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await registerUser({ data })
   }
 
   return (
     <AuthTemplate title={'Register'}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method='post'>
         <InputAuthForm title="Fullname" name={'name'} type="text" value={data.name} placeholder='Fullname' req={'required'} onchange={handleChange} />
-        <InputAuthForm title="Email" name={'email'} type="email" value={data.email} placeholder='Email' req={'required'} onchange={handleChange} />
+        <InputAuthForm title="Email" name={'email'} type="text" value={data.email} placeholder='Email' req={'required'} onchange={handleChange} />
         <InputAuthForm title="Password" name={'password'} type="password" value={data.password} placeholder='Password' req={'required'} onchange={handleChange} />
 
         <div className="button d-grid my-2">
-          <button type='submit' className='btn btn-blue-height fw-bolder d-flex align-items-center justify-content-center'>Sign Up</button>
+          <button type='submit' className='btn btn-blue-height fw-bolder d-flex align-items-center justify-content-center' disabled={!(checkTerms && data.name && data.email && data.password)}>Sign Up</button>
         </div>
-        <CheckBox />
+        <CheckBox 
+        value={''}
+        onchange={() => setCheckTerms((prev) => !prev)}
+        />
         <hr className='mx-auto' style={{ width: '80%' }} />
         <div className="have-account text-center d-grid">
           <p>Already have an account</p>

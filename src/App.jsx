@@ -32,7 +32,6 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
       <Route path="/*" element={<PageNotFound />} />
-      <Route path="/coba" element={<Coba />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/dashboard">
