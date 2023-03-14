@@ -13,7 +13,6 @@ import { showLoading } from '../../common/loadingHandler'
 import Swal from 'sweetalert2'
 
 export const SearchResult = () => {
-  const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({})
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchResult, setSearchResult] = useState({
     starting_place : searchParams.get('starting_place') || "",
@@ -22,6 +21,10 @@ export const SearchResult = () => {
     departure_date: searchParams.get('departure_date') || '',
     capacity: searchParams.get('capacity') || 1,
     type_seat: searchParams.get('type_seat') || ''
+  })
+  const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
+    starting_place: searchResult?.starting_place,
+    destination_place: searchResult?.destination_place
   })
 
 //   useEffect(() => {
