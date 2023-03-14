@@ -171,14 +171,14 @@ const Index = () => {
                     </div>
 
                     <div className="col-12 px-0 mb-2">
-                      <label htmlFor="inputDeparture" className="fw-semibold form-label text-muted mt-2">
-                        How many person?
-                      </label>
+            
                       <div className="row">
                         <div className="col-6">
-                          <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" value={child} onChange={(e) => setChild(Number(e.target.value))} placeholder="Child" />
+                          <label htmlFor="child" className='text-muted fw-semibold'>Child</label>
+                          <input type="number" className="form-control p-2 customBorderInput" id="child" value={child} onChange={(e) => setChild(Number(e.target.value))} placeholder="Child" />
                         </div>
                         <div className="col-6">
+                          <label htmlFor="child" className='text-muted fw-semibold'>Adult</label>
                           <input type="number" className="form-control p-2 customBorderInput" id="inputDeparture" placeholder="Adult" value={adult} onChange={(e) => setAdult(Number(e.target.value))} />
                         </div>
                       </div>

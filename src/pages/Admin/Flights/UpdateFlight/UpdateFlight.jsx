@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useParams } from 'react-router'
+import Swal from 'sweetalert2'
 import FormInput from '../../../../../components/Dashboard/Form/FormInput/FormInput'
 import { flightFacility, flightForm, flightTerminal } from '../../../../../lib/Flight/FlightForm'
 import DashboardLayout from '../../../../../template/DashboardLayout/DashboardLayout'
+import { reChangeDate } from '../../../../common/helper'
+import { showLoading, successLoading } from '../../../../common/loadingHandler'
 import { useGetAllAirlineQuery } from '../../../../features/airline/airlineApi'
 import { useGetFlightByIdQuery, useUpdateFlightByIdMutation } from '../../../../features/flight/flightApi'
 
 const UpdateFlight = () => {
   const {id} = useParams()
-  const { data: airlines, isLoadingAirlanes } = useGetAllAirlineQuery()
-  const {data, isLoading, isSuccess} = useGetFlightByIdQuery(id, {skip: id ? false : false})
+  const { data: airlines, isLoadingAirlines } = useGetAllAirlineQuery()
+  const {data, isLoading, isSuccess, isError} = useGetFlightByIdQuery(id, {skip: id ? false : false})
   const [updateFlightById, {isLoading : isLoadingUpdateFlight, isSuccess: isSuccessUpdateFlight}] = useUpdateFlightByIdMutation()
   const [flight, setFlight] = useState({})
-  console.log(data)
+  console.log(flight)
 
   const convertToNumber = (type, data) => {
     if(type && type == 'number'){
@@ -38,10 +41,24 @@ const UpdateFlight = () => {
 
   useEffect(() => {
     if(isSuccess) {
-      setFlight(data)
+      Swal.close()
+      setFlight(prev => {
+        return {
+          ...data,
+          departure_date : reChangeDate(data.departure_date),
+          arrived_date : reChangeDate(data.arrived_date)
+        }
+      })
     }
+
+    if(isLoading){
+      showLoading('Please wait....')
+    }
+
+    if(isError) Swal.close()
    
-  }, [isSuccess])
+  }, [isSuccess, isLoading. isError])
+
 
   return (
     <DashboardLayout title={`Update Flight - ID  ${id}`}>
@@ -53,13 +70,15 @@ const UpdateFlight = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Choose Airlane</Form.Label>
               <Form.Select aria-label="Default select example" name='id_airline' onChange={changeHandler}>
-                {airlines?.map(airlane => (
-                  <option 
-                    key={airlane.id} 
-                    value={airlane.id} 
-                    selected={airlane.id == flight?.id_airlane}
-                    >{airlane.name}</option>
-                ))}
+                {isLoadingAirlines ? 'Loading....' : (
+                  airlines?.map(airlane => (
+                    <option 
+                      key={airlane.id} 
+                      value={airlane.id} 
+                      selected={airlane.id == flight?.id_airlane}
+                      >{airlane.name}</option>
+                  ))
+                )}
               </Form.Select>
             </Form.Group>
             </div>
