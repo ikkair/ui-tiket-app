@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Profile from './pages/Profile/Profile';
 import MyBooking from './pages/MyBooking/MyBooking';
-import Index from './pages/admin/Dashboard/Index';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
