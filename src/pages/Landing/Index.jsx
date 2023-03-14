@@ -17,7 +17,7 @@ import { useGetAllDestinationQuery } from '../../features/destination/destinatio
 
 const Index = () => {
   const navigate = useNavigate();
-  
+
   const date = new Date();
   const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   const [child, setChild] = useState(0);
@@ -58,21 +58,16 @@ const Index = () => {
   };
 
   // Destination
-  // const { data: flights, isLoading, isSuccess } = useGetAllFlightQuery({
-  //   starting_place: searchResult?.starting_place,
-  //   destination_place: searchResult?.destination_place
-  // })
-
   const { data: destination } = useGetAllDestinationQuery();
 
   return (
     <>
       <BaseLayout>
         {/* Hero */}
-        <section className="container-fluid Hero">
+        <section className="container-fluid">
           <div className="row">
             <div className="col-md-6 my-5 Hero">
-              <div className="col-md-12 d-flex justify-content-center flex-column ms-5 ps-5 pb-5 pt-4">
+              <div className="col-md-12 d-flex justify-content-center w-100 flex-column ms-5 ps-5 pb-5 pt-4">
                 <h1 className="fw-bold">
                   Find your <span className="text-blue">Flight</span>
                 </h1>
@@ -83,7 +78,7 @@ const Index = () => {
               </div>
             </div>
             <div className="col-md-6 Hero">
-              <div className="col-md-12 text-end mt-2 Hero none ">
+              <div className="col-md-12 text-end mt-2 Hero none">
                 <img src={small} className={`img-fluid imgFluidHero cusImg`} alt="" />
               </div>
               <div className="col-md-12 text-end mt-5 none">
