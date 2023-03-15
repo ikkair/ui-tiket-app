@@ -26,7 +26,9 @@ export const SearchResult = () => {
     transit:"",
     filter_luggage: "",
     filter_wifi: "",
-    filter_meal: ""
+    filter_meal: "",
+    sortBY: "",
+    sort: ""
   })
   const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
@@ -40,13 +42,11 @@ export const SearchResult = () => {
       filter_wifi: searchResult?.filter_wifi,
       filter_meal: searchResult?.filter_meal,
       limit: searchResult?.limit,
-      page: searchResult?.page
+      page: searchResult?.page,
+      sortBY: searchResult?.sortBY,
+      sort: searchResult?.sort
     }
   )
-
-  function reDestructTransit(value) {
-   
-  }
 
   function regenerateUrl(lastQuery){
     let page = window.location.href.split("&")
@@ -78,13 +78,11 @@ export const SearchResult = () => {
   }
 
   useEffect(() => {
-  }, [searchResult])
-
-  useEffect(() => {
     if(isSuccess) Swal.close()
     if(isLoading) showLoading('Please wait...')
     if(isError) Swal.close()
   }, [isLoading, isSuccess, isError])
+
   return (
     <>
       <div className={`optionrute container position-relative`}>
@@ -135,7 +133,7 @@ export const SearchResult = () => {
         <div className="headRight d-flex justify-content-between">
           <h4 className='d-none d-md-block'>Select tickets <span className='text-secondary h5 '>({flights?.data?.length} flight found)</span></h4>
           <span className='text-secondary h5 d-block d-md-none h-6'>{flights?.data?.length} flight found</span>
-          <Link className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} /> </Link>
+          <span className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} onClick={(e) => setSearchResult(prev => ({...prev, sort: prev?.sort == 'asc' ? 'desc' : 'asc'}))} /> </span>
         </div>
 
         {flights?.data?.map((f,i) => (

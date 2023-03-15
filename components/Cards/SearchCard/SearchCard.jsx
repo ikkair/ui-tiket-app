@@ -7,6 +7,7 @@ import { useGetAllAirlineQuery } from '../../../src/features/airline/airlineApi'
 
 export const SearchCard = ({onchange}) => {
   const [value, setValue] = useState([30, 60]);
+  const [transit, setTransit] = useState([])
 
   const {data: airlines, isLoading, isSuccess} = useGetAllAirlineQuery()
 
@@ -27,17 +28,38 @@ export const SearchCard = ({onchange}) => {
     }
   }
 
+  const changeHandlerTransit = (e) => {
+    const checkChecked = document.querySelector(`#${e.target.id}`).checked
+    if(checkChecked){
+      let data = ''
+      if(transit.length > 0) {
+        data += `${transit[0]},${e.target.value}`
+      }else {
+        setTransit([e.target.value])
+        data += e.target.value
+      }
+      onchange({target: {name: e.target.name, value: data}})
+    }else {
+      let data = ''
+      for(let i = 0; i < transit.length; i++) {
+        if(!transit.includes(e.target.value)){
+          setTransit(transit[i])
+          data = transit[i]
+        }else {
+          setTransit([])
+        }
+      }
+      onchange({target: {name: e.target.name, value: data}})
+
+    }
+  }
+
   const changeHandlerFacilities = (e) => {
     const checkChecked = document.querySelector(`#${e.target.id}`).checked
     if(checkChecked){
       onchange(e)
-    }
-  }
-
-  const changeHandlerTransit = (e) => {
-    const checkChecked = document.querySelector(`#${e.target.id}`).checked
-    if(checkChecked){
-      onchange(e)
+    }else {
+      onchange({target: {name: e.target.name, value: false}})
     }
   }
   return (
