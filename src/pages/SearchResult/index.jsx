@@ -62,14 +62,13 @@ export const SearchResult = () => {
     return url
   }
 
-  console.log(flights?.pagination)
   const renderPagination = () => {
   
     const element = []
     if(element < flights?.pagination?.totalPage){
       for(let i = 0; i < flights?.pagination?.totalPage; i++) {
         element.push(
-          <li key={i} class="page-item px-0"><a class="page-link" href={`${regenerateUrl(i+1)}`}>{i + 1}</a></li>
+          <li key={i} className={`page-item px-0`}><a className="page-link" href={`${regenerateUrl(i+1)}`}>{i + 1}</a></li>
         )
       }
     }
@@ -163,10 +162,10 @@ export const SearchResult = () => {
           </>
         ))}
         <nav aria-label="Page navigation example">
-          <ul class="pagination d-flex justify-content-center">
-            <li class="page-item px-0"><a class="page-link" href="#">{`<<`}</a></li>
+          <ul className="pagination d-flex justify-content-center">
+            <li className="page-item px-0"><a className="page-link" href="#">{`<<`}</a></li>
             {renderPagination()?.map(page => page)}
-            <li class="page-item px-0"><a class="page-link" href="#">{`>>`}</a></li>
+            <li className="page-item px-0"><a className="page-link" href="#">{`>>`}</a></li>
           </ul>
         </nav>
       

@@ -50,7 +50,7 @@ export const Navbar = () => {
       <nav className={`${style.navbar} navbar navbar-expand-lg d-flex sticky-top justify-content-center flex-column pb-0`}>
         <div className="container pb-2 d-flex justify-content-between">
           {/* <!-- Nav Logo --> */}
-          <Link className="navbar-brand ps-0 d-flex align-items-center me-4 btn fs-5 text-dark" to="/home">
+          <Link className="navbar-brand ps-3 ps-sm-0 d-flex align-items-center me-4 btn fs-5 text-dark" to="/home">
             <img src={logo} alt="logo-image" className="img-fluid small-logo" />
             <span className="text-dark fs-5 ms-2 fw-semibold">Ankasha</span>
           </Link>
@@ -62,7 +62,7 @@ export const Navbar = () => {
           </div>
           {/* End Search Tablet Mode */}
 
-          <div className="mobile-menu d-flex gap-2 d-sm-none">
+          <div className="mobile-menu d-flex gap-2 pe-3 pe-sm-0 d-sm-none">
             <button
               class="border-0 shadow-none bg-transparent"
               type="button"
