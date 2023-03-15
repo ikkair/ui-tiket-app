@@ -32,7 +32,7 @@ const LoginAdmin = () => {
   
   useEffect(() => {
     if(isSuccess){
-      return navigate('/admin/dashboard/flights')
+      return navigate('/admin/dashboard/bookings')
     }
   }, [isSuccess])
 

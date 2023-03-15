@@ -245,13 +245,13 @@ const Index = () => {
               </div>
 
               <div className="col-12 mt-3 trending-overflow d-flex">
-                {destination?.map((item) => (
+                {destination?.map((item,i) => (
                   // <SwiperSlide>
                   <Link href={'/'} className={`cardDestination me-5 text-white`}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={japan} alt="" className="image" />
+                        <img src={`https://source.unsplash.com/random/200x${250 + i +1}/?village`} crossOrigin="anonymous" alt="" className="image" />
                       </div>
                       <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
@@ -272,30 +272,7 @@ const Index = () => {
                   </Link>
                   // </SwiperSlide>
                 ))}
-                {/* <Swiper
-                  spaceBetween={20}
-                  slidesOffsetBefore={10}
-                  slidesOffsetAfter={10}
-                  breakpoints={{
-                    100: {
-                      slidesPerView: 1.5,
-                    },
-                    400: {
-                      slidesPerView: 2.1,
-                    },
-                    768: {
-                      slidesPerView: 3,
-                    },
-                    1024: {
-                      slidesPerView: 5,
-                    },
-                    1280: {
-                      slidesPerView: 5,
-                    },
-                  }}
-                >
-                  
-                </Swiper> */}
+                
               </div>
             </div>
             <div className="customSpace"></div>
@@ -304,7 +281,7 @@ const Index = () => {
         {/* End Trending */}
 
         {/* Top Destination */}
-        <section className="container-fluid p-5">
+        <section className="container-fluid py-3 px-3">
           <div className="py-5 bgImage text-white">
             <div className="container-fluid">
               <div className="row justify-content-center">
@@ -314,81 +291,41 @@ const Index = () => {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
-                <div className="">
+                <div className="col-12">
                   <Swiper
                     spaceBetween={10}
                     slidesOffsetBefore={10}
                     slidesOffsetAfter={10}
                     breakpoints={{
                       100: {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                       },
                       425: {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                       },
                       768: {
-                        slidesPerView: 3,
-                      },
-                      1024: {
                         slidesPerView: 4,
                       },
-                      1280: {
+                      1024: {
                         slidesPerView: 5,
+                      },
+                      1280: {
+                        slidesPerView: 6,
                       },
                     }}
                   >
-                    {destination?.map((item) => (
+                    {destination?.map((item, i) => (
                       <SwiperSlide>
                         <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
                           <div className="row">
                             <div className="col-md-12 story">
-                              <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
+                              <img src={`https://source.unsplash.com/random/200x${200 + i + 1}/?village`} crossOrigin="anonymous" alt="wrapkit" className="imgCustom rounded-circle" />
                               <h5 className="mt-4 text-center">{item?.name}</h5>
                             </div>
                           </div>
                         </div>
                       </SwiperSlide>
                     ))}
-                    <SwiperSlide>
-                      <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
-                        <div className="row">
-                          <div className="col-md-12 story">
-                            <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
-                            <h5 className="mt-4 text-center">Bali</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
-                        <div className="row">
-                          <div className="col-md-12 story">
-                            <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
-                            <h5 className="mt-4 text-center">Bali</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
-                        <div className="row">
-                          <div className="col-md-12 story">
-                            <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
-                            <h5 className="mt-4 text-center">Bali</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
-                        <div className="row">
-                          <div className="col-md-12 story">
-                            <img src={bali} alt="wrapkit" className="imgCustom rounded-circle" />
-                            <h5 className="mt-4 text-center">Bali</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
                   </Swiper>
                 </div>
               </div>
