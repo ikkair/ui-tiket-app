@@ -17,6 +17,7 @@ export const Navbar = () => {
   const navigate = useNavigate()
   const urlPath = window.location.pathname;
   const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
+
   const user = useSelector(state => state.auth.user)
   const urlWithoutBanner = ['/home', '/'];
 
@@ -28,6 +29,7 @@ export const Navbar = () => {
       }))
     }
   }, [user, isSuccess])
+
 
   const renderBanner = () => {
     if (!urlWithoutBanner.includes(urlPath)) {
@@ -81,15 +83,17 @@ export const Navbar = () => {
             <div class="offcanvas-body">
               <div className="img-group d-flex justify-content-between align-items-center">
                 <div className="image d-flex gap-2 align-items-center">
-                  <img src={photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
+                  <img src={userLogin?.photo === null || undefined ? photo : userLogin?.photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
                   <Link to={`/profile`} className="dropdown-item">
                     <span className="me-2 fw-bold text-blue"> Profile </span>
                   </Link>
                 </div>
                 <div className="logout">
+                  {localStorage.getItem('token') ? (
                   <button className="dropdown-item" type="button" onClick={logoutHandler}>
                     <FontAwesomeIcon className="me-2" icon={faRightFromBracket} /> Logout
                   </button>
+                  ) : ''}
                 </div>
               </div>
               <div className="search mt-4">
@@ -145,7 +149,7 @@ export const Navbar = () => {
 
               <div className="dropdown navbar-profile profile ms-2">
                 <div className="img-group d-flex align-items-center" data-bs-trigger="focus" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src={photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
+                  <img src={userLogin?.photo === null || undefined ? photo : userLogin?.photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
                   <FontAwesomeIcon className="fs-4 text-dark" icon={faCaretDown} />
                 </div>
                 <ul className="dropdown-menu dropdown-menu-end">
