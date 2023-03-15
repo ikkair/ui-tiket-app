@@ -4,9 +4,9 @@ const flightApi = apiSlice.injectEndpoints({
   tagTypes: ['getAllFlight'],
   endpoints: (builder) => ({
     getAllFlight: builder.query({
-      query: ({starting_place, destination_place, class_flight, type_trip, departure_date, transit, filter_wifi, filter_meal, filter_luggage, page, limit}) =>  
+      query: ({starting_place, destination_place, class_flight, type_trip, departure_date, transit, filter_wifi, filter_meal, filter_luggage, page, limit, sortBY, sort}) =>  
       ({
-        url: `flights?starting_place=${starting_place}&destination_place=${destination_place}&class_flight=${class_flight}&type_trip=${type_trip}&departure_date=${departure_date}${filter_wifi ? `&filter_wifi=${filter_wifi}` : ''}${filter_meal ? `&filter_meal=${filter_meal}` : ''}${filter_luggage ? `&filter_luggage=${filter_luggage}` : ''}&limit=${limit || 7}&page=${page || 1}`
+        url: `flights?starting_place=${starting_place}&destination_place=${destination_place}&class_flight=${class_flight}&type_trip=${type_trip}&departure_date=${departure_date}${transit ? `&transit=${transit}` : ''}${filter_wifi ? `&filter_wifi=${filter_wifi}` : ''}${filter_meal ? `&filter_meal=${filter_meal}` : ''}${filter_luggage ? `&filter_luggage=${filter_luggage}` : ''}&limit=${limit || 7}&sortBY=${sortBY || 'price'}&sort=${sort || 'ASC'}&page=${page || 1}`
       })
       ,
 

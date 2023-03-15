@@ -30,7 +30,6 @@ export const Navbar = () => {
     }
   }, [user, isSuccess])
 
-  console.log(userLogin);
 
   const renderBanner = () => {
     if (!urlWithoutBanner.includes(urlPath)) {
