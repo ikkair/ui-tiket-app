@@ -4,7 +4,7 @@ import { SearchCard } from '../../../components/Cards/SearchCard/SearchCard'
 import style from './Search.module.css'
 import { Link, useAsyncValue, useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowsUpDown, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowsUpDown, faCircle, faSort } from '@fortawesome/free-solid-svg-icons'
 import TicketCard from '../../../components/Cards/TicketCard/TicketCard'
 import planes from '../../assets/icon/planes.png'
 import { useGetAllFlightQuery } from '../../features/flight/flightApi'
@@ -30,6 +30,9 @@ export const SearchResult = () => {
     sortBY: "",
     sort: ""
   })
+
+  console.log(searchResult);
+
   const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
       starting_place: searchResult?.starting_place,
@@ -47,6 +50,7 @@ export const SearchResult = () => {
       sort: searchResult?.sort
     }
   )
+
 
   function regenerateUrl(lastQuery){
     let page = window.location.href.split("&")
@@ -133,7 +137,19 @@ export const SearchResult = () => {
         <div className="headRight d-flex justify-content-between">
           <h4 className='d-none d-md-block'>Select tickets <span className='text-secondary h5 '>({flights?.data?.length} flight found)</span></h4>
           <span className='text-secondary h5 d-block d-md-none h-6'>{flights?.data?.length} flight found</span>
-          <span className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faArrowsUpDown} onClick={(e) => setSearchResult(prev => ({...prev, sort: prev?.sort == 'asc' ? 'desc' : 'asc'}))} /> </span>
+          {/* <span className='h6 no-underline text-dark'>Sort by <FontAwesomeIcon icon={faSort} onClick={(e) => setSearchResult(prev => ({...prev, sort: prev?.sort == 'asc' ? 'desc' : 'asc'}))} /> </span> */}
+          <div className="btn-group p-0 mt-2">
+            <a className="h6 no-underline text-dark" data-bs-toggle="dropdown" aria-expanded="false" style={{cursor: 'pointer'}}>
+              Sort by 
+            </a>
+            <span className='mx-2' style={{cursor: 'pointer'}}><FontAwesomeIcon icon={faSort} onClick={(e) => setSearchResult(prev => ({...prev, sort: prev?.sort == 'asc' ? 'desc' : 'asc'}))}/></span>
+            <ul className="dropdown-menu dropdown-menu-end" style={{cursor: 'pointer'}}>
+              <li><span className="dropdown-item" onClick={(e) => setSearchResult(prev => ({...prev, sortBY: 'price'}))} >Price</span></li>
+              <li><span className="dropdown-item" onClick={(e) => setSearchResult(prev => ({...prev, sortBY: 'departure_time'}))}>Time</span></li>
+              <li><span className="dropdown-item" onClick={(e) => setSearchResult(prev => ({...prev, sortBY: 'transit'}))}>Transit</span></li>
+            </ul>
+          </div>
+
         </div>
 
         {flights?.data?.map((f,i) => (
