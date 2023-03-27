@@ -31,7 +31,6 @@ export const SearchResult = () => {
     sort: ""
   })
 
-  console.log(searchResult);
 
   const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
