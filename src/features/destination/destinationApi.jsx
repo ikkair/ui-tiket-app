@@ -10,8 +10,16 @@ export const destinationApi = apiSlice.injectEndpoints({
 
       providesTags: ['getAllDestination'],
       transformResponse: (response, meta, args) => response.data
+    }),
+    getDestinationById: builder.query({
+      query: (id) =>  ({
+        url: `destinations/${id}`
+      }),
+
+      providesTags: ['getDestinationsById'],
+      transformResponse: (response, meta, args) => response.data
     })
   })
 })
 
-export const { useGetAllDestinationQuery } = destinationApi 
+export const { useGetAllDestinationQuery, useGetDestinationByIdQuery } = destinationApi 
