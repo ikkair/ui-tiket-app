@@ -13,7 +13,6 @@ const flightApi = apiSlice.injectEndpoints({
       providesTags: ['getAllFlight'],
       transformResponse: (response, meta, args) => response
     }),
-
     getFlightById: builder.query({
       query: (id) =>  ({
         url: `flights/${id}`
@@ -66,4 +65,4 @@ const flightApi = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetAllFlightQuery, useGetFlightByIdQuery ,useUpdateFlightByIdMutation, useDeleteFlightByIdMutation, useCreateFlightMutation } = flightApi 
+export const { useGetAllFlightQuery, useGetFlightByIdQuery ,useUpdateFlightByIdMutation, useDeleteFlightByIdMutation, useCreateFlightMutation} = flightApi 
