@@ -10,8 +10,8 @@ const AuthTemplate = ({ children , title}) => {
         <div className="col-md-6 col-lg-7 col-12 d-md-block d-none p-0"><Banner /></div>
 
         <div className={`col-md-6 col-lg-5 col-12 ${style.right} d-grid`} >
-          <div className="row my-5 justify-content-center align-items-center bg-warning">
-            <div className="col-10 col-md-8 col-lg-7 d-flex flex-column bg-danger">
+          <div className="row my-5 justify-content-center align-items-center">
+            <div className="col-10 col-md-8 col-lg-7 d-flex flex-column">
               <div className="logo position-relative top-0 pt-2">
                 <img src={vector} alt='' /><span className='ms-3 fw-bolder' style={{fontSize: '20px'}}>Ankasa</span>
               </div>
