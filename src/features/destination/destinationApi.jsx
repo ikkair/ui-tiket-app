@@ -19,7 +19,7 @@ export const destinationApi = apiSlice.injectEndpoints({
         body: data
       }),
 
-      providesTags: ['updateDestinationById'],
+      invalidatesTags: ['getAllDestination'],
       transformResponse: (response, meta, args) => response.data
     }),
 
