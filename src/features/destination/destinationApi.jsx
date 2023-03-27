@@ -11,7 +11,7 @@ export const destinationApi = apiSlice.injectEndpoints({
       providesTags: ['getAllDestination'],
       transformResponse: (response, meta, args) => response.data
     }),
-
+    
     updateDestinationById: builder.mutation({
       query: ({ id, data }) => ({
         url: `destinations/${id}`,
@@ -21,8 +21,18 @@ export const destinationApi = apiSlice.injectEndpoints({
 
       providesTags: ['updateDestinationById'],
       transformResponse: (response, meta, args) => response.data
+    }),
+
+    getDestinationById: builder.query({
+      query: (id) =>  ({
+        url: `destinations/${id}`
+      }),
+
+      providesTags: ['getDestinationsById'],
+      transformResponse: (response, meta, args) => response.data
     })
   })
 })
 
-export const { useGetAllDestinationQuery, useUpdateDestinationByIdMutation } = destinationApi 
+export const { useGetAllDestinationQuery, useUpdateDestinationByIdMutation, useGetDestinationByIdQuery  } = destinationApi 
+
