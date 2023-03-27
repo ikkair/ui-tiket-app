@@ -5,15 +5,37 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { useUpdateActiveAdminMutation } from '../../../features/admin/adminApi';
 import { useAdminRegisterMutation } from '../../../features/auth/authApi';
 import FormInput from '../../../../components/Dashboard/Form/FormInput/FormInput';
-import { useGetAllDestinationQuery, useUpdateDestinationByIdMutation } from '../../../features/destination/destinationApi';
+import { useCreateDestinationMutation, useGetAllDestinationQuery, useUpdateDestinationByIdMutation } from '../../../features/destination/destinationApi';
 import { failedLoading, showLoading, successLoading } from '../../../common/loadingHandler';
 
 const DestinationInformation = () => {
   const [updateActiveAdmin, { isLoading: isLoadingUpdateActiveAdmin, isSuccess: isSuccessUpdateActiveAdmin }] = useUpdateActiveAdminMutation();
-  const [updateDestinationById, {isLoading: isLoadingUpdateDestinationById, isSuccess: isSuccessUpdateDestination, isError: isErrorUpdateDestination}] = useUpdateDestinationByIdMutation()
- 
-  const {data : destinations , isLoading: isLoadingDestinations, isError: isErrorDestinations} = useGetAllDestinationQuery()
+  const [updateDestinationById, { isLoading: isLoadingUpdateDestinationById, isSuccess: isSuccessUpdateDestination, isError: isErrorUpdateDestination }] = useUpdateDestinationByIdMutation()
+
+  const { data: destinations, isLoading: isLoadingDestinations, isError: isErrorDestinations } = useGetAllDestinationQuery()
   const [dataDestinationUpdate, setDataDestinationUpdate] = useState({})
+  const [createDestination] = useCreateDestinationMutation()
+  const [destination, setDestination] = useState({
+    name : '',
+    popularity: '',
+    description: '',
+    photo: ''
+  })
+
+
+  const addDestination = async (e) => {
+    e.preventDefault()
+    const res = await createDestination({...destination})
+  }
+
+  const HandlerDestination = (e) => {
+    setDestination(prev => {
+      return {
+        ...prev,
+        [e.target.name] : e.target.value
+      }
+    })
+  }
 
 
   const changeHandler = (e) => {
@@ -21,7 +43,7 @@ const DestinationInformation = () => {
     setDataDestinationUpdate(prev => {
       return {
         ...prev,
-        [e.target.name] : e.target.value
+        [e.target.name]: e.target.value
       }
     })
   }
@@ -31,13 +53,13 @@ const DestinationInformation = () => {
     formData.append('name', dataDestinationUpdate.name)
     formData.append('photo', dataDestinationUpdate.photo)
     formData.append('description', dataDestinationUpdate.description)
-    await updateDestinationById({id: dataDestinationUpdate.id, data: formData})
+    await updateDestinationById({ id: dataDestinationUpdate.id, data: formData })
   }
 
   useEffect(() => {
-    if(isSuccessUpdateDestination) successLoading('Success Update Destination')
-    if(isLoadingUpdateDestinationById) showLoading('Please wait, destination was updating')
-    if(isErrorUpdateDestination) failedLoading(`failed update destination`)
+    if (isSuccessUpdateDestination) successLoading('Success Update Destination')
+    if (isLoadingUpdateDestinationById) showLoading('Please wait, destination was updating')
+    if (isErrorUpdateDestination) failedLoading(`failed update destination`)
 
   }, isLoadingUpdateDestinationById, isErrorUpdateDestination, isSuccessUpdateDestination)
 
@@ -49,8 +71,55 @@ const DestinationInformation = () => {
         </div>
         <div className="col-12">
           <div className="card shadow">
-            <div className="card-header">
-              <h3 className="card-title text-center">Destination Information</h3>
+            <div className="card-header justify-content-between text-end">
+              <h3 className=" text-center ">Destination Information</h3>
+
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add
+              </button>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Destinations</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                      <FormInput
+                        title={`Name`}
+                        type="text"
+                        name={'name'}
+                        placeholder="Input Name Destination"
+                        value={destination.name}
+                      // onchange={changeHandler}
+                      />
+                      <FormInput
+                        title={`Popularity`}
+                        type="number"
+                        name={'popularity'}
+                        placeholder="Input Name Destination"
+                        value={destination.popularity}
+                      // onchange={changeHandler}
+                      />
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">Photo</label>
+                        <input class="form-control" type="file" id="formFile" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div className="card-body">
               {isLoadingDestinations ? 'Loading....' : (
@@ -90,11 +159,11 @@ const DestinationInformation = () => {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div className="modal-body">
-                                <FormInput 
+                                <FormInput
                                   title={`Name`}
                                   type="text"
                                   name={'name'}
-                                  placeholder="Input Name Destination" 
+                                  placeholder="Input Name Destination"
                                   value={dataDestinationUpdate?.name}
                                   onchange={changeHandler}
                                 />
@@ -102,12 +171,12 @@ const DestinationInformation = () => {
                                 <label htmlFor={`description`}>Desciprtion</label>
                                 <textarea className='form-control mb-3' name="description" id={`description${i}`} cols="30" rows="5" value={dataDestinationUpdate?.description} onChange={changeHandler}></textarea>
 
-                                <FormInput 
+                                <FormInput
                                   title={`Photo`}
                                   type="file"
                                   name={'photo'}
-                                  placeholder="Input Photo" 
-                                  onchange={(e) => setDataDestinationUpdate(prev => ({...prev, photo: e.target.files[0]}))}
+                                  placeholder="Input Photo"
+                                  onchange={(e) => setDataDestinationUpdate(prev => ({ ...prev, photo: e.target.files[0] }))}
                                 />
 
                                 <button className='btn btn-primary w-100' data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={updateDestinationHandler}>Create destination</button>
