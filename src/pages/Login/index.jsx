@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthTemplate from '../../../template/AuthLayout/AuthTemplate'
 import InputAuthForm from '../../../components/Forms/AuthForm/InputAuthForm'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import facebook from '../../assets/auth/facebook.png'
 import google from '../../assets/auth/google.png'
 import style from './Login.module.css'
@@ -12,10 +12,11 @@ import { setCredentials } from '../../app/reducer/authSlice'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { showLoading } from '../../common/loadingHandler'
-
+import { getGoogleUrl } from '../../../lib/getGoogleUrl'
 
 const Login = () => {
-
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [userLogin, { isLoading, isSuccess, isError, error }] = useUserLoginMutation()
@@ -65,6 +66,10 @@ const Login = () => {
     }
   }, [isLoading, isSuccess, isError]);
 
+  const googleRedirect = () => {
+    window.open(`http://localhost:3001/auth/google`, '_self')
+  }
+
   return (
     <AuthTemplate title={'Login'}>
       {error && (
@@ -98,9 +103,9 @@ const Login = () => {
         <div className="sign-with text-center">
           <p>or sign with</p>
           <div className="link-other-sign d-flex justify-content-center ">
-            <Link to='' className={`border-blue ${style.link} d-flex align-items-center justify-content-center me-4 rounded`} alt="" >
+            <div className={`border-blue ${style.link} d-flex align-items-center justify-content-center me-4 rounded`} alt="" onClick={googleRedirect}>
               <img src={google} alt="" />
-            </Link>
+            </div>
             <Link to='' className={`border-blue ${style.link} d-flex align-items-center justify-content-center rounded`} alt="" >
               <img src={facebook} alt="" />
             </Link>
