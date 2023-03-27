@@ -15,11 +15,51 @@ import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
-import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
+import LoginSuperAdmin from './pages/Admin/LoginSuperAdmin/LoginSuperAdmin';
 import PageNotFound from './pages/404/404';
 import PrivateRoute from './middlewares/PrivateRoute';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from './app/reducer/authSlice';
+import AdminInformation from './pages/Admin/Admin/Admin';
+import DestinationInformation from './pages/Admin/Destination/Destination';
 
 function App() {
+  const dispatch = useDispatch()
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const getUser = async () => {
+      fetch('http://localhost:3001/auth/login/success', {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+          "Access-control-Allow-Credentials": true
+        }
+      }).then(response => {
+        if(response.status == 200) return response.json()
+        throw new Error(`Authentication has been failed`)
+      }).then(resObj =>{
+        console.log(resObj.data)
+        setUser(resObj)
+        dispatch(setCredentials({
+          token: resObj.token,
+          user: resObj.data.profile
+        }))
+      }).catch(err => {
+        console.log(err)
+      }) 
+    }
+
+    return () => {
+      getUser()
+    }
+  }, [])
+
+  console.log(user)
+
   return (
     <Routes>
       <Route path="/profile" element={
@@ -47,7 +87,7 @@ function App() {
       <Route path="/*" element={<PageNotFound />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
-      <Route path="/admin/register" element={<RegisterAdmin />} />
+      <Route path="/admin/login-super" element={< LoginSuperAdmin/>} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={
           <PrivateRoute>
@@ -57,6 +97,11 @@ function App() {
         <Route path="flights" element={
           <PrivateRoute>
             <FlightInformation />
+          </PrivateRoute>
+        } />
+        <Route path="admin-list" element={
+          <PrivateRoute>
+            <AdminInformation />
           </PrivateRoute>
         } />
         <Route path="bookings" element={
@@ -72,6 +117,11 @@ function App() {
         <Route path="flights/create-flight" element={
           <PrivateRoute>
             <CreateFlight />
+          </PrivateRoute>
+        } />
+        <Route path="destinations" element={
+          <PrivateRoute>
+            <DestinationInformation />
           </PrivateRoute>
         } />
       </Route>

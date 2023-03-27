@@ -9,7 +9,7 @@ const LoginAdmin = () => {
   const dispatch = useDispatch()
   const [adminLogin, {isLoading, isSuccess}] = useAdminLoginMutation()
   const [user, setUser] = useState({
-    email: "",
+    emailOrUsername: "",
     passowrd: ""
   })
 
@@ -17,7 +17,6 @@ const LoginAdmin = () => {
     const res = await adminLogin(user)
     const {refreshToken, token, ...other} = res.data
     dispatch(setCredentials({user: other, token: token}))
-
   }
 
   const changeHandler = (e) => {
@@ -44,8 +43,8 @@ const LoginAdmin = () => {
           <div className="card-body d-flex flex-column">
             <h5 className="card-title fs-3 fw-bold text-center mb-3">Sign In</h5>
             <div className="mb-3">
-              <label for="email" className="form-label fw-normal">Email address</label>
-              <input type="Email" className="form-control" value={user.email} name='email' onChange={changeHandler} id="email" placeholder="example@mail.com" />
+              <label for="emailOrUsername" className="form-label fw-normal">Email or Username</label>
+              <input type="text" className="form-control" value={user.emailOrUsername} name='emailOrUsername' onChange={changeHandler} id="emailOrUsername" placeholder="example@mail.com" />
             </div>
             <div className="mb-2">
               <label for="password" className="form-label fw-normal">Password</label>
@@ -56,10 +55,6 @@ const LoginAdmin = () => {
             </div>
             <div className="mb-2">
               <input type="submit" className='btn btn-primary w-100' value={`Sign In`} onClick={loginHandler}/>
-            </div>
-
-            <div className="mb-3">
-              <Link to={`/admin/register`} className='btn btn-danger w-100' >Sign Up</Link>
             </div>
           </div>
         </div>

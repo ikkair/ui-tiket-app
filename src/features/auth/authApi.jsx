@@ -41,14 +41,25 @@ export const authApi = apiSlice.injectEndpoints({
 
     adminRegister: builder.mutation({
       query: (data) =>  ({
-        url: "admin/register",
+        url: "admin/create",
+        method: "POST",
+        body: data
+      }),
+
+      invalidatesTags: ['getAllAdmin'],
+      transformResponse: (response, meta, args) => response.data
+    }),
+
+    superAdminLogin: builder.mutation({
+      query: (data) =>  ({
+        url: "super-admin/login",
         method: "POST",
         body: data
       }),
 
       transformResponse: (response, meta, args) => response.data
-    })
+    }),
   })
 })
 
-export const { useAdminLoginMutation, useUserLoginMutation, useUserRegisterMutation, useAdminRegisterMutation, useGetUserProfileQuery } = authApi 
+export const { useAdminLoginMutation, useUserLoginMutation, useUserRegisterMutation, useAdminRegisterMutation, useGetUserProfileQuery, useSuperAdminLoginMutation } = authApi 
