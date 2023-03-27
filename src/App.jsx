@@ -95,10 +95,10 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
       <Route path="/*" element={<PageNotFound />} />
-      <Route path="/destination" element={<Destination />} />
+      <Route path="/destination/:id" element={<Destination />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
-      <Route path="/admin/login-super" element={< LoginSuperAdmin/>} />
+      <Route path="/admin/login-super" element={<LoginSuperAdmin />} />
       <Route path="/admin/dashboard">
         <Route
           path="airlines"

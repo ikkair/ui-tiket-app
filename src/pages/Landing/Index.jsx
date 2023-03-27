@@ -269,7 +269,7 @@ const Index = () => {
                 > */}
                 {destination?.slice(0, 5).map((item, i) => (
                   // <SwiperSlide>
-                  <Link href={'/'} className={`cardDestination mx-4 text-white`}>
+                  <Link to={`/destination/${item.id}`} className={`cardDestination mx-4 text-white`}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
