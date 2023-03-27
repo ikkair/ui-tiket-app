@@ -15,7 +15,7 @@ import BookingInformation from './pages/Admin/Booking/Booking';
 import Landing from './pages/Landing/Index';
 import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
-import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
+import LoginSuperAdmin from './pages/Admin/LoginSuperAdmin/LoginSuperAdmin';
 import PageNotFound from './pages/404/404';
 import PrivateRoute from './middlewares/PrivateRoute';
 import { useEffect, useState } from 'react';
@@ -82,7 +82,7 @@ function App() {
       <Route path="/*" element={<PageNotFound />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
-      <Route path="/admin/register" element={<RegisterAdmin />} />
+      <Route path="/admin/login-super" element={< LoginSuperAdmin/>} />
       <Route path="/admin/dashboard">
         <Route path="airlines" element={
           <PrivateRoute>
