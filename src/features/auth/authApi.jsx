@@ -46,6 +46,7 @@ export const authApi = apiSlice.injectEndpoints({
         body: data
       }),
 
+      invalidatesTags: ['getAllAdmin'],
       transformResponse: (response, meta, args) => response.data
     }),
 

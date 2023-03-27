@@ -21,6 +21,8 @@ import PrivateRoute from './middlewares/PrivateRoute';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from './app/reducer/authSlice';
+import AdminInformation from './pages/Admin/Admin/Admin';
+import DestinationInformation from './pages/Admin/Destination/Destination';
 
 function App() {
   const dispatch = useDispatch()
@@ -51,7 +53,9 @@ function App() {
       }) 
     }
 
-    getUser()
+    return () => {
+      getUser()
+    }
   }, [])
 
   console.log(user)
@@ -95,6 +99,11 @@ function App() {
             <FlightInformation />
           </PrivateRoute>
         } />
+        <Route path="admin-list" element={
+          <PrivateRoute>
+            <AdminInformation />
+          </PrivateRoute>
+        } />
         <Route path="bookings" element={
           <PrivateRoute>
             <BookingInformation />
@@ -108,6 +117,11 @@ function App() {
         <Route path="flights/create-flight" element={
           <PrivateRoute>
             <CreateFlight />
+          </PrivateRoute>
+        } />
+        <Route path="destinations" element={
+          <PrivateRoute>
+            <DestinationInformation />
           </PrivateRoute>
         } />
       </Route>

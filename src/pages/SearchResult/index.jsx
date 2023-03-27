@@ -31,7 +31,6 @@ export const SearchResult = () => {
     sort: ""
   })
 
-
   const { data: flights, isLoading, isSuccess, isError } = useGetAllFlightQuery(
     {
       starting_place: searchResult?.starting_place,

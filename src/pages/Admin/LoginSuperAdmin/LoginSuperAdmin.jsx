@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSuperAdminLoginMutation } from '../../../features/auth/authApi'
+import { authApi, useSuperAdminLoginMutation } from '../../../features/auth/authApi'
 import { showLoading } from '../../../common/loadingHandler'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../../app/reducer/authSlice'
+import { ssoAPi } from '../../../features/SSO/ssoApi'
 
 const LoginSuperAdmin = () => {
-  
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [superAdmin, { isLoading, isSuccess, isError, error }] = useSuperAdminLoginMutation()
@@ -26,13 +26,15 @@ const LoginSuperAdmin = () => {
   };
 
   const directPath = () => {
-    return navigate('/admin/dashboard')
+    return navigate('/admin/dashboard/flights')
   }
 
   const loginHandler = async (e) => {
     e.preventDefault();
     const res = await superAdmin(data);
+    dispatch(ssoAPi.util.invalidateTags(['logoutSSO']))
     const {token, refreshToken, ...user} = res.data
+    localStorage.setItem('role', user.role)
     dispatch(setCredentials({ user: user, token: res?.data?.token }));
   };
 
