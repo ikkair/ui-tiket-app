@@ -23,13 +23,14 @@ export const destinationApi = apiSlice.injectEndpoints({
       transformResponse: (response, meta, args) => response.data
     }),
     createDestination: builder.mutation({
-      query: ({data}) => ({
-        url: `destinations/`,
+      query: (data) => ({
+        url: `destinations`,
         method: "POST",
         body: data
       }),
 
       providesTags: ['createDestination'],
+      invalidatesTags: ['getAllDestination'],
       transformResponse: (response, meta, args) => response.data
     }),
 
