@@ -17,10 +17,50 @@ import BookingDetail from './pages/BookingDetail/index';
 import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 import PageNotFound from './pages/404/404';
-import PrivateRoute from './middlewares/PrivateRoute';
 import Destination from './pages/Destination';
+import PrivateRoute from './middlewares/PrivateRoute';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from './app/reducer/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      fetch('http://localhost:3001/auth/login/success', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+          'Access-control-Allow-Credentials': true,
+        },
+      })
+        .then((response) => {
+          if (response.status == 200) return response.json();
+          throw new Error(`Authentication has been failed`);
+        })
+        .then((resObj) => {
+          setUser(resObj);
+          dispatch(
+            setCredentials({
+              token: resObj.token,
+              user: resObj.data.profile,
+            })
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    getUser();
+  }, []);
+
+  console.log(user);
+
   return (
     <Routes>
       <Route
