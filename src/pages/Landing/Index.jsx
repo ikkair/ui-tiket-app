@@ -245,13 +245,35 @@ const Index = () => {
               </div>
 
               <div className="col-12 mt-3 trending-overflow d-flex">
-                {destination?.map((item,i) => (
+                {/* <Swiper
+                  spaceBetween={30}
+                  slidesOffsetBefore={10}
+                  slidesOffsetAfter={10}
+                  breakpoints={{
+                    100: {
+                      slidesPerView: 5,
+                    },
+                    400: {
+                      slidesPerView: 5,
+                    },
+                    768: {
+                      slidesPerView: 5,
+                    },
+                    1024: {
+                      slidesPerView: 5, // tampilkan list card tanpa preview sebelum dan sesudahnya
+                    },
+                    1280: {
+                      slidesPerView: 5,
+                    },
+                  }}
+                > */}
+                {destination?.slice(0, 5).map((item, i) => (
                   // <SwiperSlide>
-                  <Link href={'/'} className={`cardDestination me-5 text-white`}>
+                  <Link href={'/'} className={`cardDestination mx-4 text-white`}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={`https://source.unsplash.com/random/200x${250 + i +1}/?village`} crossOrigin="anonymous" alt="" className="image" />
+                        <img src={`https://source.unsplash.com/random/200x${250 + i + 1}/?village`} crossOrigin="anonymous" alt="" className="image" />
                       </div>
                       <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
@@ -272,7 +294,7 @@ const Index = () => {
                   </Link>
                   // </SwiperSlide>
                 ))}
-                
+                {/* </Swiper> */}
               </div>
             </div>
             <div className="customSpace"></div>
@@ -298,7 +320,7 @@ const Index = () => {
                     slidesOffsetAfter={10}
                     breakpoints={{
                       100: {
-                        slidesPerView: 2,
+                        slidesPerView: 1,
                       },
                       425: {
                         slidesPerView: 2,

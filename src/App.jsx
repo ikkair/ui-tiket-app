@@ -18,25 +18,35 @@ import LoginAdmin from './pages/Admin/Login/LoginAdmin';
 import RegisterAdmin from './pages/Admin/Register/RegisterAdmin';
 import PageNotFound from './pages/404/404';
 import PrivateRoute from './middlewares/PrivateRoute';
+import Destination from './pages/Destination';
 
 function App() {
   return (
     <Routes>
-      <Route path="/profile" element={
-        <PrivateRoute>
-          <Profile />
-        </PrivateRoute>
-      } />
-      <Route path="/my-booking" element={
-        <PrivateRoute>
-          <MyBooking />
-        </PrivateRoute>
-      } />
-      <Route path="/my-booking/ticket/:id" element={
-        <PrivateRoute>
-          <BookingDetail />
-        </PrivateRoute>
-      } />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/my-booking"
+        element={
+          <PrivateRoute>
+            <MyBooking />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/my-booking/ticket/:id"
+        element={
+          <PrivateRoute>
+            <BookingDetail />
+          </PrivateRoute>
+        }
+      />
       <Route path="/flights/:id" element={<FlightDetail />} />
       <Route path="/flights" element={<SearchResult />} />
       <Route path="/login" element={<Login />} />
@@ -45,35 +55,51 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/home" element={<Landing />} />
       <Route path="/*" element={<PageNotFound />} />
+      <Route path="/destination" element={<Destination />} />
 
       <Route path="/admin/login" element={<LoginAdmin />} />
       <Route path="/admin/register" element={<RegisterAdmin />} />
       <Route path="/admin/dashboard">
-        <Route path="airlines" element={
-          <PrivateRoute>
-            <Airline />
-          </PrivateRoute>
-        } />
-        <Route path="flights" element={
-          <PrivateRoute>
-            <FlightInformation />
-          </PrivateRoute>
-        } />
-        <Route path="bookings" element={
-          <PrivateRoute>
-            <BookingInformation />
-          </PrivateRoute>
-        } />
-        <Route path="flights/edit/:id" element={
-          <PrivateRoute>
-           <UpdateFlight />
-          </PrivateRoute>
-        } />
-        <Route path="flights/create-flight" element={
-          <PrivateRoute>
-            <CreateFlight />
-          </PrivateRoute>
-        } />
+        <Route
+          path="airlines"
+          element={
+            <PrivateRoute>
+              <Airline />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="flights"
+          element={
+            <PrivateRoute>
+              <FlightInformation />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="bookings"
+          element={
+            <PrivateRoute>
+              <BookingInformation />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="flights/edit/:id"
+          element={
+            <PrivateRoute>
+              <UpdateFlight />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="flights/create-flight"
+          element={
+            <PrivateRoute>
+              <CreateFlight />
+            </PrivateRoute>
+          }
+        />
       </Route>
     </Routes>
   );
