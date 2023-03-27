@@ -40,6 +40,7 @@ function App() {
         if(response.status == 200) return response.json()
         throw new Error(`Authentication has been failed`)
       }).then(resObj =>{
+        console.log(resObj.data)
         setUser(resObj)
         dispatch(setCredentials({
           token: resObj.token,

@@ -149,7 +149,7 @@ export const Navbar = () => {
 
               <div className="dropdown navbar-profile profile ms-2">
                 <div className="img-group d-flex align-items-center" data-bs-trigger="focus" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src={userLogin?.photo === null || undefined ? photo : userLogin?.photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
+                  <img src={!userLogin?.photo ? photo : userLogin?.photo} className={`rounded-circle me-2`} alt="profil-user" width={40} height={40} />
                   <FontAwesomeIcon className="fs-4 text-dark" icon={faCaretDown} />
                 </div>
                 <ul className="dropdown-menu dropdown-menu-end">
