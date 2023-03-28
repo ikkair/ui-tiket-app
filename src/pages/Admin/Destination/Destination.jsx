@@ -48,6 +48,7 @@ const DestinationInformation = () => {
     formData.append('name', dataDestinationUpdate.name)
     formData.append('photo', dataDestinationUpdate.photo)
     formData.append('description', dataDestinationUpdate.description)
+    formData.append('popularity', dataDestinationUpdate.popularity)
     await updateDestinationById({ id: dataDestinationUpdate.id, data: formData })
   }
 

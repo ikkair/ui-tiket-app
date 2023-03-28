@@ -46,6 +46,7 @@ function App() {
         })
         .then((resObj) => {
           setUser(resObj);
+          localStorage.setItem('sso', 'true')
           dispatch(
             setCredentials({
               token: resObj.token,
