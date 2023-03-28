@@ -198,6 +198,7 @@
 @media (max-width: 767px) {
   .customSpace {
     padding: 0 !important;
+    margin-bottom: 50px;
   }
 }
 
