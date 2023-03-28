@@ -1,5 +1,5 @@
 .border-blue {
-  border: 1px solid #2395ff !important;
+  border: 1px solid #F08705 !important;
 }
 
 #popover-trigger-click-root-close {
@@ -11,15 +11,15 @@
 }
 
 .border-photo-blue {
-  border: 3px solid #2395ff !important;
+  border: 3px solid #F08705 !important;
 }
 
 .text-blue {
-  color: #2395ff !important;
+  color: #F08705 !important;
 }
 
 .bg-blue {
-  background-color: #2395ff !important;
+  background-color: #F08705 !important;
 }
 .text-blue-secondary {
   color: #aefaff !important;
@@ -34,14 +34,14 @@
 }
 
 .btn-blue {
-  background: #2395ff !important;
+  background: #F08705 !important;
   color: #ffffff !important;
-  box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
+  box-shadow: 0px 8px 10px rgba(255, 145, 35, 0.3) !important;
   border-radius: 10px !important;
 }
 
 .btn-blue-height {
-  background: #2395ff !important;
+  background: #F08705 !important;
   height: 50px;
   color: #ffffff !important;
   box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3) !important;
@@ -52,7 +52,7 @@
   background: #ffffff !important;
   height: 50px;
   color: #ffffff !important;
-  border: 1px solid #2395ff !important;
+  border: 1px solid #F08705 !important;
   border-radius: 10px !important;
 }
 

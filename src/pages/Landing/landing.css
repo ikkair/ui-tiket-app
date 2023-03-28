@@ -4,10 +4,10 @@
 }
 
 .blue {
-  color: #2395ff !important;
+  color: #F08705 !important;
 }
 .bgBlue {
-  background-color: #2395ff !important;
+  background-color: #F08705 !important;
 }
 
 .customBorder {
@@ -23,7 +23,7 @@
 }
 
 .bgImage {
-  background-image: url('../../assets/explore/background.png');
+  /* background-image: url('../../assets/explore/background.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -68,8 +68,9 @@
 }
 
 .customImageBubble {
-  margin-top: 10px;
-  margin-right: 250px;
+  position: relative;
+  top: 10px;
+  right: 250px;
 }
 
 .cardHero {
@@ -164,7 +165,7 @@
   max-width: 160px;
   height: 160px;
   border: 5px solid white;
-  background-color: #2395ff;
+  background-color: #F08705;
 }
 .spaceCust {
   margin-left: 70px;
@@ -197,6 +198,7 @@
 @media (max-width: 767px) {
   .customSpace {
     padding: 0 !important;
+    margin-bottom: 50px;
   }
 }
 

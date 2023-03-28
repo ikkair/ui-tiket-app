@@ -16,7 +16,7 @@ export const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const urlPath = window.location.pathname;
-  const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
+  const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery({}, {skip: localStorage.getItem(`sso`) ? false: true})
 
   const user = useSelector(state => state.auth.user)
   const urlWithoutBanner = ['/home', '/'];
@@ -54,7 +54,7 @@ export const Navbar = () => {
           {/* <!-- Nav Logo --> */}
           <Link className="navbar-brand ps-3 ps-sm-0 d-flex align-items-center me-4 btn fs-5 text-dark" to="/home">
             <img src={logo} alt="logo-image" className="img-fluid small-logo" />
-            <span className="text-dark fs-5 ms-2 fw-semibold">Ankasha</span>
+            <span className="text-dark fs-5 ms-2 fw-semibold">BuroQ</span>
           </Link>
 
           {/* Search Tablet Mode */}
@@ -77,7 +77,7 @@ export const Navbar = () => {
 
           <div class="offcanvas offcanvas-start d-sm-none d-block" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h2 className='fw-bolder text-blue'>Ankasa</h2>
+              <h2 className='fw-bolder text-blue'>BuroQ</h2>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -135,7 +135,7 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {localStorage.getItem('token') ? (
+          {!localStorage.getItem('token') || localStorage.getItem('token') != 'null' ? (
             <div className="d-none d-lg-flex gap-2">
               <Link to="" className={`btn fs-5 text-light btn position-relative text-light`} data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                 <FontAwesomeIcon className="text-softdark" icon={faEnvelope}></FontAwesomeIcon>

@@ -14,6 +14,7 @@ import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrow
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetAllDestinationQuery } from '../../features/destination/destinationApi';
+import { useGetAllFlightQuery } from '../../features/flight/flightApi';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -60,24 +61,41 @@ const Index = () => {
   // Destination
   const { data: destination } = useGetAllDestinationQuery();
 
+  // const { data: ticket } = useGetAllFlightQuery({
+  //   starting_place: '',
+  //   destination_place: '',
+  //   type_trip: '',
+  //   departure_date: '',
+  //   class_flight: '',
+  //   transit: '',
+  //   filter_luggage: '',
+  //   filter_wifi: '',
+  //   filter_meal: '',
+  //   limit: '',
+  //   page: '',
+  //   sortBY: '',
+  //   sort: '',
+  // });
+  // console.log(ticket?.data);
+
   return (
     <>
       <BaseLayout>
         {/* Hero */}
-        <section className="container-fluid">
+        <section className="container-fluid overflow-x-hidden">
           <div className="row">
             <div className="col-md-6 my-5 Hero">
-              <div className="col-md-12 d-flex justify-content-center w-100 flex-column ms-5 ps-5 pb-5 pt-4">
-                <h1 className="fw-bold">
+              <div className="col-md-12 d-flex justify-content-center w-100 flex-column ps-5 pb-5 pt-4">
+                <h1 className="fw-bold ps-5">
                   Find your <span className="text-blue">Flight</span>
                 </h1>
-                <p className="fw-semibold mt-2">and explore the world with us</p>
+                <p className="fw-semibold mt-2 ps-5">and explore the world with us</p>
               </div>
               <div className="col-md-12 text-start none Hero">
                 <img src={large} className="customImg img-fluid" alt="" />
               </div>
             </div>
-            <div className="col-md-6 Hero">
+           <div className="col-md-6 Hero">
               <div className="col-md-12 text-end mt-2 Hero none">
                 <img src={small} className={`img-fluid imgFluidHero cusImg`} alt="" />
               </div>
@@ -225,8 +243,8 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> 
+          </div> 
         </section>
         {/* End Hero */}
 
@@ -245,17 +263,39 @@ const Index = () => {
               </div>
 
               <div className="col-12 mt-3 trending-overflow d-flex">
-                {destination?.map((item,i) => (
+                {/* <Swiper
+                  spaceBetween={30}
+                  slidesOffsetBefore={10}
+                  slidesOffsetAfter={10}
+                  breakpoints={{
+                    100: {
+                      slidesPerView: 5,
+                    },
+                    400: {
+                      slidesPerView: 5,
+                    },
+                    768: {
+                      slidesPerView: 5,
+                    },
+                    1024: {
+                      slidesPerView: 5, // tampilkan list card tanpa preview sebelum dan sesudahnya
+                    },
+                    1280: {
+                      slidesPerView: 5,
+                    },
+                  }}
+                > */}
+                {destination?.slice(0, 5).map((item, i) => (
                   // <SwiperSlide>
-                  <Link href={'/'} className={`cardDestination me-5 text-white`}>
+                  <Link to={`/destination/${item.id}`} className={`cardDestination mx-4 text-white`}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={`https://source.unsplash.com/random/200x${250 + i +1}/?village`} crossOrigin="anonymous" alt="" className="image" />
+                        <img src={`https://source.unsplash.com/random/200x${250 + i + 1}/?village`} crossOrigin="anonymous" alt="" className="image" />
                       </div>
-                      <div className="cardLabel py-1 px-3 mx-2 text-white">
+                      {/* <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
-                      </div>
+                      </div> */}
                       <div className="cardDescription px-2">
                         <div className="row align-items-center">
                           <div className="col">
@@ -272,7 +312,7 @@ const Index = () => {
                   </Link>
                   // </SwiperSlide>
                 ))}
-                
+                {/* </Swiper> */}
               </div>
             </div>
             <div className="customSpace"></div>
@@ -282,7 +322,7 @@ const Index = () => {
 
         {/* Top Destination */}
         <section className="container-fluid py-3 px-3">
-          <div className="py-5 bgImage text-white">
+          <div className="py-5 bg-blue bgImage text-white">
             <div className="container-fluid">
               <div className="row justify-content-center">
                 <div className="col-md-8 text-center">
@@ -298,7 +338,7 @@ const Index = () => {
                     slidesOffsetAfter={10}
                     breakpoints={{
                       100: {
-                        slidesPerView: 2,
+                        slidesPerView: 1,
                       },
                       425: {
                         slidesPerView: 2,
