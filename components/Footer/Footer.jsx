@@ -13,13 +13,13 @@ const Footer = () => {
         <div className="d-flex flex-column bd-highlight me-4">
           <div className="mb-auto bd-highlight">
             <img src={logo} alt="logo" />
-            <span className="ms-3 fs-5 fw-bolder mb-4">Ankasa</span>
+            <span className="ms-3 fs-5 fw-bolder mb-4">BuroQ</span>
             <p className="mt-3 text-secondary">
               Find your Flight and explore the <br></br>
               world with us. We will take care of the rest
             </p>
           </div>
-          <p className="text-secondary bd-highlight mt-6">© Ankasa. All Rights Reserved.</p>
+          <p className="text-secondary bd-highlight mt-6">© BuroQ. All Rights Reserved.</p>
         </div>
         <div className="me-4">
           <p className="fw-bolder mb-4">Features</p>
@@ -54,7 +54,7 @@ const Footer = () => {
         <div className="d-flex flex-column bd-highlight">
           <div className="mb-auto bd-highlight">
             <img src={logo} alt="logo" />
-            <span className="ms-3 fs-5 fw-bolder mb-4">Ankasa</span>
+            <span className="ms-3 fs-5 fw-bolder mb-4">BuroQ</span>
             <p className="mt-4 text-secondary lh-base">
               Find your Flight and explore the <br></br>
               world with us. We will take care of the rest
@@ -68,7 +68,7 @@ const Footer = () => {
           <p className="text-secondary">Chat</p>
           <p className="text-secondary">Notification</p>
         </div>
-        <p className="fw-bolder mb-4 mt-3">Download Angkasa App</p>
+        <p className="fw-bolder mb-4 mt-3">Download BuroQ App</p>
         <div className="d-flex flex-column flex-sm-row">
           <img src={apple} classname="mb-4" alt="app-store" style={{ width: '150px' }} />
           <img className="ms-0 ms-sm-3 mt-4 mt-sm-0" src={playstore} alt="playstore" style={{ width: '150px' }} />
@@ -86,7 +86,7 @@ const Footer = () => {
           <div className="mt-4">
             <FontAwesomeIcon icon={faLocationDot}></FontAwesomeIcon>
             <span className="text-secondary bd-highlight ms-2">Jakarta Indonesia</span>
-            <p className="text-secondary bd-highlight mt-3">© Ankasa. All Rights Reserved.</p>
+            <p className="text-secondary bd-highlight mt-3">© BuroQ. All Rights Reserved.</p>
           </div>
         </div>
       </div>

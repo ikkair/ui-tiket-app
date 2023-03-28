@@ -15,8 +15,8 @@ import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux'
 
 const Profile = () => {
-
-  const {data, isLoading, isSuccess} = useGetUserProfileQuery()
+  const {data, isLoading, isSuccess} = useGetUserProfileQuery({}, {skip: localStorage.getItem(`sso`) ? false: true})
+  console.log(data)
   const [updateUserProfile, {isLoading: isLoadingUpdateUser, isSuccess: isSuccessUpdateUser, isError: isErrorUpdateUser}] = useUpdateUserProfileMutation()
   const [profile, setProfile] = useState({})
 

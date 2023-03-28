@@ -67,7 +67,7 @@ export const SearchCard = ({onchange}) => {
       <div className="accordion accordion-flush" id="accordionPanelsStayOpenExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-            <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
               Transit
             </button>
           </h2>
@@ -88,7 +88,7 @@ export const SearchCard = ({onchange}) => {
             </div>
           </div>
           <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-            <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+            <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
               Facilites
             </button>
           </h2>
@@ -117,7 +117,7 @@ export const SearchCard = ({onchange}) => {
 
 
           <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-            <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo2" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+            <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo2" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
               Airlines
             </button>
           </h2>
@@ -135,7 +135,7 @@ export const SearchCard = ({onchange}) => {
           </div>
 
           <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-            <button className="accordion-button fw-bolder" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+            <button className="accordion-button fw-bolder text-blue" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
               Price
             </button>
           </h2>
@@ -146,7 +146,7 @@ export const SearchCard = ({onchange}) => {
                   <div className="title">Lowest</div>
                   <div className="title">Highest</div>
                 </div>
-                <RangeSlider value={value} onInput={setValue} />
+                <RangeSlider className={`text-blue`} value={value} onInput={setValue} />
               </div>
             </div>
           </div>
