@@ -23,11 +23,6 @@ const DestinationInformation = () => {
   })
 
 
-  const addDestination = async (e) => {
-    e.preventDefault()
-    const res = await createDestination({...destination})
-  }
-
   const HandlerDestination = (e) => {
     setDestination(prev => {
       return {

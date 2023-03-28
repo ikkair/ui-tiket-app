@@ -64,20 +64,20 @@ const Index = () => {
     <>
       <BaseLayout>
         {/* Hero */}
-        <section className="container-fluid">
+        <section className="container-fluid overflow-x-hidden">
           <div className="row">
             <div className="col-md-6 my-5 Hero">
-              <div className="col-md-12 d-flex justify-content-center w-100 flex-column ms-5 ps-5 pb-5 pt-4">
-                <h1 className="fw-bold">
+              <div className="col-md-12 d-flex justify-content-center w-100 flex-column ps-5 pb-5 pt-4">
+                <h1 className="fw-bold ps-5">
                   Find your <span className="text-blue">Flight</span>
                 </h1>
-                <p className="fw-semibold mt-2">and explore the world with us</p>
+                <p className="fw-semibold mt-2 ps-5">and explore the world with us</p>
               </div>
               <div className="col-md-12 text-start none Hero">
                 <img src={large} className="customImg img-fluid" alt="" />
               </div>
             </div>
-            <div className="col-md-6 Hero">
+           <div className="col-md-6 Hero">
               <div className="col-md-12 text-end mt-2 Hero none">
                 <img src={small} className={`img-fluid imgFluidHero cusImg`} alt="" />
               </div>
@@ -225,8 +225,8 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> 
+          </div> 
         </section>
         {/* End Hero */}
 
@@ -282,7 +282,7 @@ const Index = () => {
 
         {/* Top Destination */}
         <section className="container-fluid py-3 px-3">
-          <div className="py-5 bgImage text-white">
+          <div className="py-5 bg-blue bgImage text-white">
             <div className="container-fluid">
               <div className="row justify-content-center">
                 <div className="col-md-8 text-center">

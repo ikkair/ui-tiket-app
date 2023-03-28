@@ -43,6 +43,7 @@ function App() {
         throw new Error(`Authentication has been failed`)
       }).then(resObj =>{
         setUser(resObj)
+        localStorage.setItem('sso', 'true')
         dispatch(setCredentials({
           token: resObj.token,
           user: resObj.data.profile
