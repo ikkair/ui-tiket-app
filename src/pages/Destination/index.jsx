@@ -48,7 +48,7 @@ const Destination = () => {
             </div>
           </div>
           <div className="description my-5 d-flex justify-content-center">
-            <div className="desc w-75 text-center fs-5">{data?.description}</div>
+            <div className="desc w-75 fs-5">{data?.description}</div>
           </div>
           <div className="container d-flex justify-content-center">
             <div className="ticket w-75 mb-5">

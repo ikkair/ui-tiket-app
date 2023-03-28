@@ -3,7 +3,7 @@ import { setCredentials, logout } from '../reducer/authSlice'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_ENDPOINT,
-  credentials: "same-origin",
+  credentials: "include",
   prepareHeaders: (headers, { getState }) => {
 
     if (localStorage.getItem('token')) {
@@ -30,7 +30,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   }
 
   if (result?.error?.status == 401) {
-    api.dispatch(logout())
+    if(!localStorage.getItem('token')) api.dispatch(logout())
   }
 
   return result

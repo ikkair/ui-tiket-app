@@ -10,6 +10,7 @@ export const adminApi = apiSlice.injectEndpoints({
         body: data
       }),
 
+      invalidatesTags: ['getAllAdmin'],
       transformResponse: (response, meta, args) => response.data
     }),
 
@@ -18,6 +19,7 @@ export const adminApi = apiSlice.injectEndpoints({
         url: "admin/list"
       }),
 
+      providesTags: ['getAllAdmin'],
       transformResponse: (response, meta, args) => response.data
     }),
   })

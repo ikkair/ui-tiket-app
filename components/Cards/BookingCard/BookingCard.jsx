@@ -14,9 +14,7 @@ import meal from '../../../src/assets/icon/burger.png'
 const BookingCard = ({ header, classHeader, id_flight, status, id_booking, starting_place, destination_place }) => {
   const { data: flight } = useGetFlightByIdQuery(id_flight);
   const { data: passangers } = useGetPassangersByIdBookingQuery(id_booking);
-  console.log(flight);
-
-  console.log(passangers);
+  
   return (
     <Card className={'border-0 mb-3 main-border overflow-hidden'}>
       {header && (

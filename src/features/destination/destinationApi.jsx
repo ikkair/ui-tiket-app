@@ -11,6 +11,29 @@ export const destinationApi = apiSlice.injectEndpoints({
       providesTags: ['getAllDestination'],
       transformResponse: (response, meta, args) => response.data,
     }),
+
+    updateDestinationById: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `destinations/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+
+      invalidatesTags: ['getAllDestination'],
+      transformResponse: (response, meta, args) => response.data,
+    }),
+    createDestination: builder.mutation({
+      query: (data) => ({
+        url: `destinations`,
+        method: 'POST',
+        body: data,
+      }),
+
+      providesTags: ['createDestination'],
+      invalidatesTags: ['getAllDestination'],
+      transformResponse: (response, meta, args) => response.data,
+    }),
+
     getDestinationById: builder.query({
       query: (id) => ({
         url: `destinations/${id}`,
@@ -22,4 +45,4 @@ export const destinationApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllDestinationQuery, useGetDestinationByIdQuery } = destinationApi;
+export const { useGetAllDestinationQuery, useUpdateDestinationByIdMutation, useGetDestinationByIdQuery, useCreateDestinationMutation } = destinationApi;

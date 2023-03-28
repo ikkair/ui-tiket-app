@@ -17,7 +17,6 @@ const LoginAdmin = () => {
     const res = await adminLogin(user)
     const {refreshToken, token, ...other} = res.data
     dispatch(setCredentials({user: other, token: token}))
-
   }
 
   const changeHandler = (e) => {
@@ -56,10 +55,6 @@ const LoginAdmin = () => {
             </div>
             <div className="mb-2">
               <input type="submit" className='btn btn-primary w-100' value={`Sign In`} onClick={loginHandler}/>
-            </div>
-
-            <div className="mb-3">
-              <Link to={`/admin/register`} className='btn btn-danger w-100' >Sign Up</Link>
             </div>
           </div>
         </div>

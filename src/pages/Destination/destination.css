@@ -52,3 +52,25 @@
   margin-top: -30px;
   font-size: 100px;
 }
+
+.desc {
+  text-align: justify !important;
+  text-align-last: center !important ;
+}
+
+@media (max-width: 768px) {
+  .text-say {
+    font-size: 40px;
+  }
+
+  .text-vaca {
+    margin-top: -20px;
+    font-size: 25px;
+    color: #6d86d6;
+  }
+
+  .text-destination {
+    margin-top: -10px;
+    font-size: 50px;
+  }
+}

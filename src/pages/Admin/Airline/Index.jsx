@@ -18,7 +18,6 @@ const Airline = () => {
     active: false
   })
 
-  console.log(airlanes)
   const [dataAirlineUpdate, setDataAirlineUpdate] = useState({})
 
   const updateHandler = async (e, id) => {

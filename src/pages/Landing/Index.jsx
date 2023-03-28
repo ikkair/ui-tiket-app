@@ -14,6 +14,7 @@ import { faAngleLeft, faAngleRight, faArrowRight, faArrowRightArrowLeft, faArrow
 import BaseLayout from '../../../template/BaseLayout/BaseLayout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetAllDestinationQuery } from '../../features/destination/destinationApi';
+import { useGetAllFlightQuery } from '../../features/flight/flightApi';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -59,6 +60,23 @@ const Index = () => {
 
   // Destination
   const { data: destination } = useGetAllDestinationQuery();
+
+  // const { data: ticket } = useGetAllFlightQuery({
+  //   starting_place: '',
+  //   destination_place: '',
+  //   type_trip: '',
+  //   departure_date: '',
+  //   class_flight: '',
+  //   transit: '',
+  //   filter_luggage: '',
+  //   filter_wifi: '',
+  //   filter_meal: '',
+  //   limit: '',
+  //   page: '',
+  //   sortBY: '',
+  //   sort: '',
+  // });
+  // console.log(ticket?.data);
 
   return (
     <>
@@ -275,9 +293,9 @@ const Index = () => {
                       <div className="cardImage">
                         <img src={`https://source.unsplash.com/random/200x${250 + i + 1}/?village`} crossOrigin="anonymous" alt="" className="image" />
                       </div>
-                      <div className="cardLabel py-1 px-3 mx-2 text-white">
+                      {/* <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
-                      </div>
+                      </div> */}
                       <div className="cardDescription px-2">
                         <div className="row align-items-center">
                           <div className="col">
