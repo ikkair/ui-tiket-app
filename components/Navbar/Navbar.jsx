@@ -41,9 +41,22 @@ export const Navbar = () => {
     }
   };
 
+  const logoutSSO = async () => {
+    await fetch(`http://localhost:3001/auth/logout`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        'Access-control-Allow-Credentials': true,
+      },
+    })
+  }
+
   const logoutHandler = async (e) => {
     dispatch(logout())
     navigate('/login')
+    await logoutSSO()
   };
 
 
