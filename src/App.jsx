@@ -29,38 +29,38 @@ function App() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const getUser = async () => {
-      fetch('http://localhost:3001/auth/login/success', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-type': 'application/json',
-          'Access-control-Allow-Credentials': true,
-        },
-      })
-        .then((response) => {
-          if (response.status == 200) return response.json();
-          throw new Error(`Authentication has been failed`);
-        })
-        .then((resObj) => {
-          setUser(resObj);
-          localStorage.setItem('sso', 'true')
-          dispatch(
-            setCredentials({
-              token: resObj.token,
-              user: resObj.data.profile,
-            })
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     fetch('http://localhost:3001/auth/login/success', {
+  //       method: 'GET',
+  //       credentials: 'include',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-type': 'application/json',
+  //         'Access-control-Allow-Credentials': true,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.status == 200) return response.json();
+  //         throw new Error(`Authentication has been failed`);
+  //       })
+  //       .then((resObj) => {
+  //         setUser(resObj);
+  //         localStorage.setItem('sso', 'true')
+  //         dispatch(
+  //           setCredentials({
+  //             token: resObj.token,
+  //             user: resObj.data.profile,
+  //           })
+  //         );
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   };
 
-    getUser();
-  }, []);
+  //   getUser();
+  // }, []);
 
   return (
     <Routes>
