@@ -67,7 +67,7 @@ const Login = () => {
   }, [isLoading, isSuccess, isError]);
 
   const googleRedirect = () => {
-    window.open(`http://be-tiket-app.up.railway.app/auth/google`, '_self')
+    window.open(`https://be-tiket-app.up.railway.app/auth/google`, '_self')
   }
 
   return (
