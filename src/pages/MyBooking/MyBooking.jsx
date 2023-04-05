@@ -5,15 +5,12 @@ import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
 import { useGetBookingByIdUserQuery } from '../../features/booking/bookingApi'
-import { useGetFlightByIdQuery } from '../../features/flight/flightApi'
 import { useGetUserProfileQuery } from '../../features/auth/authApi'
 
 const MyBooking = () => {
-  const { data } = useGetUserProfileQuery({}, { skip: localStorage.getItem(`sso`) ? false : true })
+  const { data } = useGetUserProfileQuery()
   const user = useSelector(state => state?.auth?.user)
   const { data: myBooking } = useGetBookingByIdUserQuery(user?.id)
-  // const {data : flight} = useGetFlightByIdQuery(myBooking)
-  // console.log(myBooking?.data?.id_flight);
 
   return (
     <DoubleSideLayout
