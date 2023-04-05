@@ -4,12 +4,14 @@ import BookingCard from '../../../components/Cards/BookingCard/BookingCard'
 import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard'
 import SectionCard from '../../../components/Cards/SectionCard/SectionCard'
 import DoubleSideLayout from '../../../template/DoubleSideLayout/DoubleSideLayout'
-import {useGetBookingByIdUserQuery} from '../../features/booking/bookingApi'
+import { useGetBookingByIdUserQuery } from '../../features/booking/bookingApi'
 import { useGetFlightByIdQuery } from '../../features/flight/flightApi'
+import { useGetUserProfileQuery } from '../../features/auth/authApi'
 
 const MyBooking = () => {
+  const { data } = useGetUserProfileQuery({}, { skip: localStorage.getItem(`sso`) ? false : true })
   const user = useSelector(state => state?.auth?.user)
-  const {data : myBooking, isLoading} = useGetBookingByIdUserQuery(user?.id)
+  const { data: myBooking } = useGetBookingByIdUserQuery(user?.id)
   // const {data : flight} = useGetFlightByIdQuery(myBooking)
   // console.log(myBooking?.data?.id_flight);
 
@@ -17,7 +19,7 @@ const MyBooking = () => {
     <DoubleSideLayout
       classLeft={'col-12 col-md-5 col-lg-4'}
       classRight={'col-12 col-md-7 col-lg-8 mt-3 mt-md-0'}
-      leftside={<ProfileCard className={`d-none d-sm-flex`}/>}
+      leftside={<ProfileCard className={`d-none d-sm-flex`} data={data} />}
     >
       <SectionCard header={true} title={"My Booking"}>
         <div className="row">
@@ -30,12 +32,12 @@ const MyBooking = () => {
       {myBooking?.data?.map(boks => (
         console.log(boks),
         <>
-        <BookingCard 
-          header={true}
-          id_booking={boks.id}
-          id_flight={boks.id_flight}  
-          status={boks.status}
-        />
+          <BookingCard
+            header={true}
+            id_booking={boks.id}
+            id_flight={boks.id_flight}
+            status={boks.status}
+          />
         </>
       ))}
     </DoubleSideLayout>

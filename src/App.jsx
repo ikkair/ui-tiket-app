@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     const getUser = async () => {
-      fetch('https://be-tiket-app.up.railway.app/auth/login/success', {
+      fetch('http://localhost:3001/auth/login/success', {
         method: 'GET',
         credentials: 'include',
         headers: {

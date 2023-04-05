@@ -89,66 +89,54 @@ VITE_API_ENDPOINT = [BACKEND_URL]
 
 <table>
  <tr>
-    <td><img width="350px" src="./documentation/home.png"  border="0" border="0" alt="1" /></td>
+    <td><img width="350px" src="./documentation/Register.png"  border="0" border="0" alt="1" /></td>
     <td> <img width="350px" src="./documentation/Login.png" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
-    <td>Landing Page</td>
+    <td>Register</td>
     <td>Login</td>
   </tr>
 
   <tr>
-    <td><img width="350px" src="./documentation/Register.png"  border="0" border="0" alt="3" /> </td>
-     <!-- <td><img width="350px" src="./documentation/profile.png"  border="0" border="0" alt="4" /></td> -->
+    <td><img width="350px" src="./documentation/home.png"  border="0" border="0" alt="3" /> </td>
+     <td><img width="350px" src="./documentation/booking-detail.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
-    <td>Register</td>
-     <!-- <td>Profile</td> -->
+    <td>Landing Page</td>
+     <td>Flight Detail</td>
   </tr>
     <tr>
-    <!-- <td><img width="350px" src="./documentation/flightDetail.png"  border="0" border="0" alt="3" /> </td> -->
-     <td><img width="350px" src="./documentation/find-tiket.png"  border="0" border="0" alt="4" /></td>
-  </tr>
-   <tr>
-    <td>Flight Detail</td>
-     <td>Search Flight</td>
-  <!-- </tr>
-    <tr>
-    <td><img width="350px" src="./documentation/flightDetail.png"  border="0" border="0" alt="3" /> </td>
-     <td><img width="350px" src="./documentation/search.png"  border="0" border="0" alt="4" /></td>
-  </tr>
-   <tr>
-    <td>Flight Detail</td>
-     <td>Search Flight</td>
-  </tr> -->
-  <tr>
     <td><img width="350px" src="./documentation/my-booking.png"  border="0" border="0" alt="3" /> </td>
-     <!-- <td><img width="350px" src="./documentation/dashboard.png"  border="0" border="0" alt="4" /></td> -->
+    <td><img width="350px" src="./documentation/profile.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
-  <td>My Booking</td>
-    <td>Dashboard Admin</td>
+    <td>My Booking</td>
+     <td>Profile</td>
+  </tr>
+    <tr>
+    <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>
+     <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
+  </tr>
+   <tr>
+    <td>Passanger Tiker</td>
+     <td>Admin Login</td>
   </tr>
   <tr>
-    <!-- <td><img width="350px" src="https://i.ibb.co/XCZZDmp/airline-Admin.png"  border="0" border="0" alt="3" /> </td> -->
+    <td><img width="350px" src="./documentation/admin-airline-information.png"  border="0" border="0" alt="3" /> </td>
+    <td><img width="350px" src="./documentation/admin-create-flight.png"  border="0" border="0" alt="4" /></td>
+  </tr>
+    <tr>
+      <td>Airline Information - Admin</td>
+      <td>Create Flight - Admin</td>
+    </tr>
+  <tr>
+    <td><img width="350px" src="./documentation/admin-update-destination.png"  border="0" border="0" alt="3" /> </td>
     <td><img width="350px" src="./documentation/flightAdmin.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
     <td>Airline Admin</td>
      <td>Flight Admin</td>
   </tr>
-  <!-- <tr>
-    <td><img width="350px" src="./documentation/paymentAdmin.png"  border="0" border="0" alt="3" /> </td>
-     <td><img width="350px" src="https://i.ibb.co/jDVz0d7/city-Admin.png"   border="0" border="0" alt="4" /></td>
-  </tr>
-   <tr>
-    <td>Payment Admin</td>
-     <td>City Airline Admin</td>
-  </tr> -->
-  
- 
-</table>
-
 <!-- CONTRIBUTING -->
 
 ## Contributing
