@@ -26,6 +26,7 @@ export const authApi = apiSlice.injectEndpoints({
         url: "user/profile"
       }),
 
+      providesTags: ['getUserProfile'],
       transformResponse: (response, meta, args) => response.data
     }),
 
