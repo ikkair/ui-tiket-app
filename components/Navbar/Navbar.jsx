@@ -9,14 +9,14 @@ import style from './Navbar.module.css';
 import navbarBannerLogo from '../../src/assets/navbar/bannerLogo.png';
 import Notifications from '../Notifications/Notifications';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetUserProfileQuery } from '../../src/features/auth/authApi';
+import { authApi, useGetUserProfileQuery } from '../../src/features/auth/authApi';
 import { logout, setCredentials } from '../../src/app/reducer/authSlice';
 
 export const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const urlPath = window.location.pathname;
-  const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery({}, {skip: localStorage.getItem(`sso`) ? false: true})
+  const { data: userLogin, isLoading, isSuccess } = useGetUserProfileQuery()
 
   const user = useSelector(state => state.auth.user)
   const urlWithoutBanner = ['/home', '/'];
