@@ -118,7 +118,7 @@ VITE_API_ENDPOINT = [BACKEND_URL]
     <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
-    <td>Passanger Tiker</td>
+    <td>Passanger Tiket</td>
     <td>Admin Login</td>
   </tr>
   <tr>
