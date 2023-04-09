@@ -135,6 +135,7 @@ VITE_API_ENDPOINT = [BACKEND_URL]
    <tr>
     <td>Destination Information - Admin</td>
   </tr>
+</table>
 <!-- CONTRIBUTING -->
 
 ## Contributing
