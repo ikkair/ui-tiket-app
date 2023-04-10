@@ -26,7 +26,8 @@ const LoginSuperAdmin = () => {
   };
 
   const directPath = () => {
-    return navigate('/admin/dashboard/flights')
+    // return navigate('/admin/dashboard/flights')
+    window.location.replace('/admin/dashboard/bookings')
   }
 
   const loginHandler = async (e) => {
