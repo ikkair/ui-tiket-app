@@ -31,8 +31,9 @@ const LoginAdmin = () => {
   
   useEffect(() => {
     if(isSuccess){
-      return navigate('/admin/dashboard/bookings')
+      window.location.replace('/admin/dashboard/bookings')
     }
+
   }, [isSuccess])
 
 
