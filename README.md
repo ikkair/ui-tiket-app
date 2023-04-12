@@ -107,19 +107,19 @@ VITE_API_ENDPOINT = [BACKEND_URL]
   </tr>
     <tr>
     <td><img width="350px" src="./documentation/my-booking.png"  border="0" border="0" alt="3" /> </td>
-    <td><img width="350px" src="./documentation/profile.png"  border="0" border="0" alt="4" /></td>
+    <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>
   </tr>
    <tr>
     <td>My Booking</td>
-    <td>Profile</td>
+    <td>Passanger Tiket</td>
   </tr>
   <tr>
-    <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>
-    <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
+    <td><img width="350px" src="./documentation/profile.png"  border="0" border="0" alt="4" /></td>
+    <td><img width="350px" src="./documentation/detail-destination.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
-    <td>Passanger Tiket</td>
-    <td>Admin Login</td>
+    <td>Profile</td>
+    <td>Detail Destination</td>
   </tr>
   <tr>
     <td><img width="350px" src="./documentation/admin-airline-information.png"  border="0" border="0" alt="3" /> </td>
@@ -131,9 +131,11 @@ VITE_API_ENDPOINT = [BACKEND_URL]
     </tr>
   <tr>
     <td><img width="350px" src="./documentation/admin-update-destination.png"  border="0" border="0" alt="3" /> </td>
+    <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
     <td>Destination Information - Admin</td>
+    <td>Admin Login</td>
   </tr>
 </table>
 <!-- CONTRIBUTING -->
