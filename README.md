@@ -6,7 +6,7 @@
   <p align="center">
     <a href="https://github.com/mhmdiamd/ui-tiket-app"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://ui-tiket-app.vercel.app/">View Demo</a>
+    <a href="https://buroq.vercel.app/">View Demo</a>
     ·
     <a href="https://be-tiket-app.up.railway.app/api/v1">Api Demo</a>
   </p>
@@ -156,7 +156,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`Frontend BuroQ`](https://github.com/mhmdiamd/ui-tiket-app)
 
-:rocket: [`Demo BuroQ`](https://ui-tiket-app.vercel.app/)
+:rocket: [`Demo BuroQ`](https://buroq.vercel.app/)
 
 <!-- Meet The Teams -->
 

@@ -8,6 +8,7 @@ import meal from '../../../src/assets/icon/burger.png'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { convert } from 'rupiah-format'
 
 const TicketCard = (props) => {
 
@@ -43,7 +44,7 @@ const TicketCard = (props) => {
           ) : <p className='text-secondary'>Reguler </p>}
         </div>
         <div className="col text-end text-md-center text-secondary">
-          <p><span className='text-blue'> {props.price} </span>/pax</p>
+          <p><span className='text-blue'>{convert(props.price)} </span>/pax</p>
         </div>
         <div className="col d-none d-lg-block ">
           <Link to={`/flights/${props.id}?capacity=${props.capacity}`} className='btn btn-blue'>Select</Link>
@@ -88,7 +89,7 @@ const TicketCard = (props) => {
                         ) : <p className='text-secondary'>Reguler </p>}
                     </div>
                     <div className="col-12 mt-4 d-lg-none d-flex justify-content-between">
-                      <span className='text-danger fw-bolder pt-2'>{props.price}</span>
+                      <span className='text-danger fw-bolder pt-2'>{convert(props.price)}</span>
                       <Link to={`/flights/${props.id}?capacity=${props.capacity}`} className='btn btn-blue'>Select</Link>
                     </div>
                   </div>
