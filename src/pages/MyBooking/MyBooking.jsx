@@ -27,7 +27,6 @@ const MyBooking = () => {
       </SectionCard>
 
       {myBooking?.data?.map(boks => (
-        console.log(boks),
         <>
           <BookingCard
             header={true}
