@@ -182,7 +182,7 @@ export const SearchResult = () => {
               name_airline={f?.name_airline}
               transit={f?.transit}
               duration_time={f?.duration_time}
-              price={<FormatRupiah value={f?.price} />}
+              price={f?.price}
               departure_time={f?.departure_time}
               photo={f?.image_airline}
               arrived_time={f?.arrived_time}
