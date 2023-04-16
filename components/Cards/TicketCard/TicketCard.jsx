@@ -11,8 +11,6 @@ import { faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesom
 import { convert } from 'rupiah-format'
 
 const TicketCard = (props) => {
-
-  console.log(props.photo);
   return (
     <Card className={`border-0 shadow-small px-3 py-4 mb-3`}>
       <div className="airlines d-flex justify-content-md-start justify-content-between align-items-center view-details">

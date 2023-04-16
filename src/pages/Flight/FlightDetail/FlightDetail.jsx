@@ -60,7 +60,7 @@ const FlightDetail = () => {
   }
 
   function getCapacity() {
-    if(Number(searchParams.get('capacity')) <= 1){
+    if(Number(searchParams.get('capacity')) <= 1 || Number(searchParams.get('capacity')) == 'undefined'){
       return 1
     }else {
       return Number(searchParams.get('capacity'))
