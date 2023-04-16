@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Card from "react-bootstrap/Card";
 import style from "./FlightAirlineDetailCard.module.css";
-import airlineLogo from '../../../src/assets/flight/airlineLogo.png'
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import {convert} from 'rupiah-format'
+import { convert } from "rupiah-format";
  
 const FlightAirlineDetailCard = ({ data, price ,passangerCapacity }) => {
   return (
