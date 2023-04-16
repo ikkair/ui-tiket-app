@@ -15,10 +15,9 @@ import { useGetFlightByIdQuery } from '../../../features/flight/flightApi'
 import { useNavigate, useParams } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import { useCreateBookingMutation } from '../../../features/booking/bookingApi'
-import { authApi } from '../../../features/auth/authApi'
 import { useCreatePassangerMutation } from '../../../features/passanger/passangerApi'
-import { useSelector } from 'react-redux'
 import { failedLoading, showLoading, successLoading } from '../../../common/loadingHandler'
+import { convert } from 'rupiah-format'
 
 const FlightDetail = () => {
   const navigate = useNavigate()
