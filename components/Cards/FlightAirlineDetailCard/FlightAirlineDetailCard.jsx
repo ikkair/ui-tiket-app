@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Card from "react-bootstrap/Card";
 import style from "./FlightAirlineDetailCard.module.css";
-import airlineLogo from '../../../src/assets/flight/airlineLogo.png'
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
+import { convert } from "rupiah-format";
  
 const FlightAirlineDetailCard = ({ data, price ,passangerCapacity }) => {
   return (
@@ -44,7 +44,7 @@ const FlightAirlineDetailCard = ({ data, price ,passangerCapacity }) => {
       </Card.Header>
       <Card.Body className={`px-4 py-3 d-flex justify-content-between align-items-center`}>
         <span className="fs-6 fw-semibold d-block">Total Payment</span>
-        <span className="fs-5 fw-semibold text-blue">Rp. {price * passangerCapacity}</span>
+        <span className="fs-5 fw-semibold text-blue">{convert(price * passangerCapacity)}</span>
       </Card.Body>
     </Card>
   );

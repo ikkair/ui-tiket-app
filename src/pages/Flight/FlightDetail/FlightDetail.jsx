@@ -60,7 +60,7 @@ const FlightDetail = () => {
   }
 
   function getCapacity() {
-    if(Number(searchParams.get('capacity')) <= 1){
+    if(Number(searchParams.get('capacity')) <= 1 || Number(searchParams.get('capacity')) == 'undefined'){
       return 1
     }else {
       return Number(searchParams.get('capacity'))
@@ -189,13 +189,13 @@ const FlightDetail = () => {
                   />
                   <span className={`fw-semibold`}>Travel Insurance</span>
                 </div>
-                <span className={`fw-semibold text-blue ms-auto`}>Rp. 2000/
+                <span className={`fw-semibold text-blue ms-auto`}>{convert(2000)}/
                   <span className={`text-secondary fw-none text-medium`}>pax</span>
                 </span>
                 
               </Card.Header>
               <Card.Body className={`px-4 py-3 d-flex justify-content-between align-items-center`}>
-                <span className="text-small">Get travel compensation up to $ 10.000,00</span>
+                <span className="text-small">Get travel compensation up to Rp. 14.695.000,00</span>
               </Card.Body>
             </Card>   
 
