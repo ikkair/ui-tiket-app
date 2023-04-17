@@ -291,7 +291,7 @@ const Index = () => {
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={`https://source.unsplash.com/random/200x${250 + i + 1}/?village`} crossOrigin="anonymous" alt="" className="image" />
+                        <img src={item.photo} alt="img-destination" className="image" />
                       </div>
                       {/* <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
@@ -359,7 +359,7 @@ const Index = () => {
                         <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
                           <div className="row">
                             <div className="col-md-12 story">
-                              <img src={`https://source.unsplash.com/random/200x${200 + i + 1}/?village`} crossOrigin="anonymous" alt="wrapkit" className="imgCustom rounded-circle" />
+                              <img src={item.photo}  alt="wrapkit" className="imgCustom rounded-circle" />
                               <h5 className="mt-4 text-center">{item?.name}</h5>
                             </div>
                           </div>
