@@ -186,13 +186,13 @@ Contributions are what make the open source community such an amazing place to b
       </td>
       <td align="center">
         <a href="https://github.com/Dhimasswara">
-          <img width="200"  src="./documentation/member/dhimas.png" alt=""><br/>
+          <img width="200"  src="./documentation/member/dhimas.jpg" alt=""><br/>
           <b>Dhimas Pandu Yogaswara</b>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/ikkair">
-          <img width="200"   src="./documentation/member/kamal.png" alt=""><br/>
+          <img width="200"   src="./documentation/member/kamal.jpg" alt=""><br/>
           <b>Ikhlasul Kamal Irmansyah</b>
         </a>
       </td>
