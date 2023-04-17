@@ -152,7 +152,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend BuroQ`](https://github.com/ikkair/be-tiket-app)
+:rocket: [`Backend BuroQ`](https://github.com/mhmdiamd/restapi-tiket-app)
 
 :rocket: [`Frontend BuroQ`](https://github.com/mhmdiamd/ui-tiket-app)
 
@@ -174,31 +174,31 @@ Contributions are what make the open source community such an amazing place to b
     <tr >
       <td align="center">
         <a href="https://github.com/mhmdiamd">
-          <img width="200"  src="./documentation/iqbal.jpg" alt=""><br/>
+          <img width="200"  src="./documentation/member/ilham.jpg" alt=""><br/>
           <b>Muhamad Ilham Darmawan</b>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/Shaniara28">
-          <img width="200"  src="./documentation/alif.jpg" alt=""><br/>
+          <img width="200"  src="./documentation/member/shania.png" alt=""><br/>
           <b>Shania Rizky Agustin</b>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/Dhimasswara">
-          <img width="200"  src="" alt=""><br/>
+          <img width="200"  src="./documentation/member/dhimas.png" alt=""><br/>
           <b>Dhimas Pandu Yogaswara</b>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/ikkair">
-          <img width="200"   src="" alt=""><br/>
+          <img width="200"   src="./documentation/member/kamal.png" alt=""><br/>
           <b>Ikhlasul Kamal Irmansyah</b>
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/VerdyNordsten">
-          <img width="200"  src="./documentation/hose.jpg" alt=""><br/>
+          <img width="200"  src="./documentation/member/verdy.png" alt=""><br/>
           <b>Verdy Prido Lughara</b>
         </a>
       </td>
