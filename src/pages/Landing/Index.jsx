@@ -263,7 +263,7 @@ const Index = () => {
               </div>
 
               <div className="col-12 mt-3 trending-overflow d-flex">
-                {/* <Swiper
+                <Swiper
                   spaceBetween={30}
                   slidesOffsetBefore={10}
                   slidesOffsetAfter={10}
@@ -284,14 +284,14 @@ const Index = () => {
                       slidesPerView: 5,
                     },
                   }}
-                > */}
+                >
                 {destination?.slice(0, 5).map((item, i) => (
-                  // <SwiperSlide>
+                  <SwiperSlide>
                   <Link to={`/destination/${item.id}`} className={`cardDestination mx-4 text-white`}>
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={item.photo} alt="img-destination" className="image" />
+                        <img src={item.photo} alt="img-destination" className="img-fluid image" />
                       </div>
                       {/* <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
@@ -310,9 +310,9 @@ const Index = () => {
                       </div>
                     </div>
                   </Link>
-                  // </SwiperSlide>
+                 </SwiperSlide>
                 ))}
-                {/* </Swiper> */}
+                </Swiper>
               </div>
             </div>
             <div className="customSpace"></div>
