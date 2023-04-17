@@ -291,7 +291,7 @@ const Index = () => {
                     <div className="cardSlider">
                       <div className="cardOverlay" />
                       <div className="cardImage">
-                        <img src={item.photo} alt="img-destination" className="img-fluid image" />
+                        <img src={item.photo} alt="img-destination" className="img-fluid h-100 image" />
                       </div>
                       {/* <div className="cardLabel py-1 px-3 mx-2 text-white">
                         <span className="fw-bold">{item?.popularity}</span> Airlines
