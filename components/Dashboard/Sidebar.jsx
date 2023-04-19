@@ -1,10 +1,9 @@
-import { faBell, faGear, faLocation, faLocationDot, faPlane, faPlaneDeparture, faRightFromBracket, faSignHanging, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faGear, faLocationDot, faPlane, faPlaneDeparture, faRightFromBracket, faSignHanging, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { logout, setCredentials } from '../../src/app/reducer/authSlice'
+import { logout} from '../../src/app/reducer/authSlice'
 import photo from '../../src/assets/profile/admin.png'
 
 const Sidebar = () => {
@@ -14,7 +13,7 @@ const Sidebar = () => {
   const logoutHandler = (e) => {
     if (window.confirm('are you sure want to logout?')) {
       dispatch(logout())
-      navigate('/admin/login')
+      return navigate('/admin/login')
     }
   }
 
