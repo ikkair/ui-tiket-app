@@ -107,10 +107,12 @@ VITE_API_ENDPOINT = [BACKEND_URL]
   </tr>
     <tr>
     <td><img width="350px" src="./documentation/my-booking.png"  border="0" border="0" alt="3" /> </td>
+    <td><img width="350px" src="./documentation/search-result.png"  border="0" border="0" alt="3" /> </td>
     <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>
   </tr>
    <tr>
     <td>My Booking</td>
+    <td>Search Result</td>
     <td>Passanger Tiket</td>
   </tr>
   <tr>
@@ -121,6 +123,15 @@ VITE_API_ENDPOINT = [BACKEND_URL]
     <td>Profile</td>
     <td>Detail Destination</td>
   </tr>
+  </tr>
+    <tr>
+      <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>.
+      <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
+    </tr>
+    <tr>
+      <td>Passanger Tiket</td>
+      <td>Admin Login</td>
+    </tr>
   <tr>
     <td><img width="350px" src="./documentation/admin-airline-information.png"  border="0" border="0" alt="3" /> </td>
     <td><img width="350px" src="./documentation/admin-create-flight.png"  border="0" border="0" alt="4" /></td>
@@ -131,11 +142,9 @@ VITE_API_ENDPOINT = [BACKEND_URL]
     </tr>
   <tr>
     <td><img width="350px" src="./documentation/admin-update-destination.png"  border="0" border="0" alt="3" /> </td>
-    <td><img width="350px" src="./documentation/admin-login.png"  border="0" border="0" alt="4" /></td>
   </tr>
    <tr>
     <td>Destination Information - Admin</td>
-    <td>Admin Login</td>
   </tr>
 </table>
 <!-- CONTRIBUTING -->
@@ -165,7 +174,7 @@ Contributions are what make the open source community such an amazing place to b
 <center>
   <table align="center">
     <tr >
-      <th >Fullstack Developer / Product Manager</th>
+      <th >Fullstack Developer / Project Manager</th>
       <th >Frontend Developer</th>
       <th >Frontend Developer</th>
       <th >Backend Developer</th>

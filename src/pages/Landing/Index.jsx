@@ -268,14 +268,14 @@ const Index = () => {
                   slidesOffsetBefore={10}
                   slidesOffsetAfter={10}
                   breakpoints={{
-                    100: {
-                      slidesPerView: 5,
+                    200: {
+                      slidesPerView: 1,
                     },
-                    400: {
-                      slidesPerView: 5,
+                    300: {
+                      slidesPerView: 2,
                     },
                     768: {
-                      slidesPerView: 5,
+                      slidesPerView: 4,
                     },
                     1024: {
                       slidesPerView: 5, // tampilkan list card tanpa preview sebelum dan sesudahnya
@@ -354,7 +354,7 @@ const Index = () => {
                       },
                     }}
                   >
-                    {destination?.map((item, i) => (
+                    {destination?.slice(0, 10).map((item, i) => (
                       <SwiperSlide>
                         <div className="col-lg-2 spaceCust p-5 d-flex justify-content-center">
                           <div className="row">
