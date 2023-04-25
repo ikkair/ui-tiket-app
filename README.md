@@ -108,12 +108,10 @@ VITE_API_ENDPOINT = [BACKEND_URL]
     <tr>
     <td><img width="350px" src="./documentation/my-booking.png"  border="0" border="0" alt="3" /> </td>
     <td><img width="350px" src="./documentation/search-result.png"  border="0" border="0" alt="3" /> </td>
-    <td><img width="350px" src="./documentation/tiket.png"  border="0" border="0" alt="3" /> </td>
   </tr>
    <tr>
     <td>My Booking</td>
     <td>Search Result</td>
-    <td>Passanger Tiket</td>
   </tr>
   <tr>
     <td><img width="350px" src="./documentation/profile.png"  border="0" border="0" alt="4" /></td>
