@@ -56,7 +56,7 @@ This is an example of how to list things you need to use the software and how to
 - Clone This Front End Repo
 
 ```
-git clone https://github.com/mhmdiamd/ui-tiket-app
+git clone https://github.com/ikkair/ui-tiket-app
 ```
 
 - Go To Folder Repo
