@@ -213,4 +213,4 @@ Contributions are what make the open source community such an amazing place to b
   </table>
 </center>
 
-Project Link: [https://github.com/mhmdiamd/ui-tiket-app](https://github.com/mhmdiamd/ui-tiket-app)
+Project Link: [https://github.com/ikkair/ui-tiket-app](https://github.com/ikkair/ui-tiket-app)
